@@ -27,7 +27,7 @@ author_info:
     affiliations:
       - Department of Something, University of Whatever
     funders: Grant XXXXXXXX
--
+  -
     github: dgasmith
     name: Daniel G A Smith
     initials: DGAS
@@ -37,7 +37,7 @@ author_info:
     affiliations:
       - Department of Something, University of Whatever
     funders: Grant XXXXXXXX
- -
+  -
     github: yudongqiu
     name: Yudong Qui
     initials: YQ
@@ -47,7 +47,7 @@ author_info:
     affiliations:
       - Department of Something, University of Whatever
     funders: Grant XXXXXXXX
- -
+  -
     github: maxentile
     name: Josh Fass
     initials: JF
@@ -57,7 +57,7 @@ author_info:
     affiliations:
       - Department of Something, University of Whatever
     funders: Grant XXXXXXXX
- -
+  -
     github: leeping
     name: Lee-Ping Wang
     initials: LPW
@@ -67,7 +67,7 @@ author_info:
     affiliations:
       - Department of Something, University of Whatever
     funders: Grant XXXXXXXX
- -
+  -
     github: davidlmobley
     name: David L Mobley
     initials: DLM
@@ -77,7 +77,7 @@ author_info:
     affiliations:
       - Department of Something, University of Whatever
     funders: Grant XXXXXXXX
--
+  -
     github: jchodera
     name: John D Chodera
     initials: JDC
