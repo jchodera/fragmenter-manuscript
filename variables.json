@@ -1,10 +1,27 @@
 {
-  "date": "August 20, 2019",
+  "date": "November 15, 2019",
   "authors": [
     {
+      "github": "ChayaSt",
+      "name": "Chaya D Stern",
+      "initials": "CDS",
+      "orcid": "0000-0001-6200-3993",
+      "twitter": "SternChaya",
+      "email": "chaya.stern@choderalab.org",
+      "affiliations": [
+        "Tri-Insitutional PhD Program in Chemical Biology, Memorial Sloan Kettering Cancer Center, New York, New York 10065, USA",
+        "Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA"
+      ],
+      "funders": "Grant XXXXXXXX",
+      "affiliation_numbers": [
+        1,
+        2
+      ]
+    },
+    {
       "github": "johndoe",
-      "name": "John Doe",
-      "initials": "JD",
+      "name": "Christopher I Bayly",
+      "initials": "CIB",
       "orcid": "XXXX-XXXX-XXXX-XXXX",
       "twitter": "johndoe",
       "email": "john.doe@something.com",
@@ -13,45 +30,125 @@
       ],
       "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
-        1
+        3
       ]
     },
     {
-      "github": "janeroe",
-      "name": "Jane Roe",
-      "initials": "JR",
+      "github": "dgasmith",
+      "name": "Daniel G A Smith",
+      "initials": "DGAS",
       "orcid": "XXXX-XXXX-XXXX-XXXX",
-      "email": "jane.roe@whatever.edu",
+      "twitter": "johndoe",
+      "email": "john.doe@something.com",
       "affiliations": [
-        "Department of Something, University of Whatever",
-        "Department of Whatever, University of Something"
+        "Department of Something, University of Whatever"
       ],
+      "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
-        1,
-        2
+        3
+      ]
+    },
+    {
+      "github": "yudongqiu",
+      "name": "Yudong Qui",
+      "initials": "YQ",
+      "orcid": "XXXX-XXXX-XXXX-XXXX",
+      "twitter": "johndoe",
+      "email": "john.doe@something.com",
+      "affiliations": [
+        "Department of Something, University of Whatever"
+      ],
+      "funders": "Grant XXXXXXXX",
+      "affiliation_numbers": [
+        3
+      ]
+    },
+    {
+      "github": "maxentile",
+      "name": "Josh Fass",
+      "initials": "JF",
+      "orcid": "XXXX-XXXX-XXXX-XXXX",
+      "twitter": "johndoe",
+      "email": "john.doe@something.com",
+      "affiliations": [
+        "Department of Something, University of Whatever"
+      ],
+      "funders": "Grant XXXXXXXX",
+      "affiliation_numbers": [
+        3
+      ]
+    },
+    {
+      "github": "leeping",
+      "name": "Lee-Ping Wang",
+      "initials": "LPW",
+      "orcid": "XXXX-XXXX-XXXX-XXXX",
+      "twitter": "johndoe",
+      "email": "john.doe@something.com",
+      "affiliations": [
+        "Department of Something, University of Whatever"
+      ],
+      "funders": "Grant XXXXXXXX",
+      "affiliation_numbers": [
+        3
+      ]
+    },
+    {
+      "github": "davidlmobley",
+      "name": "David L Mobley",
+      "initials": "DLM",
+      "orcid": "XXXX-XXXX-XXXX-XXXX",
+      "twitter": "johndoe",
+      "email": "john.doe@something.com",
+      "affiliations": [
+        "Department of Something, University of Whatever"
+      ],
+      "funders": "Grant XXXXXXXX",
+      "affiliation_numbers": [
+        3
+      ]
+    },
+    {
+      "github": "jchodera",
+      "name": "John D Chodera",
+      "initials": "JDC",
+      "orcid": "XXXX-XXXX-XXXX-XXXX",
+      "twitter": "johndoe",
+      "email": "john.doe@something.com",
+      "affiliations": [
+        "Department of Something, University of Whatever"
+      ],
+      "funders": "Grant XXXXXXXX",
+      "affiliation_numbers": [
+        3
       ]
     }
   ],
   "affiliations": [
     {
-      "affiliation": "Department of Something, University of Whatever",
+      "affiliation": "Tri-Insitutional PhD Program in Chemical Biology, Memorial Sloan Kettering Cancer Center, New York, New York 10065, USA",
       "affiliation_number": 1
     },
     {
-      "affiliation": "Department of Whatever, University of Something",
+      "affiliation": "Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA",
       "affiliation_number": 2
+    },
+    {
+      "affiliation": "Department of Something, University of Whatever",
+      "affiliation_number": 3
     }
   ],
   "ci_source": {
     "repo_slug": "ChayaSt/fragmenter-manuscript",
     "repo_owner": "ChayaSt",
     "repo_name": "fragmenter-manuscript",
-    "commit": "b35c95c10024d2e18240641bb1cacc5795fb5284"
+    "commit": "7ed9a610f2e36a77168eee7c009ffe2ffec5dd1e"
   },
   "manuscript_stats": {
     "reference_counts": {
-      "total": 0
+      "doi": 41,
+      "total": 41
     },
-    "word_count": 232
+    "word_count": 5202
   }
 }
