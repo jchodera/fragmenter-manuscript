@@ -4,11 +4,17 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="John Doe" />
-  <meta name="author" content="Jane Roe" />
-  <meta name="dcterms.date" content="2019-08-20" />
-  <meta name="keywords" content="markdown, publishing, manubot" />
-  <title>Manuscript Title</title>
+  <meta name="author" content="Chaya D Stern" />
+  <meta name="author" content="Christopher I Bayly" />
+  <meta name="author" content="Daniel G A Smith" />
+  <meta name="author" content="Yudong Qui" />
+  <meta name="author" content="Josh Fass" />
+  <meta name="author" content="Lee-Ping Wang" />
+  <meta name="author" content="David L Mobley" />
+  <meta name="author" content="John D Chodera" />
+  <meta name="dcterms.date" content="2019-11-15" />
+  <meta name="keywords" content="forcefield, force-field, cheminformatics" />
+  <title>Fragmenting molecules for quantum chemistry torsion scans</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -21,19 +27,341 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Manuscript Title</h1>
+<h1 class="title">Fragmenting molecules for quantum chemistry torsion scans</h1>
 </header>
-<p><small><em> This manuscript (<a href="https://ChayaSt.github.io/fragmenter-manuscript/v/b35c95c10024d2e18240641bb1cacc5795fb5284/">permalink</a>) was automatically generated from <a href="https://github.com/ChayaSt/fragmenter-manuscript/tree/b35c95c10024d2e18240641bb1cacc5795fb5284">ChayaSt/fragmenter-manuscript@b35c95c</a> on August 20, 2019. </em></small></p>
+<p><small><em> This manuscript (<a href="https://ChayaSt.github.io/fragmenter-manuscript/v/7ed9a610f2e36a77168eee7c009ffe2ffec5dd1e/">permalink</a>) was automatically generated from <a href="https://github.com/ChayaSt/fragmenter-manuscript/tree/7ed9a610f2e36a77168eee7c009ffe2ffec5dd1e">ChayaSt/fragmenter-manuscript@7ed9a61</a> on November 15, 2019. </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
-<li><p><strong>John Doe</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/johndoe">johndoe</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/johndoe">johndoe</a><br> <small> Department of Something, University of Whatever · Funded by Grant XXXXXXXX </small></p></li>
-<li><p><strong>Jane Roe</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/janeroe">janeroe</a><br> <small> Department of Something, University of Whatever; Department of Whatever, University of Something </small></p></li>
+<li><p><strong>Chaya D Stern</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/0000-0001-6200-3993">0000-0001-6200-3993</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/ChayaSt">ChayaSt</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/SternChaya">SternChaya</a><br> <small> Tri-Insitutional PhD Program in Chemical Biology, Memorial Sloan Kettering Cancer Center, New York, New York 10065, USA; Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA · Funded by Grant XXXXXXXX </small></p></li>
+<li><p><strong>Christopher I Bayly</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/johndoe">johndoe</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/johndoe">johndoe</a><br> <small> Department of Something, University of Whatever · Funded by Grant XXXXXXXX </small></p></li>
+<li><p><strong>Daniel G A Smith</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/dgasmith">dgasmith</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/johndoe">johndoe</a><br> <small> Department of Something, University of Whatever · Funded by Grant XXXXXXXX </small></p></li>
+<li><p><strong>Yudong Qui</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/yudongqiu">yudongqiu</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/johndoe">johndoe</a><br> <small> Department of Something, University of Whatever · Funded by Grant XXXXXXXX </small></p></li>
+<li><p><strong>Josh Fass</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/maxentile">maxentile</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/johndoe">johndoe</a><br> <small> Department of Something, University of Whatever · Funded by Grant XXXXXXXX </small></p></li>
+<li><p><strong>Lee-Ping Wang</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/leeping">leeping</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/johndoe">johndoe</a><br> <small> Department of Something, University of Whatever · Funded by Grant XXXXXXXX </small></p></li>
+<li><p><strong>David L Mobley</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/davidlmobley">davidlmobley</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/johndoe">johndoe</a><br> <small> Department of Something, University of Whatever · Funded by Grant XXXXXXXX </small></p></li>
+<li><p><strong>John D Chodera</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/jchodera">jchodera</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/johndoe">johndoe</a><br> <small> Department of Something, University of Whatever · Funded by Grant XXXXXXXX </small></p></li>
 </ul>
 <h2 id="abstract" class="page_break_before">Abstract</h2>
+<p>Accurate small molecule molecular mechanics force fields are essential for predicting protein-ligand binding affinities in drug discovery and understanding the biophysics of biomolecular systems. The accuracy of torsion parameters is important for determining the conformational distribution of molecules, and can have a large effect on computed properties like binding affinities. Torsion parameters are usually fit to computationally costly quantum chemical (QC) torsion scans that scale poorly with molecule size. To reduce computational cost and avoid the complications of distant intramolecular interactions, molecules are generally fragmented into smaller entities to carry out QC torsion scans. Poor fragmentation schemes, however, have the potential to significantly disrupt the electronic properties of the region around the torsion, leading to poor representation of the real chemical environment. Here, we show that a rapidly computing quantity, the fractional Wiberg bond order (WBO), is sensitive to the chemical environment of bonds, and can be used as a useful surrogate to assess the robustness of fragmentation schemes and identify conjugated bond sets. We use this concept to construct a validation set consisting of combinatorial fragmentations of druglike organic molecules (and their corresponding WBO distributions) that can be used to evaluate fragmentation schemes. To illustrate the utility of the WBO in assessing fragmentation schemes that preserve the chemical environment, we propose a new fragmentation scheme that uses WBO to maximize the chemical equivalency of the fragment and the substructure in the larger molecule.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Small molecules molecular mechancis (MM) force fields are essential to the design of small molecules for chemical biology and drug discovery, as well as the use of molecular simulation to understand the behavior of biomolecular systems. However, small molecule force fields have lagged behind protein force fields given the larger chemical space small molecule force fields need to cover <span class="citation" data-cites="mbmV3Fg8 18mvPmwwB">[<a href="#ref-mbmV3Fg8" role="doc-biblioref">1</a>,<a href="#ref-18mvPmwwB" role="doc-biblioref">2</a>]</span>. Torsion parameters are particularly problematic because they do not generalize very well <span class="citation" data-cites="13fQUQyf9">[<a href="#ref-13fQUQyf9" role="doc-biblioref">3</a>]</span>. It is possible to significantly improve the force field accuracy by refitting torsion parameters for individual molecules in a bespoke fashion <span class="citation" data-cites="Io39j4ig 5cjbQnbG CstjV2w8">[<a href="#ref-Io39j4ig" role="doc-biblioref">4</a>,<a href="#ref-5cjbQnbG" role="doc-biblioref">5</a>,<a href="#ref-CstjV2w8" role="doc-biblioref">6</a>]</span>. In many molecular mechanics force fields (e.g., Amber <span class="citation" data-cites="1GDaakPWY">[<a href="#ref-1GDaakPWY" role="doc-biblioref">7</a>]</span>, CHARMM <span class="citation" data-cites="11Z8pXbEW">[<a href="#ref-11Z8pXbEW" role="doc-biblioref">8</a>]</span>, OPLS <span class="citation" data-cites="Mi3Ujd07">[<a href="#ref-Mi3Ujd07" role="doc-biblioref">9</a>]</span>) a low-order Fourier series, such as a cosine series, is often used to represent the contribution of torsion terms to the potential energy. The torsion potential energy parameters such as amplitudes and phase angles for each Fourier term, are generally fit to the residual difference between gas phase quantum chemistry (QC) torsion energy profile and the non-torsion MM parameters <span class="citation" data-cites="i8ZZOoVS">[<a href="#ref-i8ZZOoVS" role="doc-biblioref">10</a>]</span>. The QC torsion energy profile is generated by fixing the torsion atoms and geometry minimizing all other atomic positions. Neighboring torsions can have correlated conformational preferences the low-order Fourier series does not capture<span class="citation" data-cites="SgTYwIda">[<a href="#ref-SgTYwIda" role="doc-biblioref">11</a>]</span>. 2D spline fits, such as CMAP <span class="citation" data-cites="3fVo3EjD U4kYckJ1">[<a href="#ref-3fVo3EjD" role="doc-biblioref">12</a>,<a href="#ref-U4kYckJ1" role="doc-biblioref">13</a>]</span>, have become a popular way to model non-local correlations by fitting residuals between the 2D QC torsion energy profile and the 2D MM torsion energy profile.</p>
+<p>Molecules are generally reduces to smaller model entities containing the torsion of interest for QC torsion scans <span class="citation" data-cites="18mvPmwwB">[<a href="#ref-18mvPmwwB" role="doc-biblioref">2</a>]</span> for two main reasons as illustrated in figure 1.</p>
+<ol type="1">
+<li><p>Generating one dimensional QC torsion profiles are computationally expensive and become increasingly inefficient for larger molecules and/or higher dimensional QC torsion profiles. QC calculations scale badly with the number of heavy atoms <span class="math inline">\(N\)</span>, like <span class="math inline">\(O(N^M)\)</span> where <span class="math inline">\(M\leq 3\)</span> for ab initio QC methods [CITE]. To adequately fit the torsions, constrained geometry optimizations need to be calculated at <span class="math inline">\(\leq 15^0\)</span> intervals for a minimum of 24 constrained geometry optimizations. To avoid hysteresis in the energy profile due to orthogonal degrees of freedom <span class="citation" data-cites="1E3wArY0j">[<a href="#ref-1E3wArY0j" role="doc-biblioref">14</a>]</span>, methods like wavefront propagation [CITE] are used. This adds a factor of 2D, where D is the dimension of the QC scan, to the computational cost. Figure 1A illustrates the average CPU time of a torsion scan for an average drug-like molecules. The shaded histogram is the distribution of the number of heavy atoms in FDA approved small molecules taken from DrugBank <span class="citation" data-cites="1FI8iuYiQ">[<a href="#ref-1FI8iuYiQ" role="doc-biblioref">15</a>]</span>. The average molecules size is [N] heavy atom which corresponds to an average of [t] CPU seconds per energy and gradient evaluation at B3LYP-D3(BJ)/DZVP <span class="citation" data-cites="YPDz9hB3 17YEERBX3">[<a href="#ref-YPDz9hB3" role="doc-biblioref">16</a>,<a href="#ref-17YEERBX3" role="doc-biblioref">17</a>]</span>. An average constrained geometry optimization takes 20 energy and gradient evaluations to converge. The average cost for a 1D QC torsion scan is t<em>24</em>20*2 = s.</p></li>
+<li><p>In larger molecules, there is a greater potential for the torsion atoms to interact with other degrees of freedom and convolute the energy profile. While this can also happen in smaller molecules such as ethylene glycol this problem is reduced when a minimal model molecule is used as illustrated in figure 1B.</p></li>
+</ol>
+<p>Many fragmentation algorithms exist, but they are not appropriate for torsion scans in particular and are insufficiently automated. These algorithms fall into two categories: 1. fragmentation for synthetic accessibility <span class="citation" data-cites="xbUA1nkO 15j2SwU5A 1BZlse7qR">[<a href="#ref-xbUA1nkO" role="doc-biblioref">18</a>,<a href="#ref-15j2SwU5A" role="doc-biblioref">19</a>,<a href="#ref-1BZlse7qR" role="doc-biblioref">20</a>]</span> and 2. fragmenting molecules to achieve linear scaling for QC calculations <span class="citation" data-cites="vm6HUPt4 ll3I4A87 nRywz8At EOlFsQFX">[<a href="#ref-vm6HUPt4" role="doc-biblioref">21</a>,<a href="#ref-ll3I4A87" role="doc-biblioref">22</a>,<a href="#ref-nRywz8At" role="doc-biblioref">23</a>,<a href="#ref-EOlFsQFX" role="doc-biblioref">24</a>]</span>. Fragmentation schemes for synthetic accessibility find building blocks for combinatorial and fragment based drug design. Cleavage happens at points where it makes sense for chemical reactions and do not consider how those cuts affect the electronic properties of the fragments. For retrosynthetic applications, many cleavage points are at functional groups because those are the reactive sites of molecules. However, for our application, we especially do not want to fragment at these reactive points given how electron rich they are and how much the electronic density changes when they are altered. Fragmentation algorithms for linear scaling such as Divide-and-Conquer methods <span class="citation" data-cites="F0de6fPE">[<a href="#ref-F0de6fPE" role="doc-biblioref">25</a>]</span>, effective fragment potential method <span class="citation" data-cites="EnOwBZmA">[<a href="#ref-EnOwBZmA" role="doc-biblioref">26</a>]</span> and systematic molecular fragmentation methods <span class="citation" data-cites="EOlFsQFX">[<a href="#ref-EOlFsQFX" role="doc-biblioref">24</a>]</span> require the users to manually specify where the cuts should be or which bonds not to fragment. Furthermore, none of these methods address the needs specific to fragmenting molecules for QC torsion scans. Fragments need to include all atoms involved in 1-4 interactions, since they are incorporated in the fitting procedure. We also need a systematic way to determine if remote substituents change the barrier to rotation significantly for the central bond of interest.</p>
+<p>In this work, we use the Wiberg Bond Order (WBO) <span class="citation" data-cites="BES2Ksiq">[<a href="#ref-BES2Ksiq" role="doc-biblioref">27</a>]</span>, which is both simple to calculate from semi-empirical QC methods and is sensitive to the chemical environment around a bond. WBOs are correlated with bond vibrational frequencies <span class="citation" data-cites="hHhjgmIm">[<a href="#ref-hHhjgmIm" role="doc-biblioref">28</a>]</span> and is used to predict trigger bonds in high energy-density material because it is correlated with the strength of the bond <span class="citation" data-cites="cAeBUxqm">[<a href="#ref-cAeBUxqm" role="doc-biblioref">29</a>]</span>. Here, we develop an approach that uses the WBO to validate whether a fragmentation scheme corrupts the local chemical environment of interest, with a particular focus on fragmentation schemes suitable for QC torsion drives. Our approach uses simple heuristics to arrive at a minimal fragment for QM torsion scan that is representative of of the torsion scan of the substructure in the parent molecules. For a central bond, include all atoms that are involved in the sterics of a torsion scan. Then use the WBO as a surrogate signal to determine if the fragment needs to be grown out more to restore the correct electronics around the central bonds.</p>
+<p>The paper is organizes as follows: Section 2 provides a mathematical and physical definition of the problem. Section 3 provides the motivation for using the WBO as a surrogate, evaluates how robust it is, proposes a minimal fragmentation scheme and describes a rich validation set that can be used to benchmark fragmentation schemes Section 4 provides a discussion of the implications of this study and section 5 provides detailed methods.</p>
+<h2 id="theory">Theory</h2>
+<p><span class="banner lightyellow">TBD</span></p>
+<ul>
+<li>Define problem mathematically</li>
+<li>Define the problem physically</li>
+</ul>
+<h2 id="results">Results</h2>
+<h3 id="torsion-energy-barriers-are-sensitive-to-the-chemical-environment-which-can-be-influenced-by-remote-substituents">Torsion energy barriers are sensitive to the chemical environment, which can be influenced by remote substituents</h3>
+<p>In most forcefields, torsions are defined by the quartet of atom types involved in the dihedral [CITE]. However, the quartet of atom types do not always capture the relevant chemistry, especially when the effects are non local i.e., atoms contributing to hyperconjugation, delocalization or other non classical effects, are not part of the quartet involved in the torsion <span class="citation" data-cites="13fQUQyf9">[<a href="#ref-13fQUQyf9" role="doc-biblioref">3</a>]</span>. Figure <a href="#fig:biphenyls">1</a>A illustrates such a case with a series of biphenyls in different protonation states. While the MM torsion profiles are all the same (Fig 2B), the QC torsion profiles are different for each protonation state (Fig 2C). The torsion energy barrier increases relative to the neutral state for the cation, anion and zwitterion, in that order. The profile changes qualitatively as well. For the neutral molecule, the lowest energy conformer is slighlty out of plane, at <span class="math inline">\(150^{\circ}\)</span> and <span class="math inline">\(120^{\circ}\)</span>. For the zwitterion, the lowest energy conformer is at <span class="math inline">\(180^{\circ}\)</span>. In the neutral molecule, the slightly out of plane conformer is preferred to accommodate the hydrogens. However, the central bond in the zwitterion is part of the larger conjugated system between the two aromatic rings (Fig 2D) so the planar conformer is preferred to enable conjugation. This trend poses several problems to automatic forcefield parametrization. Most forcefields consider the central bond in the zwitterion rotatable while the QC scan clearly shows that is it not. This illustrates one of the fundamental limits of atom types in classical forcefields. At what point in this series should a new atom type be introduced? The Open Force Field Initiative’s effort on automating data driven direct chemical perception <span class="citation" data-cites="1HYTTY1PU mbmV3Fg8 14f8CUfzQ">[<a href="#ref-mbmV3Fg8" role="doc-biblioref">1</a>,<a href="#ref-1HYTTY1PU" role="doc-biblioref">30</a>,<a href="#ref-14f8CUfzQ" role="doc-biblioref">31</a>]</span> addresses this problem by using SMIRKS patterns to assign parameters, and providing a framework to sample over SMIRKS space in a data driven way. In addition, this example illustrates why fragmenting molecules appropriately for QC torsion scans requires human expertise and is difficult to automate. In this case, a small change three bonds away from the torsion central bond changed the bond from a rotatable bond to a non-rotatable conjugated bond. When fragmenting molecules we need to avoid destroying a bond’s chemical environment by naively removing an important remote substituent.</p>
+<figure>
+<img src="images/figure_3.svg" alt="Figure 1: Illustration of the sensitivity of torsion profiles to remote chemical changes in a molecule [A] Biphenyl protonation states and tautomers with increasing Wiberg bond order for the central bond. [B] The resonance structure of the biphenyl zwitterion shows that the central bond is conjugated. The Wiberg bond order and torsion scan for this bond (see A and C) are reflective of a conjugated bond. [C] Relative QC energy as a function of torsion angle of the central bond. The colors of the QC scan corresponds to the highlighted bonds in A. [D] Torsion barrier heights vs WBOs. The color of the data points correspond to the highlighted bonds in A. The WBO and QC torsion barrier heights are correlated." id="fig:biphenyls" /><figcaption><span>Figure 1:</span> <strong>Illustration of the sensitivity of torsion profiles to remote chemical changes in a molecule</strong> <strong>[A]</strong> Biphenyl protonation states and tautomers with increasing Wiberg bond order for the central bond. <strong>[B]</strong> The resonance structure of the biphenyl zwitterion shows that the central bond is conjugated. The Wiberg bond order and torsion scan for this bond (see <strong>A</strong> and <strong>C</strong>) are reflective of a conjugated bond. <strong>[C]</strong> Relative QC energy as a function of torsion angle of the central bond. The colors of the QC scan corresponds to the highlighted bonds in <strong>A</strong>. <strong>[D]</strong> Torsion barrier heights vs WBOs. The color of the data points correspond to the highlighted bonds in <strong>A</strong>. The WBO and QC torsion barrier heights are correlated.</figcaption>
+</figure>
+<h3 id="the-wiberg-bond-order-quantifies-the-electronic-population-overlap-between-two-atoms-and-captures-bond-conjugation">The Wiberg Bond Order quantifies the electronic population overlap between two atoms and captures bond conjugation</h3>
+<p>The Wiberg bond order (WBO) is a bond property that is calculated using orthonormalized atomic orbitals that are used as basis sets in semi-empirical QC methods[CITE]. Wiberg originally formulated it for the CNDO basis set [CITE] but it can be easily extended to other semi-empirical QC methods such as AM1 <span class="citation" data-cites="tnSqySMX">[<a href="#ref-tnSqySMX" role="doc-biblioref">32</a>]</span> and PM3 [CITE]. The WBO is a measure of electron density between two atoms in a bond and is given by the quadratic sum of the density matrix elements over occupied atomic orbitals on atoms A and B</p>
+<p><span class="math display">\[\begin{equation} W_{AB} = \sum_{\mu\in A}\sum_{\nu\in B} P^2_{\mu\nu} \end{equation}\]</span></p>
+<p>To check how well <span class="math inline">\(W_{AB}\)</span> recapitulates the multiplicity of bonds, we calculated <span class="math inline">\(W_{AB}\)</span> from AM1 calculations for all bonds in FDA approved molecules in DrugBank <span class="citation" data-cites="1FI8iuYiQ">[<a href="#ref-1FI8iuYiQ" role="doc-biblioref">15</a>]</span>. The distribution [fig 3] corresponds closely with bond multiplicity. The plateau at 0.8 correspond to bonds involving S and P since these are weaker and longer bonds. The plateau at 1.0 corresponds to C-H and C-C bonds, the plataea at 1.5 corresponds to bonds in aromatic rings, the plateau at 2.0 corresponds to double bonds, and finally the triple bonds form the last plateau. The density between 1.0-1.4 correspond to the conjugated bonds not inside rings.</p>
+<p>The Wiberg bond order assumes atomic orbitals (AOs) are orthonormal. In ab initio calculations, however, AOs are not orthogonal but the WBO can be calculated via Löwdin normalization <span class="citation" data-cites="K8bdDsCu 1BEyXJiMo">[<a href="#ref-K8bdDsCu" role="doc-biblioref">33</a>,<a href="#ref-1BEyXJiMo" role="doc-biblioref">34</a>]</span> which is how it is calculated in Psi4.</p>
+<p>We calculated the WBO from AM1 calculations for the biphenyl series as shown in figure 2A. The increase in the WBO corresponds to increasing conjugation and torsion energy barrier height of the bond. When the torsion energy barrier heights are plotted against the WBO [fig 2E], the relationship is linear with an <span class="math inline">\(R^2\)</span> of [hold].</p>
+<h3 id="the-wbo-is-an-inexpensive-surrogate-for-the-chemical-environment-around-a-bond">The WBO is an inexpensive surrogate for the chemical environment around a bond</h3>
+<p>Since the WBO can be calculated from a cheap AM1 calculation, is indicative of a bond’s conjugation, and is correlated with torsion energy barrier height, it is an attractive measure to use as a surrogate when automating fragmentation or interpolating torsion force constants. However, WBOs are conformationally dependent <span class="citation" data-cites="r3xLNmRT">[<a href="#ref-r3xLNmRT" role="doc-biblioref">35</a>]</span> so we investigated this dependence to understand if WBOs will be a robust descriptor. In addition, we also investigated the generality of the torsion energy barrier and WBO linear relationship. In this section we will first discuss our findings and solution to the conformational dependency and then discuss how general the linear relationship is.</p>
+<h4 id="conformation-dependent-variance-of-wbos-are-higher-for-conjugated-bonds">Conformation dependent variance of WBOs are higher for conjugated bonds</h4>
+<p>Since WBOs are a function of the electronic density, which is conformational dependent, WBOs change with conformation. However, not all bonds’ WBOs change the same way with conformation. We found that WBOs for conjugated bonds are multimodal with respect to conformation and that bonds involved in conjugated systems have WBOs that are correlated with each other.</p>
+<p>To investigate how WBOs change with conformation, we used Omega <span class="citation" data-cites="1G1ccz54w">[<a href="#ref-1G1ccz54w" role="doc-biblioref">36</a>]</span> to generate conformers for a set of kinase inhibitors [Supplementary figure 1] and calculated the Lowdin-Wiberg bond order for each conformation from an hf3c <span class="citation" data-cites="12mptWjWL">[<a href="#ref-12mptWjWL" role="doc-biblioref">37</a>]</span> geometry optimized calculation using Psi4 <span class="citation" data-cites="YC6qkEYS">[<a href="#ref-YC6qkEYS" role="doc-biblioref">38</a>]</span>.Omega is a knowledge-based conformer generator that uses a modified version of MMFF94s <span class="citation" data-cites="11e7CbOCj">[<a href="#ref-11e7CbOCj" role="doc-biblioref">39</a>]</span> to score conformations. It has been shown to accurately reproduce experimentally observed crystallography conformers in the Platinum benchmark dataset <span class="citation" data-cites="2hGWnSJL">[<a href="#ref-2hGWnSJL" role="doc-biblioref">40</a>]</span>. Figure 4 illustrates the results for Gefitinib [Figure 4A], a representative molecule. Figure 4B shows the distribution of WBOs for all rotatable bonds color coded with the colors used to highlight the bonds in Gefitinib [Fig 4A]. Single carbon-carbon bonds, and carbon-nitrogen bonds formed by atoms numbered 10 - 13 are freely rotating. This is reflected by the tight distribution of WBOs around 1.00 for those bonds. The bonds involving the ether oxygens and aromatic rings (formed by atoms numbered 1-3, 8-10, 19, 23-24) exhibit higher variance and multimodality. It is interesting to note the difference in the WBOs for the conjugated bonds formed by the nitrogen between the quinazoline and chloro fluro phenyl (bonds formed by atoms numbered 19, 23 and 23, 24). Both of these bonds are conjugated with their neighboring ring systems, however, While the distribution of WBOs for bond 19-23 (the purple distribution) is clearly bimodal, the WBO distribution for bond 23-24 has lower variance. This is in agreement with the resonance structures shown in figure 4D. The resonance strictures that have the double bond on the bond closer to the quinazoline (bond 19-23) are more stable because the negative charge is on a nitrogen. When the double bond is on the neighboring 23-24 bond, the negative charge is on an aromatic carbon which is less stable. The results are similar for other kinase inhibitors tested shown in supplementary figure 1. In addition, when we inspected the conformations associated with each mode in the purple distribution [figure 4B] we found that conformations with lower WBOs on bond 19-23 had that bond out of plane while the conformations in the higher mode of the distribution had the bond in plane which allows conjugation. We found similar results from WBOs calculated form QC torsion scans. Fig 2D shows the Lowdin-Wiberg bond order for each point in the QC torsion scans of the biphenyl zwitterion. The WBOs are perfectly anti-correlated with the torsion potential energy which is in line with chemical intuition. Conjugation stabilizes conformations and leads to more electronic population overlap in bonds [CITE]. At higher energy conformers, the aromatic rings are out of plan and cannot conjugate. Therefore the WBO is lower for those conformers. At lower energy conformations, the rings are in plane and can conjugate so the WBO is higher.</p>
+<h4 id="bonds-in-conjugated-systems-have-highly-correlated-conformation-dependent-wbos">Bonds in conjugated systems have highly correlated conformation-dependent WBOs</h4>
+<p>We found that certain bond orders are strongly correlated or anticorrelated with each other, indicating strong electronic coupling. Figure 4C shows the Pearson correlation coefficient for each bond WBO distribution against all other bond WBO distributions. There is a clear structure in this correlation plot. The square formed by bonds from atoms 24-29 shows that the alternating bonds in the aromatic ring are strongly anticorrelated with each other. While the ring formed by atoms 13-18 also exhibit this trend, the absolute Pearson correlation coefficients are not as high given that it is not an aromatic ring. The bonds involved in the ethers (atoms 1-3 adn 8-10) are strongly correlated with each other and also correlated to the quinazoline, albeit not as strongly. And the bonds between the chloro fluoro phenyl and quinazoline follow the same trend as their WBO distribution and resonance structures. The bond closer to the quinazoline (bond 23-19) has WBO distribution correlated with the quinazoline while the bond closer to the chloro fluoro phenyl (bond 23-24) is not as strongly coupled with the quinazoline or phenyl ring. The results are similar for other kinase inhibitors tested as shown in supplementary figure 1</p>
+<h4 id="elf10-provides-a-useful-way-to-capture-informative-conformation-independent-wbos">ELF10 provides a useful way to capture informative conformation-independent WBOs</h4>
+<p>As we have shown, the WBO is conformation dependent and this dependency can also be highly informative of the electronic coupling in a system. Figure 5 shows the distribution of standard deviations of WBO distribution with respect to conformation in blue. Most of the standard deviations fall below 0.02, which is encouragingly small. However, it can become computationally expensive to calculate the WBO for all conformations. If we want to use WBOs as a surrogate to determine if our fragment is representative of the parent molecule in a reproducible way, we need a way to capture informative conformation-independent WBOs. Electronically Least-interacting Functional groups (ELF) conformation selection implemented in quacpac [CITE] resolves the issue of sensitivity of molecular mechanics electrostatic energies from QM derived charges. <span class="banner lightyellow">Leave to Christopher Bayly to describe</span> This method can also be applied to deriving WBOs that are insensitive to conformers. To test how well ELF10 WBOs correspond to expected WBOs, we calculated ELF10 WBOs for the kinase inhibitor set shown in supplementary figure 1. Figure 3A shows the distribution of all ELF WBO. To gain insight how the ELF10 WBOs corresponds to bond multiplicity, we separated the distributions by element. Figure 3B shows the distributions of carbon-carbon bonds. The blue distribution shows the carbon-carbon bonds not in rings. There are peaks at one, two and three which correspond to single, double and triple bonds. Single bonds are the most abundant followed by double and then triple. The blue distribution shows carbon-carbon bonds in rings. There is a peak as 1.0 and 1.5 which corresponds to single and aromatic rings. Longer, weaker bonds involving Sulfur and Phosphorous [Fig 3C] both have peaks at ~0.6. Oxygen has a peak at 1.0 and 1.8 which corresponds to single and double bonds. For the rest of this section we will be focusing on the robustness and generalizability of ELF10 WBOs.</p>
+<h4 id="wbos-are-a-robust-signal-to-how-remote-substituent-changes-alter-a-bonds-torsion-barrier-height">WBOs are a robust signal to how remote substituent changes alter a bond’s torsion barrier height</h4>
+<p>To investigate how resonance and electronic effects from remote substituents change the torsion energy of a bond, we took inspiration from the Hammett equation <span class="citation" data-cites="3z27USyZ">[<a href="#ref-3z27USyZ" role="doc-biblioref">41</a>]</span> of reactions involving benzoic acid derivatives. The Hammett equation relates meta and para benzoic acid substituents to the acid’s ionization equilibrium constants</p>
+<p><span class="math display">\[\begin{equation} log \frac{K}{K_0} = \sigma\rho \end{equation}\]</span></p>
+<p>Where <span class="math inline">\(\sigma\)</span> is a substituent constant and <span class="math inline">\(\rho\)</span> is a reaction constant. It aims to isolate the resonance and inductive effects of substituents from the sterics effects of a reaction. Here, we generated a combinatorial set of meta and para subsituted phenyls and pyridine [Fig 6A] with functional groups that cover a wide range of electron donating and withdrawing groups as shown in figure 6A. We then calculated the ELF10 WBO for the bond attaching the functional group to the aromatic ring for all functional groups [highlighed bonds in figure 6A]. This allowed us to isolate the effect on a bond’s WBO from remote chemical environment changes, defined as a change more than two bonds away, from other effects such as sterics and conformations. For each functional group, we get a distribution of WBOs, where each point in the distribution is the WBO at the bond connecting that functional group to the meta or para substituted phenyl or pyridine ring for all other functional groups. The resulting distributions are shown in supplementary figure 2. It is interesting to note that the trend of decreasing WBOs for more electron donating groups anti correlates with with increasing substituent constant for the para effect [Supplementary figure 2B]. Functional groups that are more electron donating will have more electron density on the bond attaching the functional group to the benzoic acid. The resonance and/or inductive effect destabilize the benzoate, increases its pKa, which corresponds to lower substituent constants.</p>
+<p>To investigate how these long range effects observed in the WBOs capture changes in the bonds’ torsion potential energy, we ran representative QC torsion scans for 17 of the functional groups [Figure 6A]. We did not run QC torsion scans for functional groups that either did not have a torsion such as halogens, were congested such as trimethyl amonium and factional groups where the WBOs did not change by more than 0.01 for different functional groups at the meta or para position such as methyl. We chose the representative molecules for the 17 functional groups by sorting them by their WBO and selecting molecules with minimum WBO difference of 0.02. All of the resulting QC torsion scans are shown in supplementary figure 3. We show a representative series of torsion scan for the nitro functional group in figure 6D. The torsion energy barrier height increase with increasing ELF10 WBO of the bond. In addition, Figure 6E shows that the Wiberg-Lowdin bond orders are anti-correlated with the QC torsion scan which is the same result we saw for the initial bipheynl set discussed in the previous section. We also found that the trend shown in figure 2D that the torsion energy barrier height is correlated with WBO generalizes to all functional groups tested in this set [Fig 6C].</p>
+<p>For most functional groups, the change in WBOs correspond to changes in torsion barrier heights, but not in the torsion energy profile [supplementary figure 3]. However, for some functional groups the change in WBO only captures one aspect of the electronic changes because not only do the torsion energy barrier heights increase, but the profile changes considerably as shown in figure 7 for [hold for functional group and some way to explain this].</p>
+<p>When we compare the standard deviations of WBO distributions with respect to conformation versus with respect to changes in chemical space [Figure 5 red distribution], we find that the changes in ELF10 WBO for remote chemical environment changes are bigger than the changes in WBO that arise from change in conformation. This allows us to use the difference in ELF10 WBO of parent and fragment as a good surrogate to the level of disruption of the chemical environment.</p>
+<h3 id="a-simple-fragmentation-scheme-can-use-the-wbo-to-preserve-the-chemical-environment-around-a-torsion">A simple fragmentation scheme can use the WBO to preserve the chemical environment around a torsion</h3>
+<p>The WBO is a robust indicator of changes in torsion energy barrier heights for related torsions. Therefore, if a fragment’s WBO changes too much from its parent WBO at the same bond, the fragmentation is probably inadequate. Using this concept, we extended the fragment-and-cap scheme proposed by [CITE Pfizer paper] by considering resonance via WBOs. The scheme, illustrated in figure 8 is as follows:</p>
+<ol type="1">
+<li>Find rotatable bond. For this step we use the SMARTS pattern [hold for SMARTS pattern]</li>
+<li>Build out one bond in each direction</li>
+<li>If the next atom is part of a ring or part of a functional group listed in figure 8B, keep the ring and functional group</li>
+<li>Keep meta substitutents to the rotatable bond of interest because it is involved in the sterics of the torsion</li>
+<li>Cap with hydrogen and recalculate WBO</li>
+<li>If the fragment’s WBO differs by more than a user defined threshold, continue grow out one bond at a time until the fragment’s WBO is within the threshold of the parent WBO.</li>
+</ol>
+<h3 id="fragmentation-schemes-can-be-assessed-by-their-ability-to-preserve-the-chemical-environment-while-minimizing-fragment-size">Fragmentation schemes can be assessed by their ability to preserve the chemical environment while minimizing fragment size</h3>
+<p>This fragmentation scheme improves upon Pfizers scheme, however, it leaves some parameters up to the user. In order to asses various thresholds and different fragmentation schemes in general, we generated a diverse set of FDA-approved drug molecules that can be a useful validation set. The goal of this set was to find molecules that are challenging to fragment. In other words, molecules that have bonds that are sensitive to remote substituent changes. To find these molecules, we first filtered DrugBank (version 5.1.3 downloaded on 2019-06-06) with the following criteria:</p>
+<ol type="1">
+<li>FDA approved small molecules</li>
+<li>Largest ring size has less than 14 heavy atoms</li>
+<li>Smallest ring size has at least 3 heavy atoms</li>
+<li>Molecule must have at least one aromatic ring</li>
+<li>Molecule has only one connnected component</li>
+</ol>
+<p>This left us with 730 small molecules [Supplementary figure 3]. Charged molecules exacerbates remote substituent sensitivity and many molecules are in charged states at physiological pH. To ensure that our dataset is representative of drugs at physiological pH, we used the OpenEye <code>EnumerateReasonableTautomers</code> to generate tautomers that are highly populated at pH ~7.4. This tautomer enumeration extended the set to 1234 small molecules [Supplementary figure 3B] We then generated all possible fragments of these molecules by using a combinatorial fragmentation scheme. In this scheme, every rotatable bond is fragmented and then all possible connected fragments are generated where the smallest fragment has 4 heavy atoms and the largest fragment is the parent molecule. This scheme generated ~300,000 fragments. For each fragment, Omega was used to generate conformers and the AM1 WBO was calculated for every bond in every conformer. This resulted in a distribution of WBOs for all bonds in all fragments as shown in figure 9A.</p>
+<h4 id="scoring-how-well-fragments-preserve-chemical-environments-using-wbo-distributions">Scoring how well fragments preserve chemical environments using WBO distributions</h4>
+<p>Each fragment needs to be assigned a score of how well is preserves its parent chemical environment. To score each fragment, we compare the conformer dependent WBO for a bond in a fragment context against the conformer-dependent distribution of WBO for the same bond in the parent molecule context. To compare these distributions, we compute the maximum mean discrepancy [CITE] with a squared kernel for the fragment distribution to the parent as follows:</p>
+<p><span class="math display">\[\begin{equation} MMD = \sqrt{(E[X]-E[Y])^2 + (E[X^2] - E[Y^2])^2} \end{equation}\]</span></p>
+<p>where <span class="math inline">\(X\)</span> is the parent WBO distribution and <span class="math inline">\(Y\)</span> is the fragment WBO distribution. Including the squared mean incorporates the variance of the distribution. It is important incorporate changes in variance given how the variance of the WBO distributions change for different chemical environments. The final validation set was chosen by finding the fragments that have bonds with the top 50 scoring MMD scores. The 50 molecules are shown in figure 10. The sensitive bonds that are high scoring are highlighted.</p>
+<h4 id="good-fragmentation-schemes-minimize-both-chemical-environment-disruption-and-fragment-size">Good fragmentation schemes minimize both chemical environment disruption and fragment size</h4>
+<p>The goal of our fragmentation scheme is to find fragments that have a WBO distribution of the bond of interest closest the the parent while minimizing the size of the fragment. We can use the distance score calculated with MMD as an indicator of how far the fragment’s WBO distribution is. When we plot the fragment size against this score, the points that fall on the Pareto front [CITE] are the ones where the distance score is the best for for a given fragment size or vice versa. Figure 9B shows an illustrative example of this. The aim of any fragmentation scheme is to find fragments on the Pareto front that minimize both the WBO distance and fragment size. In other words, they should be on the lower left corner of the plot. We want to find the parameters for our fragmentation scheme that maximizes the number of fragments that end up in that lower left corner. To do that, we fragmented the 50 molecules in the validation set using different disruption thresholds. For every molecule, we found the distance score of their fragments’ WBO distribution and their size. We then plotted all fragments from the validation set for different thresholds [figure 11] When the threshold is low, the fragmenation scheme will generate fragments which have very good scores, but many of them will be too big for computational efficient QC torsion scan. On the other hand, when the disruption threshold is too low, the scheme generates fragments that are small but the distance score is too big. For the molecules we tested, a threshold of 0.01 leads to the most fragments on the Pareto front as shown in table 1. This threshold is similar to what we found when we looked at the distribution of standard deviations for WBO distributions with respect to conformations [figure 5 blue distribution]. Most of them fall under 0.02. Both of these data points leads us to recommend a distruption threshold of 0.01 for our fragmentation scheme. While the current scheme does not provide a perfect solution, the plot in figure 11B shows a few fragments outside of the lower left region, it preforms considerably better than other schemes such as the Pfizer scheme [Figure 11D] and Bemis Murko [Figure 11E]. The Bemis Murko scheme was not designed for this application so it is not surprising how poorly it preforms.</p>
 <h2 id="references" class="page_break_before">References</h2>
 <!-- Explicitly insert bibliography here -->
 <div id="refs" role="doc-bibliography">
-
+<div id="ref-mbmV3Fg8">
+<p>1. <strong>Toward Learned Chemical Perception of Force Field Typing Rules</strong><br />
+Camila Zanette, Caitlin C. Bannan, Christopher I. Bayly, Josh Fass, Michael K. Gilson, Michael R. Shirts, John D. Chodera, David L. Mobley<br />
+<em>Journal of Chemical Theory and Computation</em> (2018-12-04) <a href="https://doi.org/gft4hf">https://doi.org/gft4hf</a><br />
+DOI: <a href="https://doi.org/10.1021/acs.jctc.8b00821">10.1021/acs.jctc.8b00821</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30512951">30512951</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6467725">PMC6467725</a></p>
+</div>
+<div id="ref-18mvPmwwB">
+<p>2. <strong>OPLS3: A Force Field Providing Broad Coverage of Drug-like Small Molecules and Proteins</strong><br />
+Edward Harder, Wolfgang Damm, Jon Maple, Chuanjie Wu, Mark Reboul, Jin Yu Xiang, Lingle Wang, Dmitry Lupyan, Markus K. Dahlgren, Jennifer L. Knight, … Richard A. Friesner<br />
+<em>Journal of Chemical Theory and Computation</em> (2015-12) <a href="https://doi.org/f76wpm">https://doi.org/f76wpm</a><br />
+DOI: <a href="https://doi.org/10.1021/acs.jctc.5b00864">10.1021/acs.jctc.5b00864</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26584231">26584231</a></p>
+</div>
+<div id="ref-13fQUQyf9">
+<p>3. <strong>Accuracy evaluation and addition of improved dihedral parameters for the MMFF94s</strong><br />
+Joel Wahl, Joel Freyss, Modest von Korff, Thomas Sander<br />
+<em>Journal of Cheminformatics</em> (2019-08-07) <a href="https://doi.org/gf6rz2">https://doi.org/gf6rz2</a><br />
+DOI: <a href="https://doi.org/10.1186/s13321-019-0371-6">10.1186/s13321-019-0371-6</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/31392432">31392432</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6686419">PMC6686419</a></p>
+</div>
+<div id="ref-Io39j4ig">
+<p>4. <strong>Paramfit: Automated optimization of force field parameters for molecular dynamics simulations</strong><br />
+Robin M. Betz, Ross C. Walker<br />
+<em>Journal of Computational Chemistry</em> (2014-11-21) <a href="https://doi.org/f6svdh">https://doi.org/f6svdh</a><br />
+DOI: <a href="https://doi.org/10.1002/jcc.23775">10.1002/jcc.23775</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/25413259">25413259</a></p>
+</div>
+<div id="ref-5cjbQnbG">
+<p>5. <strong>Rapid parameterization of small molecules using the force field toolkit</strong><br />
+Christopher G. Mayne, Jan Saam, Klaus Schulten, Emad Tajkhorshid, James C. Gumbart<br />
+<em>Journal of Computational Chemistry</em> (2013-09-02) <a href="https://doi.org/f5ggrj">https://doi.org/f5ggrj</a><br />
+DOI: <a href="https://doi.org/10.1002/jcc.23422">10.1002/jcc.23422</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/24000174">24000174</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3874408">PMC3874408</a></p>
+</div>
+<div id="ref-CstjV2w8">
+<p>6. <strong>Fitting of Dihedral Terms in Classical Force Fields as an Analytic Linear Least-Squares Problem</strong><br />
+Chad W. Hopkins, Adrian E. Roitberg<br />
+<em>Journal of Chemical Information and Modeling</em> (2014-07-09) <a href="https://doi.org/f6cffs">https://doi.org/f6cffs</a><br />
+DOI: <a href="https://doi.org/10.1021/ci500112w">10.1021/ci500112w</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/24960267">24960267</a></p>
+</div>
+<div id="ref-1GDaakPWY">
+<p>7. <strong>A Second Generation Force Field for the Simulation of Proteins, Nucleic Acids, and Organic Molecules</strong><br />
+Wendy D. Cornell, Piotr Cieplak, Christopher I. Bayly, Ian R. Gould, Kenneth M. Merz, David M. Ferguson, David C. Spellmeyer, Thomas Fox, James W. Caldwell, Peter A. Kollman<br />
+<em>Journal of the American Chemical Society</em> (1995-05) <a href="https://doi.org/dbzh27">https://doi.org/dbzh27</a><br />
+DOI: <a href="https://doi.org/10.1021/ja00124a002">10.1021/ja00124a002</a></p>
+</div>
+<div id="ref-11Z8pXbEW">
+<p>8. <strong>CHARMM: A program for macromolecular energy, minimization, and dynamics calculations</strong><br />
+Bernard R. Brooks, Robert E. Bruccoleri, Barry D. Olafson, David J. States, S. Swaminathan, Martin Karplus<br />
+<em>Journal of Computational Chemistry</em> (1983) <a href="https://doi.org/bqh7f2">https://doi.org/bqh7f2</a><br />
+DOI: <a href="https://doi.org/10.1002/jcc.540040211">10.1002/jcc.540040211</a></p>
+</div>
+<div id="ref-Mi3Ujd07">
+<p>9. <strong>Development and Testing of the OPLS All-Atom Force Field on Conformational Energetics and Properties of Organic Liquids</strong><br />
+William L. Jorgensen, David S. Maxwell, Julian Tirado-Rives<br />
+<em>Journal of the American Chemical Society</em> (1996-01) <a href="https://doi.org/fvftxj">https://doi.org/fvftxj</a><br />
+DOI: <a href="https://doi.org/10.1021/ja9621760">10.1021/ja9621760</a></p>
+</div>
+<div id="ref-i8ZZOoVS">
+<p>10. <strong>Automated conformational energy fitting for force-field development</strong><br />
+Olgun Guvench, Alexander D. MacKerell Jr.<br />
+<em>Journal of Molecular Modeling</em> (2008-05-06) <a href="https://doi.org/bzphqw">https://doi.org/bzphqw</a><br />
+DOI: <a href="https://doi.org/10.1007/s00894-008-0305-0">10.1007/s00894-008-0305-0</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/18458967">18458967</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2864003">PMC2864003</a></p>
+</div>
+<div id="ref-SgTYwIda">
+<p>11. <strong>Machine learning of correlated dihedral potentials for atomistic molecular force fields</strong><br />
+Pascal Friederich, Manuel Konrad, Timo Strunk, Wolfgang Wenzel<br />
+<em>Scientific Reports</em> (2018-02-07) <a href="https://doi.org/gczmpn">https://doi.org/gczmpn</a><br />
+DOI: <a href="https://doi.org/10.1038/s41598-018-21070-0">10.1038/s41598-018-21070-0</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29416116">29416116</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5803249">PMC5803249</a></p>
+</div>
+<div id="ref-3fVo3EjD">
+<p>12. <strong>Empirical force fields for biological macromolecules: Overview and issues</strong><br />
+Alexander D. Mackerell<br />
+<em>Journal of Computational Chemistry</em> (2004) <a href="https://doi.org/dbhsbb">https://doi.org/dbhsbb</a><br />
+DOI: <a href="https://doi.org/10.1002/jcc.20082">10.1002/jcc.20082</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/15264253">15264253</a></p>
+</div>
+<div id="ref-U4kYckJ1">
+<p>13. <strong>ff19SB: Amino-Acid Specific Protein Backbone Parameters Trained Against Quantum Mechanics Energy Surfaces in Solution</strong><br />
+Chuan Tian, Koushik Kasavajhala, Kellon Belfon, Lauren Raguette, He Huang, Angela Migues, John Bickel, Yuzhang Wang, Jorge Pincay, Qin Wu, Carlos Simmerling<br />
+<em>American Chemical Society (ACS)</em> (2019-06-17) <a href="https://doi.org/gf6rz8">https://doi.org/gf6rz8</a><br />
+DOI: <a href="https://doi.org/10.26434/chemrxiv.8279681">10.26434/chemrxiv.8279681</a></p>
+</div>
+<div id="ref-1E3wArY0j">
+<p>14. <strong>Building a More Predictive Protein Force Field: A Systematic and Reproducible Route to AMBER-FB15</strong><br />
+Lee-Ping Wang, Keri A. McKiernan, Joseph Gomes, Kyle A. Beauchamp, Teresa Head-Gordon, Julia E. Rice, William C. Swope, Todd J. Martínez, Vijay S. Pande<br />
+<em>The Journal of Physical Chemistry B</em> (2017-04-06) <a href="https://doi.org/f92nv5">https://doi.org/f92nv5</a><br />
+DOI: <a href="https://doi.org/10.1021/acs.jpcb.7b02320">10.1021/acs.jpcb.7b02320</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/28306259">28306259</a></p>
+</div>
+<div id="ref-1FI8iuYiQ">
+<p>15. <strong>DrugBank 5.0: a major update to the DrugBank database for 2018</strong><br />
+David S Wishart, Yannick D Feunang, An C Guo, Elvis J Lo, Ana Marcu, Jason R Grant, Tanvir Sajed, Daniel Johnson, Carin Li, Zinat Sayeeda, … Michael Wilson<br />
+<em>Nucleic Acids Research</em> (2017-11-08) <a href="https://doi.org/gcwtzk">https://doi.org/gcwtzk</a><br />
+DOI: <a href="https://doi.org/10.1093/nar/gkx1037">10.1093/nar/gkx1037</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29126136">29126136</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5753335">PMC5753335</a></p>
+</div>
+<div id="ref-YPDz9hB3">
+<p>16. <strong>A consistent and accurate ab initio parametrization of density functional dispersion correction (DFT-D) for the 94 elements H-Pu</strong><br />
+Stefan Grimme, Jens Antony, Stephan Ehrlich, Helge Krieg<br />
+<em>The Journal of Chemical Physics</em> (2010-04-21) <a href="https://doi.org/bnt82x">https://doi.org/bnt82x</a><br />
+DOI: <a href="https://doi.org/10.1063/1.3382344">10.1063/1.3382344</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/20423165">20423165</a></p>
+</div>
+<div id="ref-17YEERBX3">
+<p>17. <strong>Optimization of Gaussian-type basis sets for local spin density functional calculations. Part I. Boron through neon, optimization technique and validation</strong><br />
+Nathalie Godbout, Dennis R. Salahub, Jan Andzelm, Erich Wimmer<br />
+<em>Canadian Journal of Chemistry</em> (1992-02) <a href="https://doi.org/c78qjn">https://doi.org/c78qjn</a><br />
+DOI: <a href="https://doi.org/10.1139/v92-079">10.1139/v92-079</a></p>
+</div>
+<div id="ref-xbUA1nkO">
+<p>18. <strong>RECAPRetrosynthetic Combinatorial Analysis Procedure:  A Powerful New Technique for Identifying Privileged Molecular Fragments with Useful Applications in Combinatorial Chemistry</strong><br />
+Xiao Qing Lewell, Duncan B. Judd, Stephen P. Watson, Michael M. Hann<br />
+<em>Journal of Chemical Information and Computer Sciences</em> (1998-04-11) <a href="https://doi.org/d4z4pf">https://doi.org/d4z4pf</a><br />
+DOI: <a href="https://doi.org/10.1021/ci970429i">10.1021/ci970429i</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/9611787">9611787</a></p>
+</div>
+<div id="ref-15j2SwU5A">
+<p>19. <strong>Break Down in Order To Build Up: Decomposing Small Molecules for Fragment-Based Drug Design with eMolFrag</strong><br />
+Tairan Liu, Misagh Naderi, Chris Alvin, Supratik Mukhopadhyay, Michal Brylinski<br />
+<em>Journal of Chemical Information and Modeling</em> (2017-04-04) <a href="https://doi.org/f9x9bg">https://doi.org/f9x9bg</a><br />
+DOI: <a href="https://doi.org/10.1021/acs.jcim.6b00596">10.1021/acs.jcim.6b00596</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/28346786">28346786</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5433162">PMC5433162</a></p>
+</div>
+<div id="ref-1BZlse7qR">
+<p>20. <strong>The Properties of Known Drugs. 1. Molecular Frameworks</strong><br />
+Guy W. Bemis, Mark A. Murcko<br />
+<em>Journal of Medicinal Chemistry</em> (1996-01) <a href="https://doi.org/fshj3p">https://doi.org/fshj3p</a><br />
+DOI: <a href="https://doi.org/10.1021/jm9602928">10.1021/jm9602928</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/8709122">8709122</a></p>
+</div>
+<div id="ref-vm6HUPt4">
+<p>21. <strong>pyEFP: Automatic decomposition of the complex molecular systems into rigid polarizable fragments</strong><br />
+Alexey V. Odinokov, Nikita O. Dubinets, Alexander A. Bagaturyants<br />
+<em>Journal of Computational Chemistry</em> (2017-12-26) <a href="https://doi.org/gcq4qs">https://doi.org/gcq4qs</a><br />
+DOI: <a href="https://doi.org/10.1002/jcc.25149">10.1002/jcc.25149</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29280158">29280158</a></p>
+</div>
+<div id="ref-ll3I4A87">
+<p>22. <strong>Approximateab initioenergies by systematic molecular fragmentation</strong><br />
+Vitali Deev, Michael A. Collins<br />
+<em>The Journal of Chemical Physics</em> (2005-04-15) <a href="https://doi.org/ch4zhg">https://doi.org/ch4zhg</a><br />
+DOI: <a href="https://doi.org/10.1063/1.1879792">10.1063/1.1879792</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/15945620">15945620</a></p>
+</div>
+<div id="ref-nRywz8At">
+<p>23. <strong>Fragmentation Methods: A Route to Accurate Calculations on Large Systems</strong><br />
+Mark S. Gordon, Dmitri G. Fedorov, Spencer R. Pruitt, Lyudmila V. Slipchenko<br />
+<em>Chemical Reviews</em> (2011-08-26) <a href="https://doi.org/b8tc8n">https://doi.org/b8tc8n</a><br />
+DOI: <a href="https://doi.org/10.1021/cr200093j">10.1021/cr200093j</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/21866983">21866983</a></p>
+</div>
+<div id="ref-EOlFsQFX">
+<p>24. <strong>Systematic fragmentation of large molecules by annihilation</strong><br />
+Michael A. Collins<br />
+<em>Physical Chemistry Chemical Physics</em> (2012) <a href="https://doi.org/gf6v2d">https://doi.org/gf6v2d</a><br />
+DOI: <a href="https://doi.org/10.1039/c2cp23832b">10.1039/c2cp23832b</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/22373545">22373545</a></p>
+</div>
+<div id="ref-F0de6fPE">
+<p>25. <strong>Linear‐scaling semiempirical quantum calculations for macromolecules</strong><br />
+Tai‐Sung Lee, Darrin M. York, Weitao Yang<br />
+<em>The Journal of Chemical Physics</em> (1996-08-15) <a href="https://doi.org/bdtpqw">https://doi.org/bdtpqw</a><br />
+DOI: <a href="https://doi.org/10.1063/1.472136">10.1063/1.472136</a></p>
+</div>
+<div id="ref-EnOwBZmA">
+<p>26. <strong>Flexible effective fragment QM/MM method: Validation through the challenging tests</strong><br />
+A. V. Nemukhin, B. L. Grigorenko, I. A. Topol, S. K. Burt<br />
+<em>Journal of Computational Chemistry</em> (2003-07-11) <a href="https://doi.org/dpwk5b">https://doi.org/dpwk5b</a><br />
+DOI: <a href="https://doi.org/10.1002/jcc.10309">10.1002/jcc.10309</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/12868106">12868106</a></p>
+</div>
+<div id="ref-BES2Ksiq">
+<p>27. <strong>Application of the pople-santry-segal CNDO method to the cyclopropylcarbinyl and cyclobutyl cation and to bicyclobutane</strong><br />
+K. B. Wiberg<br />
+<em>Tetrahedron</em> (1968-01) <a href="https://doi.org/fvwkkh">https://doi.org/fvwkkh</a><br />
+DOI: <a href="https://doi.org/10.1016/0040-4020(68)88057-3">10.1016/0040-4020(68)88057-3</a></p>
+</div>
+<div id="ref-hHhjgmIm">
+<p>28. <strong>Bond Order Analysis Based on the Laplacian of Electron Density in Fuzzy Overlap Space</strong><br />
+Tian Lu, Feiwu Chen<br />
+<em>The Journal of Physical Chemistry A</em> (2013-04-02) <a href="https://doi.org/f4t9v3">https://doi.org/f4t9v3</a><br />
+DOI: <a href="https://doi.org/10.1021/jp4010345">10.1021/jp4010345</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/23514314">23514314</a></p>
+</div>
+<div id="ref-cAeBUxqm">
+<p>29. <strong>Predicting Trigger Bonds in Explosive Materials through Wiberg Bond Index Analysis</strong><br />
+Lenora K. Harper, Ashley L. Shoaf, Craig A. Bayse<br />
+<em>ChemPhysChem</em> (2015-11-06) <a href="https://doi.org/f3jt5h">https://doi.org/f3jt5h</a><br />
+DOI: <a href="https://doi.org/10.1002/cphc.201500773">10.1002/cphc.201500773</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26458868">26458868</a></p>
+</div>
+<div id="ref-1HYTTY1PU">
+<p>30. <strong>Escaping Atom Types in Force Fields Using Direct Chemical Perception</strong><br />
+David L. Mobley, Caitlin C. Bannan, Andrea Rizzi, Christopher I. Bayly, John D. Chodera, Victoria T. Lim, Nathan M. Lim, Kyle A. Beauchamp, David R. Slochower, Michael R. Shirts, … Peter K. Eastman<br />
+<em>Journal of Chemical Theory and Computation</em> (2018-10-11) <a href="https://doi.org/gffnf3">https://doi.org/gffnf3</a><br />
+DOI: <a href="https://doi.org/10.1021/acs.jctc.8b00640">10.1021/acs.jctc.8b00640</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30351006">30351006</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6245550">PMC6245550</a></p>
+</div>
+<div id="ref-14f8CUfzQ">
+<p>31. <strong>ChemPer: An Open Source Tool for Automatically Generating SMIRKS Patterns</strong><br />
+Caitlin C. Bannan, David Mobley<br />
+<em>American Chemical Society (ACS)</em> (2019-06-21) <a href="https://doi.org/gf66hw">https://doi.org/gf66hw</a><br />
+DOI: <a href="https://doi.org/10.26434/chemrxiv.8304578.v1">10.26434/chemrxiv.8304578.v1</a></p>
+</div>
+<div id="ref-tnSqySMX">
+<p>32. <strong>Development and use of quantum mechanical molecular models. 76. AM1: a new general purpose quantum mechanical molecular model</strong><br />
+Michael J. S. Dewar, Eve G. Zoebisch, Eamonn F. Healy, James J. P. Stewart<br />
+<em>Journal of the American Chemical Society</em> (1985-06) <a href="https://doi.org/fd8bwp">https://doi.org/fd8bwp</a><br />
+DOI: <a href="https://doi.org/10.1021/ja00299a024">10.1021/ja00299a024</a></p>
+</div>
+<div id="ref-K8bdDsCu">
+<p>33. <strong>On the Non‐Orthogonality Problem Connected with the Use of Atomic Wave Functions in the Theory of Molecules and Crystals</strong><br />
+Per‐Olov Löwdin<br />
+<em>The Journal of Chemical Physics</em> (1950-03) <a href="https://doi.org/dj2c35">https://doi.org/dj2c35</a><br />
+DOI: <a href="https://doi.org/10.1063/1.1747632">10.1063/1.1747632</a></p>
+</div>
+<div id="ref-1BEyXJiMo">
+<p>34. <strong>On the quantum theory of valence and bonding from the ab intio standpoint</strong><br />
+Mario A. Natiello, Jorge A. Medrano<br />
+<em>Chemical Physics Letters</em> (1984-03) <a href="https://doi.org/bdfk5f">https://doi.org/bdfk5f</a><br />
+DOI: <a href="https://doi.org/10.1016/0009-2614(84)85645-6">10.1016/0009-2614(84)85645-6</a></p>
+</div>
+<div id="ref-r3xLNmRT">
+<p>35. <strong>Can we treat ab initio atomic charges and bond orders as conformation-independent electronic structure descriptors?</strong><br />
+T. Yu. Nikolaienko, L. A. Bulavin, D. M. Hovorun<br />
+<em>RSC Advances</em> (2016) <a href="https://doi.org/gf66tp">https://doi.org/gf66tp</a><br />
+DOI: <a href="https://doi.org/10.1039/c6ra17055b">10.1039/c6ra17055b</a></p>
+</div>
+<div id="ref-1G1ccz54w">
+<p>36. <strong>Conformer Generation with OMEGA: Algorithm and Validation Using High Quality Structures from the Protein Databank and Cambridge Structural Database</strong><br />
+Paul C. D. Hawkins, A. Geoffrey Skillman, Gregory L. Warren, Benjamin A. Ellingson, Matthew T. Stahl<br />
+<em>Journal of Chemical Information and Modeling</em> (2010-03-17) <a href="https://doi.org/d4rb6g">https://doi.org/d4rb6g</a><br />
+DOI: <a href="https://doi.org/10.1021/ci100031x">10.1021/ci100031x</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/20235588">20235588</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2859685">PMC2859685</a></p>
+</div>
+<div id="ref-12mptWjWL">
+<p>37. <strong>Corrected small basis set Hartree-Fock method for large systems</strong><br />
+Rebecca Sure, Stefan Grimme<br />
+<em>Journal of Computational Chemistry</em> (2013-05-14) <a href="https://doi.org/f42979">https://doi.org/f42979</a><br />
+DOI: <a href="https://doi.org/10.1002/jcc.23317">10.1002/jcc.23317</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/23670872">23670872</a></p>
+</div>
+<div id="ref-YC6qkEYS">
+<p>38. <strong>Psi4 1.1: An Open-Source Electronic Structure Program Emphasizing Automation, Advanced Libraries, and Interoperability</strong><br />
+Robert M. Parrish, Lori A. Burns, Daniel G. A. Smith, Andrew C. Simmonett, A. Eugene DePrince III, Edward G. Hohenstein, Uğur Bozkaya, Alexander Yu. Sokolov, Roberto Di Remigio, Ryan M. Richard, … C. David Sherrill<br />
+<em>Journal of Chemical Theory and Computation</em> (2017-06-06) <a href="https://doi.org/gcz64j">https://doi.org/gcz64j</a><br />
+DOI: <a href="https://doi.org/10.1021/acs.jctc.7b00174">10.1021/acs.jctc.7b00174</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/28489372">28489372</a></p>
+</div>
+<div id="ref-11e7CbOCj">
+<p>39. <strong>MMFF VI. MMFF94s option for energy minimization studies</strong><br />
+Thomas A. Halgren<br />
+<em>Journal of Computational Chemistry</em> (1999-05) <a href="https://doi.org/brxdg7">https://doi.org/brxdg7</a><br />
+DOI: <a href="https://doi.org/10.1002/(sici)1096-987x(199905)20:7%3C720::aid-jcc7%3E3.0.co;2-x">10.1002/(sici)1096-987x(199905)20:7&lt;720::aid-jcc7&gt;3.0.co;2-x</a></p>
+</div>
+<div id="ref-2hGWnSJL">
+<p>40. <strong>Benchmarking Commercial Conformer Ensemble Generators</strong><br />
+Nils-Ole Friedrich, Christina de Bruyn Kops, Florian Flachsenberg, Kai Sommer, Matthias Rarey, Johannes Kirchmair<br />
+<em>Journal of Chemical Information and Modeling</em> (2017-10-18) <a href="https://doi.org/gb4v2v">https://doi.org/gb4v2v</a><br />
+DOI: <a href="https://doi.org/10.1021/acs.jcim.7b00505">10.1021/acs.jcim.7b00505</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/28967749">28967749</a></p>
+</div>
+<div id="ref-3z27USyZ">
+<p>41. <strong>The Effect of Structure upon the Reactions of Organic Compounds. Benzene Derivatives</strong><br />
+Louis P. Hammett<br />
+<em>Journal of the American Chemical Society</em> (1937-01) <a href="https://doi.org/dz8d4r">https://doi.org/dz8d4r</a><br />
+DOI: <a href="https://doi.org/10.1021/ja01280a022">10.1021/ja01280a022</a></p>
+</div>
 </div>
 <!-- default theme -->
 
