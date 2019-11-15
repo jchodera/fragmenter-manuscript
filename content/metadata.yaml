@@ -1,15 +1,26 @@
 ---
-title: "Manuscript Title"
+title: "Fragmenting molecules for quantum chemistry torsion scans"
 keywords:
-  - markdown
-  - publishing
-  - manubot
+  - forcefield
+  - force-field
+  - cheminformatics
 lang: en-US
 author_info:
   -
+    github: ChayaSt
+    name: Chaya D Stern
+    initials: CDS
+    orcid: 0000-0001-6200-3993
+    twitter: SternChaya
+    email: chaya.stern@choderalab.org
+    affiliations:
+      - Tri-Insitutional PhD Program in Chemical Biology, Memorial Sloan Kettering Cancer Center, New York, New York 10065, USA
+      - Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA
+    funders: Grant XXXXXXXX
+  -
     github: johndoe
-    name: John Doe
-    initials: JD
+    name: Christopher I Bayly
+    initials: CIB
     orcid: XXXX-XXXX-XXXX-XXXX
     twitter: johndoe
     email: john.doe@something.com
@@ -17,11 +28,62 @@ author_info:
       - Department of Something, University of Whatever
     funders: Grant XXXXXXXX
   -
-    github: janeroe
-    name: Jane Roe
-    initials: JR
+    github: dgasmith
+    name: Daniel G A Smith
+    initials: DGAS
     orcid: XXXX-XXXX-XXXX-XXXX
-    email: jane.roe@whatever.edu
+    twitter: johndoe
+    email: john.doe@something.com
     affiliations:
       - Department of Something, University of Whatever
-      - Department of Whatever, University of Something
+    funders: Grant XXXXXXXX
+  -
+    github: yudongqiu
+    name: Yudong Qui
+    initials: YQ
+    orcid: XXXX-XXXX-XXXX-XXXX
+    twitter: johndoe
+    email: john.doe@something.com
+    affiliations:
+      - Department of Something, University of Whatever
+    funders: Grant XXXXXXXX
+  -
+    github: maxentile
+    name: Josh Fass
+    initials: JF
+    orcid: XXXX-XXXX-XXXX-XXXX
+    twitter: johndoe
+    email: john.doe@something.com
+    affiliations:
+      - Department of Something, University of Whatever
+    funders: Grant XXXXXXXX
+  -
+    github: leeping
+    name: Lee-Ping Wang
+    initials: LPW
+    orcid: XXXX-XXXX-XXXX-XXXX
+    twitter: johndoe
+    email: john.doe@something.com
+    affiliations:
+      - Department of Something, University of Whatever
+    funders: Grant XXXXXXXX
+  -
+    github: davidlmobley
+    name: David L Mobley
+    initials: DLM
+    orcid: XXXX-XXXX-XXXX-XXXX
+    twitter: johndoe
+    email: john.doe@something.com
+    affiliations:
+      - Department of Something, University of Whatever
+    funders: Grant XXXXXXXX
+  -
+    github: jchodera
+    name: John D Chodera
+    initials: JDC
+    orcid: XXXX-XXXX-XXXX-XXXX
+    twitter: johndoe
+    email: john.doe@something.com
+    affiliations:
+      - Department of Something, University of Whatever
+    funders: Grant XXXXXXXX
