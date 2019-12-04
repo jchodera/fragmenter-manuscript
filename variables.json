@@ -142,13 +142,13 @@
     "repo_slug": "ChayaSt/fragmenter-manuscript",
     "repo_owner": "ChayaSt",
     "repo_name": "fragmenter-manuscript",
-    "commit": "548daf58dd90ddce764f0491a5267601f540434d"
+    "commit": "80315e85afe76d8f33493420b8d51d28b74683f3"
   },
   "manuscript_stats": {
     "reference_counts": {
       "doi": 41,
       "total": 41
     },
-    "word_count": 5268
+    "word_count": 5355
   }
 }

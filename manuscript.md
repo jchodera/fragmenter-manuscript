@@ -24,9 +24,9 @@ title: Fragmenting molecules for quantum chemistry torsion scans
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/548daf58dd90ddce764f0491a5267601f540434d/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/80315e85afe76d8f33493420b8d51d28b74683f3/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@548daf5](https://github.com/ChayaSt/fragmenter-manuscript/tree/548daf58dd90ddce764f0491a5267601f540434d)
+from [ChayaSt/fragmenter-manuscript@80315e8](https://github.com/ChayaSt/fragmenter-manuscript/tree/80315e85afe76d8f33493420b8d51d28b74683f3)
 on December 4, 2019.
 </em></small>
 
@@ -390,14 +390,21 @@ scans for 17 of the functional groups (SI figure 4). We did not run QC torsion s
 as halogens, were congested such as trimethyl amonium and functional groups where the WBOs did not change by more than 0.01 for different functional
 groups at the meta or para position such as methyl. We chose the representative molecules for the 17 functional groups by sorting them
 by their WBO and selecting molecules with minimum WBO difference of 0.02. All of the resulting QC torsion scans are shown in supplementary
-figure 4. We show a representative series of torsion scan for the nitro functional group in figure 7A. The torsion energy barrier height
-increase with increasing ELF10 WBO of the bond. In addition, Figure 7B shows that the Wiberg-Lowdin bond orders are anti-correlated with
+figure 4. We show a representative series of torsion scan for the nitro functional group in figure {@fig:sub_phenyl_qc_scan}A. The torsion energy barrier height
+increase with increasing ELF10 WBO of the bond. In addition, {@fig:sub_phenyl_qc_scan}B  shows that the Wiberg-Lowdin bond orders are anti-correlated with
 the QC torsion scan which is the same result we saw for the initial bipheynl set discussed in the previous section. We also found that the trend
 shown in {@fig:biphenyls}D  generalizes to all functional groups tested in this set {@fig:subsituted_phenyls}E.
 
-For most functional groups, the change in WBOs correspond to changes in torsion barrier heights, but not in the torsion energy profile [supplementary figure 3].
-However, for some functional groups the change in WBO only captures one aspect of the electronic changes because not only do the torsion energy
-barrier heights increase, but the profile changes considerably as shown in figure 7 for [hold for functional group and some way to explain this].
+![**Löwdin-Wiberg bond orders are anti correlated with QC torsion scans**
+**[A]** QC torsions for methylamino in series of different chemical environment. Barrier heights increase with increasing ELF10 AM1 WBOs
+**[B]** Löwdin-Wiberg bond orders calculated at each point in the QC torsion scan using the same level of theory. The bond orders are
+anti correlated with QC torsion scans **[C]** QC scans for urea in a series of different chemical environment. Both profiles and
+energy barriers change with ELF10 AM1 WBOs **[E]** Löwdin-Wiberg bond orders are not perfectly anti correlated to QC scans(images/figure_7.svg){#fig:sub_phenyl_qc_scan}
+
+For most functional groups, the change in WBOs correspond to changes in torsion barrier heights. [supplementary figure 4].
+However, for some functional groups, the change in WBO does not fully capture the differences in torsion scans because not only do the torsion energy
+barrier heights increase, but the profile changes considerably as shown in {@fig:sub_phenyl_qc_scan}C for urea. Interestingly, the Löwdin-Wiberg
+bond order scans do have the same profiles {@fig:sub_phenyl_qc_scan}D.
 
 When we compare the standard deviations of WBO distributions with respect to conformation versus with respect to changes in chemical space [Figure 5 red distribution],
 we find that the changes in ELF10 WBO for remote chemical environment changes are bigger than the changes in WBO that arise from change in conformation.
