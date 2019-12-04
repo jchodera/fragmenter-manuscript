@@ -8,7 +8,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2019-11-15'
+date-meta: '2019-12-04'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Fragmenting molecules for quantum chemistry torsion scans
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/7ed9a610f2e36a77168eee7c009ffe2ffec5dd1e/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/548daf58dd90ddce764f0491a5267601f540434d/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@7ed9a61](https://github.com/ChayaSt/fragmenter-manuscript/tree/7ed9a610f2e36a77168eee7c009ffe2ffec5dd1e)
-on November 15, 2019.
+from [ChayaSt/fragmenter-manuscript@548daf5](https://github.com/ChayaSt/fragmenter-manuscript/tree/548daf58dd90ddce764f0491a5267601f540434d)
+on December 4, 2019.
 </em></small>
 
 ## Authors
@@ -296,7 +296,7 @@ the WBO [fig 2E], the relationship is linear with an $R^2$ of [hold].
 ### The WBO is an inexpensive surrogate for the chemical environment around a bond
 Since the WBO can be calculated from a cheap AM1 calculation, is indicative of a bond's conjugation, and is correlated with torsion energy
 barrier height, it is an attractive measure to use as a surrogate when automating fragmentation or interpolating torsion force constants. However,
-WBOs are conformationally dependent [@r3xLNmRT] so we investigated this dependence to understand if WBOs
+WBOs are conformational dependent [@r3xLNmRT] so we investigated this dependence to understand if WBOs
 will be a robust descriptor. In addition, we also investigated the generality of the torsion energy barrier and WBO linear relationship.
 In this section we will first discuss our findings and solution to the conformational dependency and then discuss how general the linear relationship is.
 
@@ -367,25 +367,33 @@ The Hammett equation relates meta and para benzoic acid substituents to the acid
 
 Where $\sigma$ is a substituent constant and $\rho$ is a reaction constant. It aims to isolate the resonance and inductive effects
 of substituents from the sterics effects of a reaction. Here, we generated a combinatorial set of meta and para subsituted phenyls
-and pyridine [Fig 6A] with functional groups that cover a wide range of electron donating and withdrawing groups as shown in figure 6A.
+and pyridine {@fig:subsituted_phenyls}A with 25 functional groups that cover a wide range of electron donating and withdrawing groups.
 We then calculated the ELF10 WBO for the bond attaching the functional
-group to the aromatic ring for all functional groups [highlighed bonds in figure 6A]. This allowed us to isolate the effect on a bond's WBO from remote chemical environment changes,
-defined as a change more than two bonds away, from other effects such as sterics and conformations. For each functional group, we get a distribution of WBOs, where each point in the distribution
-is the WBO at the bond connecting that functional group to the meta or para substituted phenyl or pyridine ring for all other functional groups.
-The resulting distributions are shown in supplementary figure 2. It is interesting to note that the trend of decreasing WBOs for more electron
-donating groups anti correlates with with increasing substituent constant for the para effect [Supplementary figure 2B]. Functional groups
+group to the aromatic ring for all functional groups which resulted in 128 (25*3+3) data points for each functional group. This allowed us to isolate the effect on a bond's WBO from remote chemical environment changes,
+defined as a change more than two bonds away, from other effects such as sterics and conformations. The resulting distributions are in {@fig:subsituted_phenyls}B.
+It is interesting to note that the trend of decreasing WBOs for more electron
+donating groups are anti correlates with increasing Hammett substituent constants. In {fig@subsituted_phenyls}C and D, the AM1 ELF10 WBO of the bond
+between the functional group and benzoic acid is plotted against their Hammett para and meta substituent constants. Functional groups
 that are more electron donating will have more electron density on the bond attaching the functional group to the benzoic acid. The resonance and/or inductive effect
 destabilize the benzoate, increases its pKa, which corresponds to lower substituent constants.
 
+![**Change in AM1 ELF10 WBOs correlates with barrier heights in torsion profiles**
+**[A]** Systems and functional groups used in the subsituted phenyl set. The functional groups were chosen to span a large range
+of electron donating and withdrawing groups.
+**[B]** AM1 ELF10 WBO distributions for the bond between the phenyl ring and $X_1$ in different chemical environments  **[C]** Hammett sigma para
+parameters vs AM1 ELF10 WBOs of  $X_1$ para to carboxylic acid **[D]** Hammett sigma meta parameters vs AM1 ELF10 WBOs of $X_1$ meta to
+carboxyilic acid **[E]** Selected QC torsion scan barrier heights vs ELF10 AM1 WBOs](images/figure_6.svg){#fig:subsituted_phenyls}
+
+
 To investigate how these long range effects observed in the WBOs capture changes in the bonds' torsion potential energy, we ran representative QC torsion
-scans for 17 of the functional groups [Figure 6A]. We did not run QC torsion scans for functional groups that either did not have a torsion such
-as halogens, were congested such as trimethyl amonium and factional groups where the WBOs did not change by more than 0.01 for different functional
+scans for 17 of the functional groups (SI figure 4). We did not run QC torsion scans for functional groups that either did not have a torsion such
+as halogens, were congested such as trimethyl amonium and functional groups where the WBOs did not change by more than 0.01 for different functional
 groups at the meta or para position such as methyl. We chose the representative molecules for the 17 functional groups by sorting them
 by their WBO and selecting molecules with minimum WBO difference of 0.02. All of the resulting QC torsion scans are shown in supplementary
-figure 3. We show a representative series of torsion scan for the nitro functional group in figure 6D. The torsion energy barrier height
-increase with increasing ELF10 WBO of the bond. In addition, Figure 6E shows that the Wiberg-Lowdin bond orders are anti-correlated with
+figure 4. We show a representative series of torsion scan for the nitro functional group in figure 7A. The torsion energy barrier height
+increase with increasing ELF10 WBO of the bond. In addition, Figure 7B shows that the Wiberg-Lowdin bond orders are anti-correlated with
 the QC torsion scan which is the same result we saw for the initial bipheynl set discussed in the previous section. We also found that the trend
-shown in figure 2D that the torsion energy barrier height is correlated with WBO generalizes to all functional groups tested in this set [Fig 6C].
+shown in {@fig:biphenyls}D  generalizes to all functional groups tested in this set {@fig:subsituted_phenyls}E.
 
 For most functional groups, the change in WBOs correspond to changes in torsion barrier heights, but not in the torsion energy profile [supplementary figure 3].
 However, for some functional groups the change in WBO only captures one aspect of the electronic changes because not only do the torsion energy
