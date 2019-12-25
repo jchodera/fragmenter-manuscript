@@ -8,7 +8,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2019-12-24'
+date-meta: '2019-12-25'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Fragmenting molecules for quantum chemistry torsion scans
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/fbea2514dd32207cf8a6c59471350f1da4180a41/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/ab2e385cd97487f65139bab76a81ac3240fe19ea/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@fbea251](https://github.com/ChayaSt/fragmenter-manuscript/tree/fbea2514dd32207cf8a6c59471350f1da4180a41)
-on December 24, 2019.
+from [ChayaSt/fragmenter-manuscript@ab2e385](https://github.com/ChayaSt/fragmenter-manuscript/tree/ab2e385cd97487f65139bab76a81ac3240fe19ea)
+on December 25, 2019.
 </em></small>
 
 ## Authors
@@ -504,12 +504,12 @@ the conformer dependent WBO distribution for a bond in a fragment against the WB
 To compare these distributions, we compute the maximum mean discrepancy [CITE] for the fragment distribution
 to the parent as follows:
 
-\begin{equation} MMD(P, Q) = \| \mathbb{E}_{X~P}[\varphi(X)] - \mathbb{E}_{Y~Q}[\varphi(Y)]\|_{\mathcal{H}} \end{equation}
+\begin{equation} MMD(P, Q) = \| \mathbb{E}_{X\sim P}[\varphi(X)] - \mathbb{E}_{Y\sim Q}[\varphi(Y)]\|_{\mathcal{H}} \end{equation}
 
 where the feature map $\varphi: \mathcal{X} \rightarrow \mathcal{H}$ we use is squared $\varphi(x) = (x, x^2)$ and the
 MMD becomes:
 
-\begin{equation} MMD = \sqrt{(\mathbb{E}[X]-\matbb{E}[Y])^2 + (\mathbb{E}[X^2] - \matbb{E}[Y^2])^2} \end{equation}
+$$MMD = \sqrt{(\mathbb{E}[X]-\mathbb{E}[Y])^2 + (\mathbb{E}[X^2] - \mathbb{E}[Y^2])^2}$${#eq:mmd_sqrd}
 
 where $X$ is the parent WBO distribution and $Y$ is the fragment WBO distribution. Including the squared mean incorporates the variance
 of the distribution and helps distinguish distributions both with different means and variances. It is important incorporate changes in variance
@@ -519,9 +519,6 @@ relative barrier heights).
 
 In figure {@fig:dabrafenib_wbo_dists}, the MMD score, which we call the distance score, is shown with the color map. The
 distributions in {@fig:dabrafenib_wbo_dists}A are shaded with the distance score. The scores clearly differentiates the shifted distributions.
-
-The final validation set was chosen by finding the fragments that have bonds with the top 50 scoring MMD scores.
-The 50 molecules are shown in figure 10. The sensitive bonds that are high scoring are highlighted.
 
 #### Good fragmentation schemes minimize both chemical environment disruption and fragment size
 The goal of our fragmentation scheme is to find fragments that have a WBO distribution of the bond of interest closest the the parent
@@ -545,8 +542,15 @@ While fragments 1, 5 and 8 are all small, the loss of the ring results in larger
 
 The goal of any fragmentation scheme is to find fragments on the Pareto front that minimize both the changes in the chemical environment of the bond
 and fragment size. In other words, they should be on the lower left corner of the plot. To test our fragmentation scheme, we wanted to find the
-most challenging molecules to fragment from our validation. To to that, we scored all resulting fragments using (equation) and chose the 100 molecules
-that had bonds where fragments that included all 1-5 atoms around the bond had the largest MMD.
+most challenging molecules to fragment from our validation. To do that, we scored the WBO distributions of all resulting fragments using equation @eq:mmd_sqrd and chose 100 molecules
+that had bonds where fragments that included all 1-5 atoms around the central bond had the highest distance scores. The molecules and
+their sensitive bonds are highlighted are shown in figure {@fig:validation_set}. This set included many molecules in charged states and
+are challenging to fragment.
+
+![**Molecules used to assess fragmentation schemes**
+The highlighted bonds are sensitive to remote substituent changes and pose a challenge for fragmentation schemes.
+These molecules contained bonds where removing substituents that are more than 2 bonds away changed the WBO distribution relative to their
+parent such that their MMD scores ranked in the top 100](images/figure_10.svg){#fig:validation_set}
 
 (Should I discuss some interesting long distance chemical changes this set picked up here? It's an exquisitly rich data set)
 
