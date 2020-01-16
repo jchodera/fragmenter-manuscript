@@ -8,7 +8,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2020-01-14'
+date-meta: '2020-01-16'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Capturing non-local effects when fragmenting molecules
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/c17bdfcb685e249233f275bfb3b203567b191830/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/f3fb27a8d4dad81b496cd3c56c8d017a65bc0802/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@c17bdfc](https://github.com/ChayaSt/fragmenter-manuscript/tree/c17bdfcb685e249233f275bfb3b203567b191830)
-on January 14, 2020.
+from [ChayaSt/fragmenter-manuscript@f3fb27a](https://github.com/ChayaSt/fragmenter-manuscript/tree/f3fb27a8d4dad81b496cd3c56c8d017a65bc0802)
+on January 16, 2020.
 </em></small>
 
 ## Authors
@@ -239,20 +239,22 @@ Section 4 provides a discussion of the implications of this study and section 5 
 ## Results
 
 ### Torsion energy barriers are sensitive to the chemical environment, which can be influenced by remote substituents
-In most forcefields, torsions are defined by the quartet of atom types involved in the dihedral [CITE].
+In most forcefields, torsions are defined by the quartet of atom types involved in the dihedral [@waPeRcgV; @1GDaakPWY;
+@11Z8pXbEW; @Mi3Ujd07].
 However, the quartet of atom types do not always capture the relevant chemistry, especially when the effects
 are non local i.e., atoms contributing to hyperconjugation, delocalization or other non classical effects,
-are not part of the quartet involved in the torsion [@13fQUQyf9]. Figure {@fig:biphenyls}A illustrates
+are not part of the quartet involved in the torsion [@13fQUQyf9]. Figure {@fig:biphenyls}, A illustrates
 such a case with a series of biphenyls in different protonation states. While the MM torsion profiles
-are all the same (Fig 2B), the QC torsion profiles are different for each protonation state (Fig 2C). 
+are all the same (@fig:biphenyls D), the QC torsion profiles are different for each protonation state (@fig:biphenyls E).
 The torsion energy barrier increases relative to the neutral state for the cation, anion and zwitterion, in that order.
 The profile changes qualitatively as well. For the neutral molecule, the lowest energy conformer
 is slighlty out of plane, at $150^{\circ}$ and $120^{\circ}$.  For the zwitterion, the lowest energy 
 conformer is at $180^{\circ}$. In the neutral molecule, the slightly out of plane conformer is preferred to accommodate
 the hydrogens. However, the central bond in the zwitterion is part of the larger conjugated system between the two aromatic
-rings (Fig 2D) so the planar conformer is preferred to enable conjugation. This trend poses several problems to 
+rings (@fig:biphenyls B) so the planar conformer is preferred to enable conjugation. This trend poses several problems to
 automatic forcefield parametrization. Most forcefields consider the central bond
-in the zwitterion rotatable while the QC scan clearly shows that is it not. This illustrates one
+in the zwitterion rotatable which is reflected in the same torsion parameters for all four molecules (@fig:biphenyls, D)
+while the QC scan clearly shows that is it not. This illustrates one
 of the fundamental limits of atom types in classical forcefields. At what point in this series should
 a new atom type be introduced? The Open Force Field Initiative's effort on automating data driven direct
 chemical perception [@1HYTTY1PU ;@mbmV3Fg8; @14f8CUfzQ]
@@ -260,38 +262,54 @@ addresses this problem by using SMIRKS patterns to assign parameters, and provid
 SMIRKS space in a data driven way. In addition, this example illustrates why fragmenting molecules
 appropriately for QC torsion scans requires human expertise and is difficult to automate. 
 In this case, a small change three bonds away from the torsion central bond changed the bond from 
-a rotatable bond to a non-rotatable conjugated bond. When fragmenting molecules we need to avoid
+a rotatable bond to a non-rotatable conjugated bond. When fragmenting molecules, we need to avoid
 destroying a bond's chemical environment by naively removing an important remote substituent.
 
-![**Illustration of the sensitivity of torsion profiles to remote chemical changes in a molecule**
+![**Torsion profiles can be sensitive to remote chemical chnanges in a molecule**
 **[A]** Biphenyl protonation states and tautomers with increasing Wiberg bond order for the central bond.
 **[B]** The resonance structure of the biphenyl zwitterion shows that the central bond is conjugated. The Wiberg bond order
 and torsion scan for this bond (see **A** and **C**) are reflective of a conjugated bond. **[C]** Relative QC energy as a function of
-torsion angle of the central bond. The colors of the QC scan corresponds to the highlighted bonds in **A**. **[D]** Torsion barrier heights vs
-WBOs. The color of the data points correspond to the highlighted bonds in **A**. The QC torsion barrier height is linear WBO.](images/figure_3.svg){#fig:biphenyls}
+torsion angle of the central bond. The colors of the QC scan corresponds to the highlighted bonds in **A**. **[D]** Relative MM
+energy as a function of torsion angle of the central bond. The colors in the MM scan correspond to the highlighted bonds in **A**.
+[E]** Torsion barrier heights vs WBOs. The color of the data points correspond to the highlighted bonds in **A**.
+The QC torsion barrier height is linear WBO.](images/figure_3.svg){#fig:biphenyls}
 
 ### The Wiberg Bond Order quantifies the electronic population overlap between two atoms and captures bond conjugation
 The Wiberg bond order (WBO) is a bond property that is calculated using orthonormalized atomic orbitals that are used
-as basis sets in semi-empirical QC methods[CITE]. Wiberg originally formulated it for the CNDO basis set [CITE] but it can be 
-easily extended to other semi-empirical QC methods such as AM1 [@tnSqySMX] and PM3 [CITE]. The WBO is a measure
+as basis sets in semi-empirical QC methods[@QlopodHU]. Wiberg originally formulated it for the CNDO basis set [@BES2Ksiq] but it can be
+easily extended to other semi-empirical QC methods such as AM1 [@tnSqySMX] and PM3 [@dgUvu4tX]. The WBO is a measure
 of electron density between two atoms in a bond and is given by the quadratic sum of the density matrix elements over 
 occupied atomic orbitals on atoms A and B
 
 \begin{equation} W_{AB} = \sum_{\mu\in A}\sum_{\nu\in B} P^2_{\mu\nu} \end{equation}
 
 To check how well $W_{AB}$ recapitulates the multiplicity of bonds, we calculated $W_{AB}$ from AM1 calculations 
-for all bonds in FDA approved molecules in DrugBank [@1FI8iuYiQ]. The distribution [fig 3] corresponds
-closely with bond multiplicity. The plateau at 0.8 correspond to bonds involving S and P since these are weaker and longer bonds. The plateau at 1.0
-corresponds to C-H and C-C bonds, the plataea at 1.5 corresponds to bonds in aromatic rings, the plateau at 2.0 corresponds
-to double bonds, and finally the triple bonds form the last plateau. The density between 1.0-1.4 correspond to the 
-conjugated bonds not inside rings.
+for all bonds in a set of molecules shown in SI. The distribution in figure @fig:wbo_dists corresponds
+closely with bond multiplicity. The density at ~ 0.7 correspond bonds involving sulfur and phosphorous since these are weaker and longer bonds. The peak at 1.0
+corresponds to C-H and C-C bonds, the peak close to 1.5 corresponds to bonds in aromatic rings, the peak close to 2.0 corresponds
+to double bonds, and finally the triple bonds form the last peak. Figures @fig:wbo_dists B and D seperate out different kinds of bonds
+to more clearly illustrate what the WBO captures. Figure @fig:wbo_dists B shows carbon - carbon bonds not in rings (blue) and bonds in rings (pink).
+The carbon - carbon distribution has distinct peaks at one, two and three corresponding to single, double and triple bonds. There is also a smaller
+peak at 1.5 that corresponds to conjugated bonds. The pink distribution includes bonds in rings and has a peak at one and 1.5 which corresponds to aliphatic
+and aromatic rings, respectively. Figure @fig:wbo_dists D shows distrbutions with bonds that have nitrogens (blue) and oxygens (pink). The peaks occur at
+the expected values; 1, 1.5 and 3 for nitrogen which corresponds to single, conjugated and triple bonds and 1 and 2 for oxygens which correspond to
+single and carbonyl bonds.
+
+![**Distribution of WBO in drug-like molecules have peaks at expected values**
+**[A]** The distribution of all WBOs for all bonds in molecules in set. The peak at one, close to two and close to thres correspond to
+single, double and triple bonds. the density between one and two correspond to aromatic and conjugated bonds. The peak at ~0.7 correspond
+to bonds that include sulfur and phosphorous which are longer, weaker bonds. **[B]** The blue distribution includes carbon - carbon bonds that
+are not in rings. The peaks at one, two and three correspond to single, double and triple bonds. The pink distribution include bonds that are in rings.
+The peak at one corresponds to single bonds and the density between one and 1.5 are aromatics. **[C]** The blue distribution includes bonds that have
+either one or two nitrogen. Many of these bonds are conjugated as demonstrated by the density around 1.5. The density at three corresponds to
+cyano groups. The pink distribution include bonds that have oxygens. The peak at two corresponds to carbonyls.](images/figure-2.svg){#fig:wbo_dists}
 
 The Wiberg bond order assumes atomic orbitals (AOs) are orthonormal. In ab initio calculations, however, AOs are not
 orthogonal but the WBO can be calculated via Löwdin normalization [@K8bdDsCu; @1BEyXJiMo] which is how it is calculated in Psi4.
 
-We calculated the WBO from AM1 calculations for the biphenyl series as shown in figure 2A. The increase in the WBO corresponds
+We calculated the WBO from AM1 calculations for the biphenyl series as shown in figure @fig:biphenyls A. The increase in the WBO corresponds
 to increasing conjugation and torsion energy barrier height of the bond. When the torsion energy barrier heights are plotted against
-the WBO [fig 2E], the relationship is linear with an $R^2$ of [hold].
+the WBO (fig @fig:biphenyls E), the relationship is linear with an $R^2$ of 0.97.
 
 ### The WBO is an inexpensive surrogate for the chemical environment around a bond
 Since the WBO can be calculated from a cheap AM1 calculation, is indicative of a bond's conjugation, and is correlated with torsion energy
