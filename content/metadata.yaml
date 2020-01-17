@@ -37,16 +37,7 @@ author_info:
     affiliations:
       - Department of Something, University of Whatever
     funders: Grant XXXXXXXX
-  -
-    github: yudongqiu
-    name: Yudong Qui
-    initials: YQ
-    orcid: XXXX-XXXX-XXXX-XXXX
-    twitter: johndoe
-    email: john.doe@something.com
-    affiliations:
-      - Department of Something, University of Whatever
-    funders: Grant XXXXXXXX
+
   -
     github: maxentile
     name: Josh Fass
