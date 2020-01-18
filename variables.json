@@ -1,5 +1,5 @@
 {
-  "date": "January 16, 2020",
+  "date": "January 18, 2020",
   "authors": [
     {
       "github": "ChayaSt",
@@ -37,21 +37,6 @@
       "github": "dgasmith",
       "name": "Daniel G A Smith",
       "initials": "DGAS",
-      "orcid": "XXXX-XXXX-XXXX-XXXX",
-      "twitter": "johndoe",
-      "email": "john.doe@something.com",
-      "affiliations": [
-        "Department of Something, University of Whatever"
-      ],
-      "funders": "Grant XXXXXXXX",
-      "affiliation_numbers": [
-        3
-      ]
-    },
-    {
-      "github": "yudongqiu",
-      "name": "Yudong Qui",
-      "initials": "YQ",
       "orcid": "XXXX-XXXX-XXXX-XXXX",
       "twitter": "johndoe",
       "email": "john.doe@something.com",
@@ -142,13 +127,14 @@
     "repo_slug": "ChayaSt/fragmenter-manuscript",
     "repo_owner": "ChayaSt",
     "repo_name": "fragmenter-manuscript",
-    "commit": "f3fb27a8d4dad81b496cd3c56c8d017a65bc0802"
+    "commit": "2ddbcab0cdc9e94dba955a7e62aeab8ae5b77cfc"
   },
   "manuscript_stats": {
     "reference_counts": {
-      "doi": 45,
-      "total": 45
+      "doi": 48,
+      "url": 1,
+      "total": 49
     },
-    "word_count": 8846
+    "word_count": 9520
   }
 }
