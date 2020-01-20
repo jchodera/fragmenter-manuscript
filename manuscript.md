@@ -7,7 +7,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2020-01-18'
+date-meta: '2020-01-20'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/2ddbcab0cdc9e94dba955a7e62aeab8ae5b77cfc/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/16a9ab254aa762a8410a4dc5988c85e0711aa81e/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@2ddbcab](https://github.com/ChayaSt/fragmenter-manuscript/tree/2ddbcab0cdc9e94dba955a7e62aeab8ae5b77cfc)
-on January 18, 2020.
+from [ChayaSt/fragmenter-manuscript@16a9ab2](https://github.com/ChayaSt/fragmenter-manuscript/tree/16a9ab254aa762a8410a4dc5988c85e0711aa81e)
+on January 20, 2020.
 </em></small>
 
 ## Authors
@@ -173,7 +173,7 @@ methods like wavefront propagation [hold for CITE] are used. This adds a factor 
 to the computational cost. [hold for figure 1A] illustrates the average CPU time of a torsion scan for an average drug-like molecules. The shaded
 histogram is the distribution of the number of heavy atoms in FDA approved small molecules taken from DrugBank [@1FI8iuYiQ]. 
 The average molecules size is [N] heavy atom which corresponds to an average of [t] CPU seconds per energy and gradient evaluation at B3LYP-D3(BJ)/DZVP 
-[@YPDz9hB3;@17YEERBX3]. An average constrained geometry optimization takes 20 energy and gradient evaluations to converge. 
+[@YPDz9hB3; @17YEERBX3]. An average constrained geometry optimization takes 20 energy and gradient evaluations to converge.
 The average cost for a 1D QC torsion scan is t*24*20*2 = s. 
 
 2. In larger molecules, there is a greater potential for the torsion atoms to interact with other degrees of freedom and 
@@ -197,10 +197,13 @@ are incorporated in the fitting procedure. We also need a systematic way to dete
 the barrier to rotation significantly for the central bond of interest.
 
 In this work, we use the Wiberg Bond Order (WBO) [@BES2Ksiq], which is both simple to calculate
-from semi-empirical QC methods and is sensitive to the chemical environment around a bond. WBOs are correlated with bond
+from semi-empirical QC methods and is sensitive to the chemical environment around a bond. WBOs quantify electron population
+overlap between bonds, or the degree of binding between atoms. WBOs are correlated with bond
 vibrational frequencies [@hHhjgmIm, @14qKIxxbD] and is used to predict trigger bonds in high energy-density material
-because it is correlated with the strength of the bond [@cAeBUxqm]. Here, we develop an approach 
-that uses the WBO to validate whether a fragmentation scheme corrupts the local chemical environment of interest,
+because it is correlated with the strength of the bond [@cAeBUxqm]. Wei, et. al. [@fpE0Y69s] have shown
+that simple rules for electron richness of aromatic systems in biaryls are good indication of torsion force constants (specifically for V~2~), however, this
+measure was only developed for biaryls and it does not take into account substituents beyond the aromatic ring directly adjacent to the bond.
+Here, we develop an approach that uses the WBO to validate whether a fragmentation scheme corrupts the local chemical environment of interest,
 with a particular focus on fragmentation schemes suitable for QC torsion drives. Our approach uses simple 
 heuristics to arrive at a minimal fragment for QM torsion scan that is representative of of the torsion scan of the 
 substructure in the parent molecules. For a central bond, include all atoms that are involved in the sterics 
@@ -219,7 +222,9 @@ Section 4 provides a discussion of the implications of this study and section 5 
 [TBD]{.banner .lightyellow}
 
 - Define problem mathematically 
-- Define the problem physically 
+- Define the problem physically
+- Define conjugation and hyperconjugation (most systems here are hyperconjugation)
+
 
 ## Results
 
@@ -236,10 +241,12 @@ The profile changes qualitatively as well. For the neutral molecule, the lowest 
 is slighlty out of plane, at $150^{\circ}$ and $120^{\circ}$.  For the zwitterion, the lowest energy 
 conformer is at $180^{\circ}$. In the neutral molecule, the slightly out of plane conformer is preferred to accommodate
 the hydrogens. However, the central bond in the zwitterion is part of the larger conjugated system between the two aromatic
-rings (@fig:biphenyls B) so the planar conformer is preferred to enable conjugation. This trend poses several problems to
+rings (@fig:biphenyls B) so the planar conformer is preferred to enable conjugation.
+
+This trend poses several problems to
 automatic forcefield parametrization. Most forcefields consider the central bond
 in the zwitterion rotatable which is reflected in the same torsion parameters for all four molecules (@fig:biphenyls, D)
-while the QC scan clearly shows that is it not. This illustrates one
+while the QC scan clearly shows that it is not. This illustrates one
 of the fundamental limits of atom types in classical forcefields. At what point in this series should
 a new atom type be introduced? The Open Force Field Initiative's effort on automating data driven direct
 chemical perception [@1HYTTY1PU ;@mbmV3Fg8; @14f8CUfzQ]
@@ -269,7 +276,7 @@ occupied atomic orbitals on atoms A and B
 \begin{equation} W_{AB} = \sum_{\mu\in A}\sum_{\nu\in B} P^2_{\mu\nu} \end{equation}
 
 The Wiberg bond order assumes atomic orbitals (AOs) are orthonormal. In ab initio calculations, however, AOs are not
-orthogonal but the WBO can be calculated via Löwdin normalization [@K8bdDsCu; @1BEyXJiMo] which is how it is calculated in Psi4.
+orthogonal but the WBO can be calculated via Löwdin normalization [@K8bdDsCu; @1BEyXJiMo] which is how it is calculated in Psi4 [@YC6qkEYS].
 
 We calculated the WBO from AM1 calculations for the biphenyl series as shown in figure @fig:biphenyls A. The increase in the WBO corresponds
 to increasing conjugation and torsion energy barrier height of the bond. When the torsion energy barrier heights are plotted against
@@ -331,7 +338,8 @@ conformations, the rings are in plane and can conjugate so the WBO is higher. We
 such as AM1 and HF3C `(hold for SI)`{.red}
 
 #### Bonds in conjugated systems have highly correlated conformation-dependent WBOs
-We found that certain bond orders are strongly correlated or anti-correlated with each other, indicating strong electronic coupling.
+We found that certain bond orders are strongly correlated or anti-correlated with each other, indicating strong electronic coupling. As bonds in
+one conformation gain electron population overlap, the coupled bonds will decrease in electron population overlap and vice versa.
 Figure @fig:wbo_var_corr C shows the Pearson correlation coefficient for each bond WBO distribution against all other bond WBO distributions.
 There is a clear structure in this correlation plot. The square formed by bonds from atoms 24-29 shows that the alternating
 bonds in the aromatic ring (25-29) are strongly anti-correlated with each other. This trend is different in the ring formed by atoms 13-18
@@ -513,7 +521,7 @@ This fragmentation scheme improves upon [@XP23v9gZ], however, it leaves some par
 thresholds and different fragmentation schemes in general, we generated a diverse set of FDA-approved drug molecules that can be
 a useful validation set. The goal of this set was to find molecules that are challenging to fragment. In other words, molecules
 that have bonds that are sensitive to remote substituent changes. To find these molecules, we first filtered DrugBank (version 5.1.3 downloaded
-on 2019-06-06) with the following criteria:
+on 2019-06-06) [@1FI8iuYiQ] with the following criteria:
 
 1. FDA approved small molecules
 2. Largest ring size has less than 14 heavy atoms
@@ -543,7 +551,7 @@ cheapest fragment with the best score at that size. The selected fragment should
 lower left corner. **[C]** Selected fragments. Bonds are highlighted with their distance score. The ELF10 WBO is shown
 in the boxes above the highlighted bonds.](images/figure_9.svg){#fig:dabrafenib_wbo_dists}
 
-Figure {@fig:dabrafenib_wbo_dists} shows an example of the results of combinatorial
+Figure {@fig:dabrafenib_wbo_dists} shows an example of the results of exhaustive
 fragmentation and how this data can be used to benchmark fragmentation schemes. All rotatable bonds in the parent molecule, Dabrafenib ({@fig:dabrafenib_wbo_dists}C 4)
 were fragmented into 11 fragments (in this example, the trimethyl was not fragmented) resulting in 108 connected fragments when all connected combinations were generated.
 Of those 108 fragments, 44 fragments contained the bond between the sulfur in the sulfonamide and phenyl ring highlighted in fragments in {@fig:dabrafenib_wbo_dists}C.
@@ -623,7 +631,7 @@ the more the electronic population overlap around that bond changes with remote 
 
 Not all bonds are equally sensitive to such changes. This is shown by how different the sensitivity score is for
 different bonds in the same molecule in figure {@fig:validation_set}. The general trend observed is that conjugated bonds,
-and bonds including open valence atoms such as N, O, and S, are more sensitive to peripheral cuts. Molecules 10-12 (fig{@fig:validation_set}) also
+and bonds including atoms with lone pairs such as N, O, and S, are more sensitive to peripheral cuts. Molecules 10-12 (fig{@fig:validation_set}) also
 show which chemical moiety the bond is sensitive to, indicated by circles around the atoms which are colored with the corresponding bond's sensitivity score. In molecule 10,
 the WBO distribution of the amide bond shifts significantly if the positively charged nitrogen is remove regardless if the rest of the molecule is intact (data not shown).
 In molecule 11, the removal of the phosphate group shifts the distribution of the red bond. In molecule 12, both the amide and ester bond are sensitive to the same
@@ -732,6 +740,128 @@ are sometimes more than 3-6 bonds away and a large fragment is needed to accurat
 examples are shown in figure @fig:failure_modes E and F. In E, not only is the protonated nitrogen needed (shown in green), but the alcohol group is also needed to
 achieve good WBO distribution overlap (shown in purple). In F, the phosphate group nine bonds away from the bond of interest is needed to get
 the density of of the mode at 1.2 (shown in blue and purple).
+
+
+## Discussion
+
+### Combinatorial fragmentation benchmark set contains rich, chemical information that can be useful for other applications
+
+The validation set used to benchmark our fragmentation scheme, and determine the disruption threshold to use, was specifically
+selected to validate a fragmentation scheme for QC torsion scan so we wanted molecules that are challenging to fragment.
+Therefor, the hundred molecules chosen include bonds that are sensitive to remote
+chemical changes and the functional groups they are sensitive to exhibited relatively large, long range effects. However, these molecules
+were filtered out from a larger set with a total of 1,234 molecules and ~300,000 fragments with their WBO distributions over conformations.
+This exhaustive fragmentation dataset, with their changing WBO distributions, provides a treasure trove of nuanced chemical data. For the purposes
+of this paper, we did not delve into interesting effects we observed because it is out of scope. Here we describe
+some of those observations, and provide some thoughts on how this kind of data can be useful for other applications.
+
+At closer proximities that was not relevant for this study, and when functional groups are fragmented,
+the changes in the distributions detect varied effects. Many of these effects confirmed known considerations, such as removing
+a carbonyl from an amide or carboxylic group. But some were more subtle, such as changes observed vis-à-vis primary, secondary,
+and tertiary amines. The changes seem to pick up on subtle pKa changes for different amines [@1BB0uXaMq]. In addition, the
+shifts in the distributions observed in figure @fig:dabrafenib_wbo_dists are also picking up on the effects of fluorine on sulfinamide.
+`should I add more figures on the kind of things I saw? SI?`{.orange}
+
+This kind of data can potentially be used to complement knowledge based molecular similarity applications which are usually
+defined locally and might not detect long range effects. In addition, since WBO is anti-correlated with Hammett resonance parameters (fig @fig:subsituted_phenyls C and D),
+and shifts in distributions also seem to detect pKa shifts, WBOs may be useful in improving pKa predictions.
+
+We are sharing the dataset as a benchmark set for future fragmentation schemes. It is also straight forward to generate such data for molecules
+that are not in the set by following the directions given in the detailed methods.
+
+### Bond orders can be used to fit force field parameters
+
+WBO is one form of quantum mechanical electron density based bond order calculations, among many other definitions of bond orders (Pauling [@ZAAgsuwk],
+Coulson [@QY82Gb6W], Mulliken [@9WKaagH4]
+Mayer [@8uYd8cxr], Jug, [@vfRrdWeG], Politzer  [@11ndqhfsy], atomic overlap matrix bond order [@W8AzEnX],
+natural resonance theory bond order [@DGROEXhH],
+Nalewajksi-Mrozek bond order [@gXz3C8kB], effective bond order [@1DKWkyb8W],
+natural localized molecular orbital bond order [@8lDNKz5i], delocalization index [@T28IOvGo], fuzzy bond order
+[@WsnyRa9Y]) that aim to quantify the chemical bond, a key concept in chemistry, by computing the electron population overlap between atoms. These quantities
+attempt to provide a link between the physical understanding of molecules, a system of individual particles without explicit bonds, to the powerful, mental, graphical, models
+that chemists employ when thinking about molecules. Given that these quantities try to make that connection, it is not surprising that fractional bond orders
+captures important, chemical properties that can be useful in many applications, specifically force field parameterization. Indeed, In the MMP2 [@mgZozbxT],
+MM3 [@F7LEPYAx] and MM4 [@1F0ePTGWd] force fields, a Variable Electronegativity SCF derived bond order for pi-systems was used to fit bond length, bond force constants and twofold torsional
+force constants. Given the relationship we find in figure @fig:subsituted_phenyls, E, we should be able to extrapolate or interpolate torsion force constants by calculating
+the WBO, thus avoiding running expensive QC torsion scans. The WBO comes free with an AM1-BCC [@LxrgIkt0] charging calculation at no extra cost, and is also now possible to calculate
+EHT electronic populations with the OFF toolkit [@ggfhCq68].
+The SMIRNOFF format provides a convenient way to add appropriate torsion terms given the data we have. For example, In figure @fig:subsituted_phenyls, E, the lines
+seem to cluster into three clusters, so we can us ChemPer [@14f8CUfzQ] to generate SMIRKS patterns to capture the chemistries in
+these clusters and interpolate the torsion force constants for the different chemical environments of those patterns. This has the potential to avoid
+many expensive QC torsion scans, specifically for bespoke parameter fitting for new chemical entities, and improve torsion parameters by including long range effects.
+
+### Relative changes in WBO is not enough to capture all characteristics of QM torsion scans
+
+The WBO is a measure of electron population overlap between atoms in a bond, so its relative changes is a good indication of
+conjugation and therefor a surrogate for torsion barrier heights (fig @fig:subsituted_phenyls, E). However, as we have shown in
+figure @fig:sub_phenyl_qc_scan and [Hold for SI], relative changes in WBO for the same torsion type in different chemical
+environments only capture change of scale in torsion scans, not changes in the profile (relative amplitutes,  periodicities and location of minima and maxima).
+There are several ways a torsion scan of the same torsion type in different chemical environments can change besides scale.
+One, symmetry around zero is lost, either with the minima and maxima shifting, or when one maxima is higher than the
+corresponding maxima across the symmetry line at zero degrees [Hold for SI]. In these cases, corresponding WBO scans have the same features
+as the QC scans. This indicates that the changes in the profiles correspond to electronic changes in the different torsions.
+All scans that exhibit these kind of changes have torsions types that include trivalent nitrogen which can be either in
+planar or pyrmidal conformations. When we measured the improper angle of the nitrogen involved in the torsion scan, along the scan,
+we found that the scans that were shifted relative to most other scans in the series, had improper angles that were pyrmidal
+throughout the scan. The other molecules in the series all had improper angles that became planar at lower energies to allow
+conjugation [Hold for SI]. A trivalent nitrogen will be pyramidal if the lone pair is not conjugated, and the scans that
+have improper angles along the entire QC scan all fall on the lower end of WBOs within the series which indicates that the
+lone pairs are not conjugated with the phenyl ring. Another interesting observation is that in most cases where the nitrogen
+is pyramidal throughout the scan, its chirality stays the same, however, for the scans where the relative barrier heights
+are not symmetric, the chirality of the nitrogen flips during the scan [Hold for SI].
+
+Another way QC torsion scan profiles can change besides scale, are when the
+the relative heights of the minimas or maximas are different or new minima or maxima are observed. Urea in figure
+@fig:sub_phenyl_qc_scan, C and in [hold for SI] is an extreme example of this kind of change, but other series with bulkier X~_1~ [hold for SI]
+exhibit similar changes. In these cases, the correspond WBO scans do not have these features, but have similar profiles to
+other WBO scans in the series. This indicates that the observed changes in the profiles do not implicate changes in conjugation.
+Furthermore, when their corresponding improper angles (when relevant) were measured, we found that all of them become planar
+at low energy which imply that all molecules in the series are conjugated along the phenyl ring and X~_1~. Here, steric interactions
+cause the changes in QC profiles. In all scans where one minima relative to the other minima in the scan is higher, and this is not
+the case for other scans in the series, a bulky group is at the meta position, while the other scans have X~_2~ at para positions.
+In addition, for other scans where the profiles do not change as much and X~_1~ is not as bulky, but the barrier heights are out of order of increasing ELF10 WBO (a lower
+ELF10 WBO has a higher torsion energy barrier than another molecule with a higher ELF10 WBO in the series), X~_2~ is at the
+meta position.
+
+The torsion parameters in forcefields are supposed to model both conjugation, a quantum chemical phenomenon that is not well modeled
+in classical forcefields, and corrections for 1-4 nonbonded interactions. To increase transferability of torsion parameters, torsion parameters
+should not include non bonded interactions beyond the 1-4 atoms. However, in general, it is difficult to separate the contributions
+of sterics and conjugation in a QC torsion scan. Here, it seems like the WBO scans along torsion scans, and relative ELF10 WBOs can
+provide a way to separate these contributions. If a torsion profile changes relative to another torsion profile of the same torsion type,
+and their WBO scans along the torsion profile only change in scale,
+or if their relative barrier heights are not in the same order as their ELF10 WBO estimate, the changes are probably coming from nonbonded
+interactions beyond the 1-4 atoms. However, if changes in QC torsion scans of the same torsion types are accompanied with the same profile changes in
+the corresponding WBO scan, then the profile change is inherent to the electron population overlap of the bond and might need a different torsion type.
+
+### Using Bond orders when fragmenting molecules captures long range effects that simple rules do not
+
+Relative changes in bond orders between the fragments and their parent molecules, are a good indication of disruption of electron density
+around a central bond. QC torsion scans capture both steric and conjugation effects so torsion force field parameters should capture
+both short range non bonded corrections and conjugation. However, simple fragmentation rules assumes that including 1-5 atoms around the central
+bond (including rings and functional groups) is enough to capture conjugation effects in addition to sterics. While this assumption holds
+true for many molecules, it is not sufficient for sensitive bonds and functional groups that have long range effects, as we have shown.
+Therefor, using the WBO to detect changes to a bond's chemical environment, which is sensitive to nonlocal effects, ameliorates some deficiencies
+in rule based fragmentation schemes. But there is a trade off and the solution is not always optimal. While WBO calculations are
+cheap relative to QC torsion scans, they still require several semi-empirical QM calculations, the ELF10 estimate is sometimes
+not an adequate estimate, and heuristics used to add substituents to minimize electron density disruption do not always find the optimal path.
+
+One way to speed up conjugation perception, is using RDKit's conjugation detector which relies on rules. However,
+these rules are binary; a bond is either considered fully conjugated or not. However, Conjugation is a continuous property and
+the extent of conjugation determines relative barrier heights. Boolean values do not allow us to detect such relative changes
+to a bond's chemical environment that will effect torsion barrier height. A better approach is to extend the concept of
+H-TEQ (hyperconjugation for torsional energy quantification) developed in
+[@AWj8hnbG, @fpE0Y69s; @16GNoHAFY] to include not just the 1-4 atoms in
+bonds adjacent to conjugated systems, or aromatic rings in biaryls, but other atoms in the molecule to obtain V~1~ and V~2~ estimates,
+and use those values instead of WBOs to determine the disruption of electron population overlap around the bond.
+
+However, both of the above solutions, while reducing the cost of extent of conjugation detection, will still rely on needing
+to find the optimal path to grow our the fragment. A data-driven approach, which can find the optimal fragment is the ideal solution.
+The OFF QC datasets on QCArchive [@gioUiKT3] all include Wiberg Löwdin bond orders for all conformations. Given the
+sheer number of data available on QCArchive, and the long range information WBOs captures, it will be possible to train an
+ML moldel to find which parts of a molecule are electronically couped and need to be conserved when fragmenting to reproduce
+the parent molecule chemical environment. This data-driven approach will reduce the cost of fragmeting and also potentially
+find the most optimal fragment that minimizes both electronic density disruption and fragment size. It can also provide data
+needed to determine how many torsion SMIRKS types are needed for maximum transferability and chemical coverage.
 
 
 ## References {.page_break_before}
