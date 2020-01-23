@@ -7,7 +7,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2020-01-21'
+date-meta: '2020-01-23'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/e8a78789c762f2e3ac033d525814fd096fbbbbc8/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/4df3641abb01ac71bc2306a50fda6222837ee7db/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@e8a7878](https://github.com/ChayaSt/fragmenter-manuscript/tree/e8a78789c762f2e3ac033d525814fd096fbbbbc8)
-on January 21, 2020.
+from [ChayaSt/fragmenter-manuscript@4df3641](https://github.com/ChayaSt/fragmenter-manuscript/tree/4df3641abb01ac71bc2306a50fda6222837ee7db)
+on January 23, 2020.
 </em></small>
 
 ## Authors
@@ -122,34 +122,40 @@ on January 21, 2020.
 
 ## Abstract {.page_break_before}
 
-Accurate small molecule molecular mechanics force fields are essential for predicting protein-ligand binding 
+Accurate molecular mechanics force fields for small moelcules are essential for predicting protein-ligand binding
 affinities in drug discovery and understanding the biophysics of biomolecular systems. The accuracy of torsion 
 parameters is important for determining the conformational distribution of molecules, and can have a large effect 
 on computed properties like binding affinities. Torsion parameters are usually fit to computationally costly 
 quantum chemical (QC) torsion scans that scale poorly with molecule size. To reduce computational cost and avoid 
 the complications of distant intramolecular interactions, molecules are generally fragmented into smaller entities 
 to carry out QC torsion scans. Poor fragmentation schemes, however, have the potential to significantly disrupt the 
-electronic properties of the region around the torsion, leading to poor representation of the real chemical environment. 
-Here, we show that a rapidly computing quantity, the fractional Wiberg bond order (WBO), is sensitive to the chemical 
+electronic properties of the region around the torsion, leading to poor representation of the real chemical environment
+and the resulting torsion energy profile.
+Here, we show that a rapidly computable quantity, the fractional Wiberg bond order (WBO), is sensitive to the chemical
 environment of bonds, and can be used as a useful surrogate to assess the robustness of fragmentation schemes and identify 
 conjugated bond sets. We use this concept to construct a validation set consisting of combinatorial fragmentations of 
-druglike organic molecules (and their corresponding WBO distributions) that can be used to evaluate fragmentation schemes. 
+druglike organic molecules (and their corresponding WBO distributions derived from accessible conformations) that can be used to evaluate fragmentation schemes.
 To illustrate the utility of the WBO in assessing fragmentation schemes that preserve the chemical environment, we propose 
-a new fragmentation scheme that uses WBO to maximize the chemical equivalency of the fragment and the substructure in the 
+a new fragmentation scheme that uses rapidly-computable AM1 WBOs, available essentially for free as part of an AM1-BCC partial charge
+assignment process, to maximize the chemical equivalency of the fragment and the substructure in the
 larger molecule.
 
 
 # Introduction
 
-Small molecules molecular mechancis (MM) force fields are essential to the design of small molecules for chemical 
+Small molecule molecular mechancis (MM) force fields are essential to the molecular design for chemical
 biology and drug discovery, as well as the use of molecular simulation to understand the
 behavior of biomolecular systems. However, small molecule force fields have lagged behind
-protein force fields given the larger chemical space small molecule force fields need to 
-cover [@mbmV3Fg8; @18mvPmwwB]. Torsion parameters
-are particularly problematic because they do not generalize very well [@13fQUQyf9].
-It is possible to significantly improve the force field accuracy by refitting torsion 
-parameters for individual molecules in a bespoke fashion [@Io39j4ig; @5cjbQnbG; 
-@CstjV2w8]. In many molecular mechanics force fields (e.g., Amber [@1GDaakPWY], 
+protein force fields given the larger chemical space these force fields must cover to provide good
+accuracy over the space fo druglike ligands, common metabolites and other small biomolecules [@mbmV3Fg8; @18mvPmwwB].
+Torsion parameters are particularly problematic because historical approaches to their determination tend to produce
+parameters that generalize poorly [@13fQUQyf9]. This lack of generalizability has let many practitioners
+to aim to improve the force field accuracy by refitting torsion
+parameters for individual molecules in a semi automated bespoke fashion [@Io39j4ig; @5cjbQnbG;
+@CstjV2w8]. This leads to a significant barrier to setting up simulations for new projects and may not produce
+generalizable parameters.
+
+In many molecular mechanics force fields (e.g., Amber [@1GDaakPWY],
 CHARMM [@11Z8pXbEW], OPLS [@Mi3Ujd07]) a low-order Fourier series, such as
 a cosine series, is often used to represent the contribution of torsion terms to the potential energy. 
 The torsion potential energy parameters such as amplitudes and phase angles for each Fourier term, 
@@ -161,24 +167,38 @@ Neighboring torsions can have correlated conformational preferences the low-orde
 way to model non-local correlations by fitting residuals between the 2D QC torsion energy profile and the 2D
 MM torsion energy profile. 
 
-Molecules are generally reduces to smaller model entities containing the torsion of interest for QC torsion scans [@18mvPmwwB] for two main reasons as
-illustrated in [hold for figure 1].
+In order to produce a quantum chemical energy profile representing the chemical environment that the torsion of interest is to be fit to, the
+quantum chemical torsion profile is generally computed on smaller fragments generated by a fragmentation-and-capping process
+for two main reasons.
 
-1. Generating one dimensional QC torsion profiles are computationally expensive and become increasingly inefficient
+![**Fragmenting molecules is necessary to avoid high computational cost of generating QC data.**
+**[A]** CPU time (wall time * nthreads) of one QC gradient evaluation at B3LYP-D3(BJ)/DZVP level of theory [@YPDz9hB3; @17YEERBX3] vs number
+of heavy atoms in molecules. All computations shown here were run on an Intel(R) Xeon(R) CPU E5-2697 v4 @ 2.30GHz.
+Empirically, gradient evaluations grow as $O(N^{2.6})$ where $N$ is the number of heavy atoms. The scaling is similar
+on other processors shown in SI Figures @fig:intel_scaling & @fig:amd_scaling. The black curves shows a power law fit to the data,
+and the grey is the 95% CI of the curve estimate.
+**[B]** Smoothed histogram of heavy atoms in small molecules from DrugBank. The average druglike molecules has 25 heavy atoms.](images/B3LYP_scaling_1.svg){#fig:b3lyp_scaling}
+
+1. **Computational efforts scale poorly with molecule size**.
+Generating one dimensional QC torsion profiles are computationally expensive and become increasingly inefficient
 for larger molecules and/or higher dimensional QC torsion profiles. QC calculations scale badly with the number
-of heavy atoms $N$, like $O(N^M)$ where $M\leq 4$ for hybrid DFT functionals which is generally used in QC torison scans. To adequately fit the torsions,
+of basis sets $N$, like $O(N^M)$ where formally, $M\leq 4$ for hybrid DFT. With modern implementations, hybrid DFT scales
+asymptotically as $~N^{2.2-2.3}$ [@I9yhXyTJ]. Using QCArchive data [@gioUiKT3], we found that
+practically, hybrid DFT grows like $~N^{2.6}$ as shown for gradient evaluations in Figure @fig:b3lyp_scaling, A. To achieve good sampling to adequately fit the torsions,
 constrained geometry optimizations need to be calculated at $\leq 15^0$ intervals for a minimum of 24 constrained 
 geometry optimizations. To avoid hysteresis in the energy profile due to orthogonal degrees of freedom [@1E3wArY0j],
-methods like wavefront propagation [hold for CITE torsiondrive paper] are used. This adds a factor of 2D, where D is the dimension of the QC scan,
-to the computational cost. [hold for figure 1A] illustrates the average CPU time of a torsion scan for an average drug-like molecules. The shaded
-histogram is the distribution of the number of heavy atoms in FDA approved small molecules taken from DrugBank [@1FI8iuYiQ]. 
-The average molecules size is [N] heavy atom which corresponds to an average of [t] CPU seconds per energy and gradient evaluation at B3LYP-D3(BJ)/DZVP 
-[@YPDz9hB3; @17YEERBX3]. An average constrained geometry optimization takes 20 energy and gradient evaluations to converge.
-The average cost for a 1D QC torsion scan is t*24*20*2 = s. 
+methods like wavefront propagation `[hold for CITE torsiondrive paper]`{.red} are used. This adds a factor of 2D, where D is the dimension of the QC scan,
+to the computational cost. We found (SI Figure @fig:opts_per_td) that on average ~60 optimizations are needed for a 1D wavefront propagated torsion
+drive to converge. We also found that roughly 20 gradient evaluations are needed for an optimization to to converge for the
+molecules we optimized (SI Figure @fig:grads_per_opt). Figure @fig:b3lyp_scaling, B shows a smoothed histogram of the distribution of
+the number of heavy atoms in FDA approved small molecules taken from DrugBank [@1FI8iuYiQ]. For an average
+druglike molecule of 25 heavy atoms, we can estimate the cost of a 1D torsion scan to be $60 * 20 * 0.26 * 25^{2.6} \approx 1,000,000$ CPU seconds.
+Reducing the size of the molecule to 15 heavy atoms will reduce the cost the torsion scan by an order of magnitude ($60 * 20 * 0.26 * 15^{2.6} \approx 300,000$ CPU seconds)
 
-2. In larger molecules, there is a greater potential for the torsion atoms to interact with other degrees of freedom and 
-convolute the energy profile. While this can also happen in smaller molecules such as ethylene glycol 
-this problem is reduced when a minimal model molecule is used as illustrated in [hold for figure 1B].
+2. **Intramolecular interactions complicate torsion drives and torsion parameter fitting**
+In larger molecules, there is a greater potential for the torsion atoms to interact with other degrees of freedom and
+convolute the energy profile. While this can also happen in smaller molecules such as ethylene glycol `[hold to CITE torsiondrive paper]`{.red}
+this problem is reduced when a minimal model molecule is used, albeit not completely eliminated.
 
 Many fragmentation algorithms exist, but they are not appropriate for torsion scans in particular and are insufficiently 
 automated. These algorithms fall into two categories: 1. fragmentation for synthetic accessibility [@xbUA1nkO;
@@ -898,6 +918,20 @@ if they are 3-6 bonds away from the central bond.
 
 
 ## Supporting Information {.page_break_before #SI}
+
+![**QC gradient evaluations scale similarly on various processor**
+CPU time (wall time * nthreads) for one gradient evaluation vs. heavy atoms in molecules. All CPUS shown in this figure
+are Intel(R) Xeon(R)](images/SI_Intel_scaling_4.svg){#fig:intel_scaling}
+
+![**QC gradient evaluations scale similarly on various processor**
+Same as Figure @fig:intel_scaling but on AMD processors](images/SI_AMD_scaling_3.svg){#fig:amd_scaling}
+
+![**Distributions of number of gradient evaluations per optimizations for different size molecules**
+The number of gradient evaluations per optimization depends on many factors such as initialization and tolerance, but there
+is also a slight dependency on molecular size as shown in this figure](images/gradients_per_opts_2.svg){#fig:grads_per_opt}
+
+![**Distribution of optimizations per torsion drive**
+This figures shows the distributions of optimizations per torsion drive when using wavefront propagation](images/opts_per_td_4.svg){#fig:opts_per_td}
 
 ![**Validation set**
 All molecules used in the validation set of fragmentation schemes. The bonds are highlighted by how sensitive they are to

@@ -1,5 +1,5 @@
 {
-  "date": "January 21, 2020",
+  "date": "January 23, 2020",
   "authors": [
     {
       "github": "ChayaSt",
@@ -127,14 +127,14 @@
     "repo_slug": "ChayaSt/fragmenter-manuscript",
     "repo_owner": "ChayaSt",
     "repo_name": "fragmenter-manuscript",
-    "commit": "e8a78789c762f2e3ac033d525814fd096fbbbbc8"
+    "commit": "4df3641abb01ac71bc2306a50fda6222837ee7db"
   },
   "manuscript_stats": {
     "reference_counts": {
-      "doi": 69,
+      "doi": 70,
       "url": 3,
-      "total": 72
+      "total": 73
     },
-    "word_count": 11943
+    "word_count": 12352
   }
 }
