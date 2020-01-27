@@ -7,7 +7,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2020-01-23'
+date-meta: '2020-01-27'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/4df3641abb01ac71bc2306a50fda6222837ee7db/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/8fab9342a7c302d55c01ab9a8ca8ea23d010821a/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@4df3641](https://github.com/ChayaSt/fragmenter-manuscript/tree/4df3641abb01ac71bc2306a50fda6222837ee7db)
-on January 23, 2020.
+from [ChayaSt/fragmenter-manuscript@8fab934](https://github.com/ChayaSt/fragmenter-manuscript/tree/8fab9342a7c302d55c01ab9a8ca8ea23d010821a)
+on January 27, 2020.
 </em></small>
 
 ## Authors
@@ -128,12 +128,12 @@ parameters is important for determining the conformational distribution of molec
 on computed properties like binding affinities. Torsion parameters are usually fit to computationally costly 
 quantum chemical (QC) torsion scans that scale poorly with molecule size. To reduce computational cost and avoid 
 the complications of distant intramolecular interactions, molecules are generally fragmented into smaller entities 
-to carry out QC torsion scans. Poor fragmentation schemes, however, have the potential to significantly disrupt the 
+to carry out QC torsion scans. Poor fragmentation schemes, however, have the potential to significantly disrupt
 electronic properties of the region around the torsion, leading to poor representation of the real chemical environment
 and the resulting torsion energy profile.
 Here, we show that a rapidly computable quantity, the fractional Wiberg bond order (WBO), is sensitive to the chemical
 environment of bonds, and can be used as a useful surrogate to assess the robustness of fragmentation schemes and identify 
-conjugated bond sets. We use this concept to construct a validation set consisting of combinatorial fragmentations of 
+conjugated bond sets. We use this concept to construct a validation set consisting of exhaustive fragmentations of
 druglike organic molecules (and their corresponding WBO distributions derived from accessible conformations) that can be used to evaluate fragmentation schemes.
 To illustrate the utility of the WBO in assessing fragmentation schemes that preserve the chemical environment, we propose 
 a new fragmentation scheme that uses rapidly-computable AM1 WBOs, available essentially for free as part of an AM1-BCC partial charge
@@ -143,7 +143,7 @@ larger molecule.
 
 # Introduction
 
-Small molecule molecular mechancis (MM) force fields are essential to the molecular design for chemical
+Molecular mechanics (MM) small molecules force fields are essential to the molecular design for chemical
 biology and drug discovery, as well as the use of molecular simulation to understand the
 behavior of biomolecular systems. However, small molecule force fields have lagged behind
 protein force fields given the larger chemical space these force fields must cover to provide good
@@ -177,11 +177,11 @@ of heavy atoms in molecules. All computations shown here were run on an Intel(R)
 Empirically, gradient evaluations grow as $O(N^{2.6})$ where $N$ is the number of heavy atoms. The scaling is similar
 on other processors shown in SI Figures @fig:intel_scaling & @fig:amd_scaling. The black curves shows a power law fit to the data,
 and the grey is the 95% CI of the curve estimate.
-**[B]** Smoothed histogram of heavy atoms in small molecules from DrugBank. The average druglike molecules has 25 heavy atoms.](images/B3LYP_scaling_1.svg){#fig:b3lyp_scaling}
+**[B]** Smoothed histogram of heavy atoms in small molecules from DrugBank. The average druglike molecules has 25 heavy atoms.](images/B3LYP_scaling.png){#fig:b3lyp_scaling}
 
 1. **Computational efforts scale poorly with molecule size**.
 Generating one dimensional QC torsion profiles are computationally expensive and become increasingly inefficient
-for larger molecules and/or higher dimensional QC torsion profiles. QC calculations scale badly with the number
+for larger molecules and/or higher dimensional QC torsion profiles. QC calculations scale poorly with the number
 of basis sets $N$, like $O(N^M)$ where formally, $M\leq 4$ for hybrid DFT. With modern implementations, hybrid DFT scales
 asymptotically as $~N^{2.2-2.3}$ [@I9yhXyTJ]. Using QCArchive data [@gioUiKT3], we found that
 practically, hybrid DFT grows like $~N^{2.6}$ as shown for gradient evaluations in Figure @fig:b3lyp_scaling, A. To achieve good sampling to adequately fit the torsions,
@@ -200,8 +200,9 @@ In larger molecules, there is a greater potential for the torsion atoms to inter
 convolute the energy profile. While this can also happen in smaller molecules such as ethylene glycol `[hold to CITE torsiondrive paper]`{.red}
 this problem is reduced when a minimal model molecule is used, albeit not completely eliminated.
 
-Many fragmentation algorithms exist, but they are not appropriate for torsion scans in particular and are insufficiently 
-automated. These algorithms fall into two categories: 1. fragmentation for synthetic accessibility [@xbUA1nkO;
+While a number of algorithms for fragmenting large molecules into smaller molecular fragments have been previously proposed,
+few are appropriate for the purpose of generating high-quality torsion scans. Many of these algorithms fall into two
+categories: 1. fragmentation for synthetic accessibility [@xbUA1nkO;
 @15j2SwU5A; @1BZlse7qR] and 2. fragmenting molecules to achieve linear scaling for QC calculations
 [@vm6HUPt4; @ll3I4A87; @nRywz8At; @EOlFsQFX]. 
 Fragmentation schemes for synthetic accessibility find building blocks for combinatorial and fragment based drug design. 
@@ -396,11 +397,11 @@ to bonds that include sulfur and phosphorous which are longer, weaker bonds. **[
 are not in rings. The peaks at one, two and three correspond to single, double and triple bonds. The pink distribution include bonds that are in rings.
 The peak at one corresponds to single bonds and the density between one and 1.5 are aromatics. **[C]** The blue distribution includes bonds that have
 either one or two nitrogen. Many of these bonds are conjugated as demonstrated by the density around 1.5. The density at three corresponds to
-nitriles. The pink distribution include bonds that have oxygens. The peak at two corresponds to carbonyls.](images/figure-2.svg){#fig:wbo_dists}
+nitriles. The pink distribution include bonds that have oxygens. The peak at two corresponds to carbonyls.](images/figure-2_4.svg){#fig:wbo_dists}
 
 This method can also be applied to derive WBOs that are insensitive to conformers. To check how well ELF10 estimated $W_{AB}$ recapitulates the multiplicity of bonds,
 we calculated $W_{AB}$ from ELF10 AM1 calculations
-for all bonds in a set of molecules shown in `[hold for SI]`{.red}. The distribution in figure @fig:wbo_dists corresponds
+for all bonds in a set of molecules shown in SI Figure @fig:wbo_dist_mols. The distribution in figure @fig:wbo_dists corresponds
 closely with bond multiplicity. The density at ~ 0.7 correspond bonds involving sulfur and phosphorous since these are weaker and longer bonds. The peak at 1.0
 corresponds to C-H and C-C bonds, the peak close to 1.5 corresponds to bonds in aromatic rings, the peak close to 2.0 corresponds
 to double bonds, and finally the triple bonds form the last peak. Figures @fig:wbo_dists B and D seperate out different kinds of bonds
@@ -422,10 +423,10 @@ Where $\sigma$ is a substituent constant and $\rho$ is a reaction constant. It a
 of substituents from the sterics effects of a reaction. Here, we generated a combinatorial set of meta and para subsituted phenyls
 and pyridine @fig:subsituted_phenyls A with 25 functional groups that cover a wide range of electron donating and withdrawing groups.
 We then calculated the ELF10 WBO for the bond attaching the functional
-group to the aromatic ring for all functional groups which resulted in 128 (25*5+3) data points for each functional group. This allowed us to isolate the effect on a bond's WBO from remote chemical environment changes,
+group to the aromatic ring for all functional groups which resulted in 128 (25 * 5 + 3) data points for each functional group. This allowed us to isolate the effect on a bond's WBO from remote chemical environment changes,
 defined as a change more than two bonds away, from other effects such as sterics and conformations. The resulting distributions are in figure @fig:subsituted_phenyls, B.
 It is interesting to note that the trend of decreasing WBOs for more electron
-donating groups are anti correlates with increasing Hammett substituent constants. In {@fig:ubsituted_phenyls} C and D, the AM1 ELF10 WBO of the bond
+donating groups are anti correlates with increasing Hammett substituent constants. In {@fig:subsituted_phenyls} C and D, the AM1 ELF10 WBO of the bond
 between the functional group and benzoic acid is plotted against their Hammett para and meta substituent constants. Functional groups
 that are more electron donating will have more electron density on the bond attaching the functional group to the benzoic acid. The resonance and/or inductive effect
 destabilize the benzoate, increases its pKa, which corresponds to lower substituent constants.
@@ -531,7 +532,7 @@ fragment's WBO is within the threshold of the parent WBO.
 | nitro | `([NX3+](=O)[O-])`, `([NX3](=O)=O)` |
 | ester | `[CX3](=O)[OX2H0]` |
 
-Table: Functional groups that are not fragmented. This list is not comprehensive as it only includes functional groups that were
+Table: **Functional groups that are not fragmented**. This list is not comprehensive as it only includes functional groups that were
 present in the validation set. Users can add their own functional groups they
 do not want to fragment {#tbl:fgroups}
 
@@ -554,7 +555,7 @@ on 2019-06-06) [@1FI8iuYiQ] with the following criteria:
 This left us with 730 small molecules `[hold for SI]`{.red}. Charged molecules exacerbates remote substituent sensitivity and many
 molecules are in charged states at physiological pH. To ensure that our dataset is representative of drugs at physiological pH, we used
 the OpenEye `EnumerateReasonableTautomers` to generate tautomers that are highly populated at pH ~7.4. This tautomer enumeration
-extended the set to 1234 small molecules `[hold for SI]`{.red}
+extended the set to 1289 small molecules `[hold for SI]`{.red}
 We then generated all possible fragments of these molecules by using a combinatorial fragmentation scheme. In this scheme, every rotatable
 bond is fragmented and then all possible connected fragments are generated where the smallest fragment has 4 heavy atoms and the largest
 fragment is the parent molecule. This scheme generated ~300,000 fragments.
@@ -890,10 +891,142 @@ needed to determine how many torsion SMIRKS types are needed for maximum transfe
 
 # Detailed method
 
-* How the subsituted phenyl set was generated
-* QCArchive datasets, how they were generated and how to access them
-* Fragmentation scheme - how to grow out the molecule
-* Details on how to generate exhaustive fragmentation and WBO distributions
+## QCArchive automates QC data generation and archives the resulting data
+### Submitting computations to QCArchive ensures reproducibility
+`[Hold for Daniel to write up]`{.red}
+
+### The level of QC theory was chosen to optimize computational efficiency and accuracy with respect to geometry
+
+## Calculating Bond orders
+
+### AM1 WBO and AM1 ELF10 WBO
+To calculate AM1 ELF10 WBO, we used OpenEye's QUACPAC toolkit [@OlXUfAPe] (OpenEye version 2019.Apr.2). The
+ELF10 WBO comes along free after an AM1-BCC charge fitting procedure. For ELF10 WBOs generated in this paper, we used the `get_charges` function
+in the `chemi.py` module in `fragmenter` versions v0.0.3 and v0.0.4. To calculate AM1 WBO for individual conformers, we used the `OEAssignPartialCharges`
+with the `OECharges_AM1BCCSym` option from the QUACPAC toolkit for each conformer generated with Omega [@9rOEoE68] (OpenEye versio 2019.Apr.2)
+which is called for the `get_charges` function.
+For AM1 WBOs calculated to verify the results from the validation set, we generated conformers using the `generate_grid_conformer` function in the `chemi.py` module in `fragmenter`
+version v0.0.4.+25.gbb12030
+
+### Wiberg-Löwdin
+To calculate Wiberg-Löwdin bond orders `[Leave to Daniel to describe how this option is set in QCArchive]`{.red}
+
+## Datasets
+
+### Kinase inhibitor dataset
+The kinase inhibitor dataset consists of 43 FDA approved kinase inhibitors (smi files is in the SI) with their Omega generated conformers (OpenEye veriso 2019.Apr.2, `generate_conformers`
+function in the `chemi.py` module in `fragmenter` version v0.0.4). AM1 WBOs were calculated as described above, for all conformers of all 43 kinase inhibitors. B3LYP-D3(BJ) / DZVP Wiberg-Löwdin
+bond orders were calculated for 9 kinase inhibitors and Omega generated conformers after a B3LYP-D3P(BJ) / DZVP geometry optimization. The DFT results are available on QCArchive
+as an `OptimizationDataset` named `Kinase Inhibitors: WBO Distributions`.
+
+The variance of the WBO distributions were calculated using the numpy [@OiM2HfsY] var function version 1.16.2 and their confidence intervals were calculated using
+arch `IIDBootsrap` function [@15oTe7N42] version 4.8.1. To calculate the correlation matrix, we calculated the
+Pearson correlation coefficient with the numpy [@OiM2HfsY] `corrcoef` function version 1.16.2.
+Scripts and data used to generate and analyze this dataset are in https://github.com/choderalab/fragmenter_data/tree/master/manuscript-figures/kinase_inhibitors_wbos
+
+### Subsituted phenyl dataset
+The substituted phenyl dataset consists of 3,458 substituted phenyl molecules where the substituents chosen to span a large range of electron donating and withdrawing
+groups. We arrived at 3,200 molecules by attaching 26 different functional groups to 5 scaffolds (Figure @fig:subsituted_phenyls, A) at the X~1~ position, and then
+attach the 26 functional group (and H) at the X~2~ position for a total of 133 molecules per functional group (26 * 5  + 3 (for molecules with H at the X~2~ position)).
+The AM1 ELF10 WBOs were calculated as described above. We selected molecules for QC torsion scans as follows:
+1. From the 26 functional groups, we only selected molecules from 18 functional groups, skipping X~1~s that either did not have a rotatable bond (fluorine, chlorine, Iodine,
+bromine, nitrile, oxygen), were too congested (triflouromethyl, trimethylamonium) or where the WBOs on the bonds attaching X~1~ to the phenyl ring did not change much
+with different chemical group at the X~2~ position (methyl).
+2. For the 18 functional groups, we chose molecules that were evenly spaced along the WBO range of that functional group, up to 15 molecules. While all the skipped
+functional groups for X~1~ were allowed to be at X~2~, we did not include the negative oxygen at X~2~ because OpenFF have
+not yet benchmarked the level of theory to use for anions.
+3. After selection, we had 140 molecules that we submitted to QCArchive for torsion scan. The dataset is available on QCArchive as a `TorsionDriveDataset` named
+`OpenFF Subsituted Phenyl Set 1`. This dataset also includes the biphenyl torsion scans shown in Figure @fig:bipenyls
+
+There is another subsituted phenyl set on QCArchive whose results are not shown in this paper because it was run with a different level of theory as the default
+OpenFF level of theory, included anions which we did not yet decide how to handle and did not have good coverage of WBO ranges.
+
+### Exhaustive fragmentation dataset
+
+The exhaustive fragmentation dataset was generated by filtering DrugBank version (version 5.1.3 downloaded
+on 2019-06-06) [@1FI8iuYiQ] with criteria described in section 4 and repeated here for clarity:
+1. FDA approved
+2. Ring sized between 3 and 14 heavy atoms
+3. Rotatable bonds between 4 and 10
+4. At least one aromatic ring
+5. Only 1 connected component
+
+This left us with 730 molecules. To expand states, we used `OEGetReasonableTautomers` from QUACPAC (OpenEye version 2019.Apr.2) in the
+`states.py` module in `fragmenter` (version v0.0.2+175.g6fbbf32 for this original set, but versions v0.0.3 and v0.0.4 will
+generate the same results with the same options). We set `pKaNorm` to True so that the ionization state of each tautomer
+is assigned to a predominant state at pH ~ 7.4. This generated 1289 molecules.
+
+We then used the `CombinatorialFragmenter` from `fragmenter` version v0.0.2+179.g0e7e9e3 (versions v0.0.3 and v0.0.4 will generate
+the same fragments with the same options) to generate all possible fragments for each molecules. We set the option `functional_groups`
+to False so that all functional groups besides rings will also get fragmented so we can use the data to explore which functional groups
+should not be fragmented. We used the default settings for all other options ( `min_rotor` is 1 and `min_heavy_atoms` is 4 so that the smallest fragments have at least one torsion.
+`max_rotors` is the number of rotors in the parent molecules so that the largest fragment generated is one less rotor than the parent molecule).
+This generated ~300,000 fragments.
+
+We then used Omega (OpenEye version 2019.Apr.2) to generate conformers for each fragment and calculated each conformer's WBOs
+as described above. All scripts used to generate this dataset are in https://github.com/choderalab/fragmenter_data/tree/master/combinatorial_fragmentation.
+The dataset is available as zip files on `(hold for link to where we will host the data)`{.red}.
+
+## Fragmenting molecules
+The `fragmenter` package provides several fragmentation schemes with various options. Below we discuss different modes of
+fragmentation and their options.
+
+### `fragmenter` provides three modes of fragmentation
+Currently, `fragmenter` depends on OpenEye to provides three modes of fragmentation described here. In the future, `fragmenter`
+will be incorporated into the `openforcefield` toolkit and will have the option to use RDKit [@3NAyWz2G],
+an open source cheminformatic libraries. However, given that RDKit supports EHT instead of AM1, the fragments might be different.
+
+1. **Exhaustive fragmentation generates all possible fragments of a parent molecule**.
+This functionality is provided by the `CombinatorialFragmenter` class in the `fragment.py` module. To use this class, the user
+needs to provide an openeye molecule. `fragmenter` provides a list of functional groups SMARTS in a yaml file located in `fragmenter/data/fgroup_smarts_combs.yml`
+that it will not fragment by default. This list is given in table @tbl:fgroups_comb. The list is different than the default list used on the `WBOFragmenter`
+because here the carbon bonded to the functional groups are also tagged. To allow all functional groups to be fragmented, the user can set the parameter
+`functional_groups = False`. This option will fragment all bonds besides bond in rings. The user can also provide their own dictionary of
+functional group SMARTS patterns that they wish to avoid fragmenting.
+
+| Chemical group | SMARTS pattern |
+|---|---|
+| amide | '[NX3R0][CX3](=[OX1])' |
+| sulfone |'[#16X4](=[OX1])=([OX1])' |
+| phosphine_oxide | '[PX4](=[OX1])([CX4])([CX4])' |
+| phosphon | '[PX4](=[OX1])([OX2])([OX2])' |
+| trimethyl | '[CX4!H]([CX4H3])([CX4H3])([CX4H3]) |
+| tri_halide | '[#6]((([F,Cl,I,Br])[F,Cl,I,Br])[F,Cl,I,Br])' |
+| carboxylic_acid | '[CX3](=O)[OX2H1]' |
+| ester | '[CX3](=O)[OX2H0]' |
+| dimethyl | '[CX4H1]([CX4H3])([CX4H3])' |
+| carbonyl | '[CX3R0]=[OX1]' |
+| alkyne | '[CX2]#[CX2]' |
+| nitrile | '[NX1]#[CX2]' |
+
+Table: Default functional groups that the `CombinatorialFragmenter` will not fragment. This list is not comprehensive and is
+different than the list used for the `WBOFragmenter` {#tbl:fgroups_comb}
+
+The user can also set the minimum and maximum number of rotatable bonds, and minimum heavy atoms in a fragment.
+
+2. **Generate minimal fragments**
+The `PfizerFragmenter` implements the scheme developed at Pfizer and described in [@XP23v9gZ]. It uses the same list
+of functional groups as the `WBOFragmenter` uses. The user can also provide their own SMARTS patterns of functional groups not to fragment.
+
+3. **Using the WBO as a surrogate for changes in chemical environment**
+The `WBOFragmenter` implements the FBO scheme described in this paper. The functional groups that are not fragmented are given in table @tbl:fgroups.
+Users can add more SMARTS patterns if needed.
+When the WBO on a central bond in a minimal fragment has been disrupted more than the threshold, remote atoms need to be added
+onto the fragment. However, there are multiple ways to grow out a fragment and enumerating all possible ways to find the best one
+can become too computationally expensive. Therefore, we need to use heuristics to decide where to add the next atoms.
+The two heuristics available in `fragmenter` are:
+1. Shortest path length
+Here, the bond with the shortest path to the central bond is added next. The rationale for this heuristic is that atoms closer
+to the central bond will have a greater influence to the bond's chemical environment. If more than one connected bond has the shortest path
+to the central bond, the bond with the higher WBO is added next.
+2. Greatest WBO
+Here, the bonds connected to the fragment that have the greatest WBO is added next. The rationale for this heuristic is that
+bonds with higher WBO are more likely to be involved in extended conjugation that can influence the central bond.
+
+Both of these heuristics will sometimes give different results `[Hold for SI figure]`{.red}. We found that for the benchmark set we tested,
+the shortest path heuristic preformed better, or found more optimal fragments when compared to using the greatest WBO heuristic `[Hold for SI]`{.red}.
+
+
 
 # Conclusion
 
@@ -932,6 +1065,9 @@ is also a slight dependency on molecular size as shown in this figure](images/gr
 
 ![**Distribution of optimizations per torsion drive**
 This figures shows the distributions of optimizations per torsion drive when using wavefront propagation](images/opts_per_td_4.svg){#fig:opts_per_td}
+
+![**Druglike molecules used to calculate ELF10 AM1 WBOs**
+This set of molecules were selected to cover bonds of different types and multiplicities](images/druglike_mols_for_wbo_dist_4.svg){#fig:wbo_dist_mols}
 
 ![**Validation set**
 All molecules used in the validation set of fragmentation schemes. The bonds are highlighted by how sensitive they are to
