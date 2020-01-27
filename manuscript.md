@@ -24,9 +24,9 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/347fb9ea0e4f0bc45c7ca5bd001e6a2beea40fc3/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/3652bb478a8b42b99de5ebee4eae2397314d790a/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@347fb9e](https://github.com/ChayaSt/fragmenter-manuscript/tree/347fb9ea0e4f0bc45c7ca5bd001e6a2beea40fc3)
+from [ChayaSt/fragmenter-manuscript@3652bb4](https://github.com/ChayaSt/fragmenter-manuscript/tree/3652bb478a8b42b99de5ebee4eae2397314d790a)
 on January 27, 2020.
 </em></small>
 
@@ -177,7 +177,7 @@ of heavy atoms in molecules. All computations shown here were run on an Intel(R)
 Empirically, gradient evaluations grow as $O(N^{2.6})$ where $N$ is the number of heavy atoms. The scaling is similar
 on other processors shown in SI Figures @fig:intel_scaling & @fig:amd_scaling. The black curves shows a power law fit to the data,
 and the grey is the 95% CI of the curve estimate.
-**[B]** Smoothed histogram of heavy atoms in small molecules from DrugBank. The average druglike molecules has 25 heavy atoms.](images/B3LYP_scaling.png){#fig:b3lyp_scaling}
+**[B]** Smoothed histogram of heavy atoms in small molecules from DrugBank. The average druglike molecules has 25 heavy atoms.](images/B3LYP_scaling_1.svg){#fig:b3lyp_scaling}
 
 1. **Computational efforts scale poorly with molecule size**.
 Generating one dimensional QC torsion profiles are computationally expensive and become increasingly inefficient
@@ -310,7 +310,7 @@ WBOs are conformational dependent [@r3xLNmRT; @hIon1SaZ] so we investigated this
 will be a robust descriptor. In addition, we also investigated the generality of the torsion energy barrier and WBO linear relationship.
 In this section we will first discuss our findings and solution to the conformational dependency and then discuss how general the linear relationship is.
 
-#### 2.3.1 Conformation dependent variance of WBOs are higher for conjugated bonds
+#### 3.3.1 Conformation dependent variance of WBOs are higher for conjugated bonds
 Since WBOs are a function of the electronic density, which is conformational dependent, WBOs change with conformation. However, not all bonds' WBOs
 change the same way with conformation. We found that WBOs for conjugated bonds have higher variance with respect to conformation and that bonds
 involved in conjugated systems have WBOs that are correlated with each other.
@@ -979,11 +979,7 @@ The dataset is available as zip files on `(hold for link to where we will host t
 The `fragmenter` package provides several fragmentation schemes with various options. Below we discuss different modes of
 fragmentation and their options.
 
-Currently, `fragmenter` depends on OpenEye to provides three modes of fragmentation described here. In the future, `fragmenter`
-will be incorporated into the `openforcefield` toolkit and will have the option to use RDKit [@3NAyWz2G],
-an open source cheminformatic libraries. However, given that RDKit supports EHT instead of AM1, the fragments might be different.
-
-1. **Exhaustive fragmentation generates all possible fragments of a parent molecule**.
+#### 5.4.1 Exhaustive fragmentation generates all possible fragments of a parent molecule.
 This functionality is provided by the `CombinatorialFragmenter` class in the `fragment.py` module. To use this class, the user
 needs to provide an openeye molecule. `fragmenter` provides a list of functional groups SMARTS in a yaml file located in `fragmenter/data/fgroup_smarts_combs.yml`
 that it will not fragment by default. This list is given in table @tbl:fgroups_comb. The list is different than the default list used on the `WBOFragmenter`
@@ -1011,11 +1007,11 @@ different than the list used for the `WBOFragmenter` {#tbl:fgroups_comb}
 
 The user can also set the minimum and maximum number of rotatable bonds, and minimum heavy atoms in a fragment.
 
-2. **Generate minimal fragments**
+#### 5.4.2 Generate minimal fragments
 The `PfizerFragmenter` implements the scheme developed at Pfizer and described in [@XP23v9gZ]. It uses the same list
 of functional groups as the `WBOFragmenter` uses. The user can also provide their own SMARTS patterns of functional groups not to fragment.
 
-3. **Using the WBO as a surrogate for changes in chemical environment**
+#### 5.4.3 Using the WBO as a surrogate for changes in chemical environment.
 The `WBOFragmenter` implements the FBO scheme described in this paper. The functional groups that are not fragmented are given in table @tbl:fgroups.
 Users can add more SMARTS patterns if needed.
 
@@ -1024,21 +1020,25 @@ onto the fragment. However, there are multiple ways to grow out a fragment and e
 can become too computationally expensive. Therefore, we need to use heuristics to decide where to add the next atoms.
 The two heuristics available in `fragmenter` are:
 
-    1. **Shortest path length**
-    Here, the bond with the shortest path to the central bond is added next. The rationale for this heuristic is that atoms closer
-    to the central bond will have a greater influence to the bond's chemical environment. If more than one connected bond has the shortest path
-    to the central bond, the bond with the higher WBO is added next.
+1. **Shortest path length**
+Here, the bond with the shortest path to the central bond is added next. The rationale for this heuristic is that atoms closer
+to the central bond will have a greater influence to the bond's chemical environment. If more than one connected bond has the shortest path
+to the central bond, the bond with the higher WBO is added next.
 
-    2. **Greatest WBO**
-    Here, the bonds connected to the fragment that have the greatest WBO is added next. The rationale for this heuristic is that
-    bonds with higher WBO are more likely to be involved in extended conjugation that can influence the central bond.
+2. **Greatest WBO**
+Here, the bonds connected to the fragment that have the greatest WBO is added next. The rationale for this heuristic is that
+bonds with higher WBO are more likely to be involved in extended conjugation that can influence the central bond.
 
 Both of these heuristics will sometimes give different results `[Hold for SI figure]`{.red}. We found that for the benchmark set we tested,
 the shortest path heuristic preformed better, or found more optimal fragments when compared to using the greatest WBO heuristic `[Hold for SI]`{.red}.
 
+Currently, `fragmenter` depends on OpenEye to provides three modes of fragmentation described here. In the future, `fragmenter`
+will be incorporated into the `openforcefield` toolkit and will have the option to use RDKit [@3NAyWz2G],
+an open source cheminformatic libraries. However, given that RDKit supports EHT instead of AM1, the fragments might be different.
 
 
-# Conclusion
+
+## Conclusion
 
 We have shown that the ELF10 WBO estimate is a simple, yet informative quantity about the extent of binding between two connecting atoms,
 thus descriptive of a bond's chemical environment, its level of conjugation, and resistance to rotation. We can use
