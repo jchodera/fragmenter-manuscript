@@ -24,9 +24,9 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/3652bb478a8b42b99de5ebee4eae2397314d790a/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/8f5566b19a6bf841be958de336bcc3141cc7bf58/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@3652bb4](https://github.com/ChayaSt/fragmenter-manuscript/tree/3652bb478a8b42b99de5ebee4eae2397314d790a)
+from [ChayaSt/fragmenter-manuscript@8f5566b](https://github.com/ChayaSt/fragmenter-manuscript/tree/8f5566b19a6bf841be958de336bcc3141cc7bf58)
 on January 27, 2020.
 </em></small>
 
@@ -157,7 +157,13 @@ generalizable parameters.
 
 In many molecular mechanics force fields (e.g., Amber [@1GDaakPWY],
 CHARMM [@11Z8pXbEW], OPLS [@Mi3Ujd07]) a low-order Fourier series, such as
-a cosine series, is often used to represent the contribution of torsion terms to the potential energy. 
+a cosine series, is often used to represent the contribution of torsion terms to the potential energy.
+
+$$ E_{tor} = \sum_{n=1}^{6} \frac{V_n}{2}[1 + cos n(\theta - \gamma)]$$
+
+where $V_i$ is the torsion force constant which determines the amplitudes, $n$ is the multiplicity which determines the
+number of minimas, and $\gamma$ is the phase angle which is sometimes set to $0^{\circ}$ or $180^{\circ}$ to enforce
+symmetry around zero.
 The torsion potential energy parameters such as amplitudes and phase angles for each Fourier term, 
 are generally fit to the residual difference between gas phase quantum chemistry (QC) torsion energy 
 profile and the non-torsion MM parameters [@i8ZZOoVS]. The QC torsion energy profile
@@ -238,13 +244,43 @@ fragmentation scheme and describes a rich validation set that can be used to ben
 Section 4 provides a discussion of the implications of this study and section 5 provides detailed methods. 
 
 
-## 2. Theory
+## 2. Theory and definitions
 
-[TBD]{.banner .lightyellow}
+### 2.1 A mathematical definition of the problem
 
-- Define problem mathematically 
-- Define the problem physically
-- Define conjugation and hyperconjugation (most systems here are hyperconjugation)
+A molecular structure can be modeled as a degree bounded graph $G = (V, E)$ where $V$ are the nodes and $E$ are the edges.
+In a molecular graph, the nodes correspond to the atoms and the bonds correspond to the edges.
+We define rotatable bonds as bonds that are not in rings and they are subset of edges, $e' \in E$.
+
+The weights on the edges are given by $\delta(e')$ where $\delta$ is the RMSE of the torsion potential around the bond in
+the full graph vs. a subgraph. We want to find a set of partitions $v of V$ such that for all $v' \in v$, $v' \leq k$ where
+k is an integer $4 \leq K \leq |V|-1$. The subgraph $G[v']$ induced by $v'$ is connected and has a minimal total error
+
+$$Total RMSE =  \sum_{v' \in v} |\delta(e')|$${eq:graph}
+
+where $e'$ is the central, rotatable bond in the subgraph $v'$.
+
+Since the $\delta(e')$, RMSE of the torsion scans are expensive to calculate, we use a surrogate, $\gamma(e')$, which we
+define as the difference of the WBO on the central bond. We want to minimize @eq:graph subject to the constraint of minimizing
+$v'$.
+
+`[Show that this is a very expensive problem so we use heuristics as described in the rest of the paper]`{.red}
+
+### 2.2 Physical definitions
+
+The torsion energy of a bond is determined by a combination of effects from conjugation, hyperconjugation, sterics and electrostatics
+[@fpE0Y69s; @AWj8hnbG; @Vx7ALVw2; @1DVkKVgPL].
+While sterics and elecrostatics are usually local properties or can be controlled by using smaller fragments, conjugation and
+hyperconjugation are non local properties and remote chemical changes can influence the extent of conjugation and / or hyperconjugation.
+In this study, we aim to mitigate the effects of remote chemical changes on conjugation and hyperconjugation by understanding how
+the extent of binding changes with remote chemical changes. Here we define conjugation and hyperconjugation and how we use these
+terms in this paper.
+
+Conjugation is defined as the overlap of p-orbital electrons across $\sigma$ bonds [@brHoyaiC; @10vgXCYFf] such as what occurs in
+benzene or butadiene. Hyperconjugation is the interactions of electrons in a donating bonding orbital to an anti-bonding orbital [@l3TAWQJ6].
+There are several modes of hyperconjugation such as $\sigma \to \sigma^*$, $\sigma \to \pi^*$, and $\pi \to \sigma^*$. In this study, for simplicity,
+we use the term conjugation to refer to all modes of conjugation and hyperconjugation.
+
 
 
 ## 3. Results
@@ -893,7 +929,7 @@ needed to determine how many torsion SMIRKS types are needed for maximum transfe
 
 ### 5.1 QCArchive automates QC data generation and archives the resulting data
 #### 5.1.1 Submitting computations to QCArchive ensures reproducibility
-`[Hold for Daniel to write up]`{.red}
+`[Hold for Daniel to write up. Please describe how QCArchive runs torsion scans and how to submit and retrieve data]`{.red}
 
 #### 5.1.2 Details on QC and MM torsion scans.
 All QC calculations were computed at B3LYP-D3(BJ) / DZVP. This level of theory was chosen based on benchmark conducted by the
@@ -913,8 +949,9 @@ which is called for the `get_charges` function.
 For AM1 WBOs calculated to verify the results from the validation set, we generated conformers using the `generate_grid_conformer` function in the `chemi.py` module in `fragmenter`
 version v0.0.4.+25.gbb12030
 
-#### 5.2.2 Wiberg-Löwdin
-To calculate Wiberg-Löwdin bond orders `[Leave to Daniel to describe how this option is set in QCArchive]`{.red}
+#### 5.2.2 Wiberg Bond Orders calculated with larger basis sets
+`[Leave to Daniel to describe how Wiberg bond orders are calculated in QCArchive (it only
+calculates Wiberg-Löwdin so provide that formula and why the Löwdin normalization is needed)]`{.red}
 
 ### 5.3 Datasets
 
