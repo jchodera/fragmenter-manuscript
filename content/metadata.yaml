@@ -72,9 +72,9 @@ author_info:
     github: jchodera
     name: John D Chodera
     initials: JDC
-    orcid: XXXX-XXXX-XXXX-XXXX
-    twitter: johndoe
-    email: john.doe@something.com
+    orcid: 0000-0003-0542-119X
+    twitter: jchodera
+    email: john.chodera@choderalab.org
     affiliations:
-      - Department of Something, University of Whatever
+      - Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA
     funders: Grant XXXXXXXX
