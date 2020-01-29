@@ -24,9 +24,9 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/dec8cb4ba7a0d52071f01abe444be086953f688a/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/b95643d82b11e477b83dca2911c07bee692a96d7/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@dec8cb4](https://github.com/ChayaSt/fragmenter-manuscript/tree/dec8cb4ba7a0d52071f01abe444be086953f688a)
+from [ChayaSt/fragmenter-manuscript@b95643d](https://github.com/ChayaSt/fragmenter-manuscript/tree/b95643d82b11e477b83dca2911c07bee692a96d7)
 on January 29, 2020.
 </em></small>
 
@@ -253,19 +253,19 @@ In a molecular graph, the nodes correspond to the atoms and the bonds correspond
 We define rotatable bonds as bonds that are not in rings and they are subset of edges, $e' \in E$ and $G'$ as a set
 of subgraphs, where each subgraph $G' = (v', e)$:
 
-* The number of atoms in the subgraph, $|v'|$  are $4 \leq |v'| \leq |V|
+* The number of atoms in the subgraph, $|v'|$  are $4 \leq |v'| \leq |V|$
 * $e'$ and all $e \in E$ such that $e, e'$ share a vertex
 * all $v$ adjacent to $e$
-* if $v \in v' is in a ring in $G$, the ring should be included in $G'$
+* if $v \in v'$ is in a ring in $G$, the ring should be included in $G'$
 
-The weights on the edges are given by $\delta(e')$ where $\delta$ is the RMSE of the torsion potential around the bond in
-the full graph vs. a subgraph. Since $\delta(e')$ is computationally expensive, we use a surrogate $gamma(e')$ which we
+The weights on the edges are given by $\delta(e'; G')$ where $\delta$ is the RMSE of the torsion potential around the central, rotatable bond in
+the full graph vs. a subgraph. Since $\delta(e'; G')$ is computationally expensive, we use a surrogate $\gamma(e'; G')$ which we
 define as the difference of the WBO on the central bond $e'$ in $G'$ and in the full graph $G$.
 In order to calculate the WBO, we need to cap open valences. The rule we use are defined in section 3.4.
 
-We want to minimize $gamma(e')$, while also minimizing the cost of each subgraph. We define the cost as estimated in @fig:b3lyp_scaling
+We want to minimize $\gamma(e'; G')$, while also minimizing the cost of each subgraph. We define the cost as estimated in @fig:b3lyp_scaling
 
-$$ c(G') = 0.26(|v|)^{2.6} $$
+$$ c(G') \propto (|v|)^{2.6} $$
 
 Which leads to minimizing
 
@@ -273,10 +273,9 @@ $$ \sum_{G'} |\gamma(e', G') - c(G')|$${#eq:graph}
 
 The search space of $G'$ is combinatorial and its upper bound is ${|V|\choose{4}} + {|V|\choose{5}} + ... {|V|\choose{|V|}}$
 since all subgraphs $G'$ need to be connected and rings are not fragmented. To reduce the search space, we also define a list
-of functional groups that should not be fragmetned in @tbl:fgroups.
+of functional groups that should not be fragmented in @tbl:fgroups.
 
 Given how large the search space can become, we use several heuristics as described in section 3.4.
-
 
 ### 2.2 Physical definitions
 
@@ -351,7 +350,7 @@ occupied atomic orbitals on atoms A and B
 
 \begin{equation} W_{AB} = \sum_{\mu\in A}\sum_{\nu\in B} P^2_{\mu\nu} \end{equation}
 
-The Wiberg bond order assumes atomic orbitals (AOs) are orthonormal. In ab initio calculations, however, AOs are not
+The Wiberg bond order assumes atomic orbitals (AOs) are orthogonal. In ab initio calculations, however, AOs are not
 orthogonal but the WBO can be calculated via Löwdin normalization [@K8bdDsCu; @1BEyXJiMo] which is how it is calculated in Psi4 [@YC6qkEYS].
 
 We calculated the WBO from AM1 calculations for the biphenyl series as shown in figure @fig:biphenyls A. The increase in the WBO corresponds
