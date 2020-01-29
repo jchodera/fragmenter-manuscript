@@ -7,7 +7,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2020-01-27'
+date-meta: '2020-01-29'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/8f5566b19a6bf841be958de336bcc3141cc7bf58/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/dec8cb4ba7a0d52071f01abe444be086953f688a/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@8f5566b](https://github.com/ChayaSt/fragmenter-manuscript/tree/8f5566b19a6bf841be958de336bcc3141cc7bf58)
-on January 27, 2020.
+from [ChayaSt/fragmenter-manuscript@dec8cb4](https://github.com/ChayaSt/fragmenter-manuscript/tree/dec8cb4ba7a0d52071f01abe444be086953f688a)
+on January 29, 2020.
 </em></small>
 
 ## Authors
@@ -108,13 +108,13 @@ on January 27, 2020.
 
 + **John D Chodera**<br>
     ![ORCID icon](images/orcid.svg){.inline_icon}
-    [XXXX-XXXX-XXXX-XXXX](https://orcid.org/XXXX-XXXX-XXXX-XXXX)
+    [0000-0003-0542-119X](https://orcid.org/0000-0003-0542-119X)
     · ![GitHub icon](images/github.svg){.inline_icon}
     [jchodera](https://github.com/jchodera)
     · ![Twitter icon](images/twitter.svg){.inline_icon}
-    [johndoe](https://twitter.com/johndoe)<br>
+    [jchodera](https://twitter.com/jchodera)<br>
   <small>
-     Department of Something, University of Whatever
+     Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA
      · Funded by Grant XXXXXXXX
   </small>
 
@@ -143,7 +143,7 @@ larger molecule.
 
 ## 1. Introduction
 
-Molecular mechanics (MM) small molecules force fields are essential to the molecular design for chemical
+Molecular mechanics (MM) small molecule force fields are essential to the molecular design for chemical
 biology and drug discovery, as well as the use of molecular simulation to understand the
 behavior of biomolecular systems. However, small molecule force fields have lagged behind
 protein force fields given the larger chemical space these force fields must cover to provide good
@@ -159,11 +159,11 @@ In many molecular mechanics force fields (e.g., Amber [@1GDaakPWY],
 CHARMM [@11Z8pXbEW], OPLS [@Mi3Ujd07]) a low-order Fourier series, such as
 a cosine series, is often used to represent the contribution of torsion terms to the potential energy.
 
-$$ E_{tor} = \sum_{n=1}^{6} \frac{V_n}{2}[1 + cos n(\theta - \gamma)]$$
+$$ E_{tor} = \sum_{n=1}^{N} \frac{V_n}{2}[1 + cos[n(\theta - \gamma)]]$$
 
 where $V_i$ is the torsion force constant which determines the amplitudes, $n$ is the multiplicity which determines the
 number of minimas, and $\gamma$ is the phase angle which is sometimes set to $0^{\circ}$ or $180^{\circ}$ to enforce
-symmetry around zero.
+symmetry around zero. In most force fields $N$ is 4, however, some go up to 7.
 The torsion potential energy parameters such as amplitudes and phase angles for each Fourier term, 
 are generally fit to the residual difference between gas phase quantum chemistry (QC) torsion energy 
 profile and the non-torsion MM parameters [@i8ZZOoVS]. The QC torsion energy profile
@@ -218,15 +218,15 @@ those are the reactive sites of molecules. However, for our application, we espe
 reactive points given how electron rich they are and how much the electronic density changes when they are altered. 
 Fragmentation algorithms for linear scaling such as Divide-and-Conquer methods [@F0de6fPE], effective fragment potential method
 [@EnOwBZmA] and systematic molecular fragmentation methods [@EOlFsQFX] require the users to manually 
-specify where the cuts should be or which bonds not to fragment. Furthermore, none of these methods address the needs specific
+specify where the cuts should be or which bonds not to fragment. Furthermore, besides the scheme suggested by Rai et. al. [@XP23v9gZ], none of these methods address the needs specific
 to fragmenting molecules for QC torsion scans. Fragments need to include all atoms involved in 1-4 interactions, since they 
 are incorporated in the fitting procedure. We also need a systematic way to determine if remote substituents change
 the barrier to rotation significantly for the central bond of interest.
 
 In this work, we use the Wiberg Bond Order (WBO) [@BES2Ksiq], which is both simple to calculate
 from semi-empirical QC methods and is sensitive to the chemical environment around a bond. WBOs quantify electron population
-overlap between bonds, or the degree of binding between atoms. WBOs are correlated with bond
-vibrational frequencies [@hHhjgmIm, @14qKIxxbD] and is used to predict trigger bonds in high energy-density material
+overlap between bonds, or the degree of binding between atoms. Bond orders are correlated with bond
+vibrational frequencies [@hHhjgmIm; @14qKIxxbD] and WBOs are used to predict trigger bonds in high energy-density material
 because it is correlated with the strength of the bond [@cAeBUxqm]. Wei, et. al. [@fpE0Y69s] have shown
 that simple rules for electron richness of aromatic systems in biaryls are good indication of torsion force constants (specifically for V~2~), however, this
 measure was only developed for biaryls and it does not take into account substituents beyond the aromatic ring directly adjacent to the bond.
@@ -250,33 +250,52 @@ Section 4 provides a discussion of the implications of this study and section 5 
 
 A molecular structure can be modeled as a degree bounded graph $G = (V, E)$ where $V$ are the nodes and $E$ are the edges.
 In a molecular graph, the nodes correspond to the atoms and the bonds correspond to the edges.
-We define rotatable bonds as bonds that are not in rings and they are subset of edges, $e' \in E$.
+We define rotatable bonds as bonds that are not in rings and they are subset of edges, $e' \in E$ and $G'$ as a set
+of subgraphs, where each subgraph $G' = (v', e)$:
+
+* The number of atoms in the subgraph, $|v'|$  are $4 \leq |v'| \leq |V|
+* $e'$ and all $e \in E$ such that $e, e'$ share a vertex
+* all $v$ adjacent to $e$
+* if $v \in v' is in a ring in $G$, the ring should be included in $G'$
 
 The weights on the edges are given by $\delta(e')$ where $\delta$ is the RMSE of the torsion potential around the bond in
-the full graph vs. a subgraph. We want to find a set of partitions $v of V$ such that for all $v' \in v$, $v' \leq k$ where
-k is an integer $4 \leq K \leq |V|-1$. The subgraph $G[v']$ induced by $v'$ is connected and has a minimal total error
+the full graph vs. a subgraph. Since $\delta(e')$ is computationally expensive, we use a surrogate $gamma(e')$ which we
+define as the difference of the WBO on the central bond $e'$ in $G'$ and in the full graph $G$.
+In order to calculate the WBO, we need to cap open valences. The rule we use are defined in section 3.4.
 
-$$Total RMSE =  \sum_{v' \in v} |\delta(e')|$${eq:graph}
+We want to minimize $gamma(e')$, while also minimizing the cost of each subgraph. We define the cost as estimated in @fig:b3lyp_scaling
 
-where $e'$ is the central, rotatable bond in the subgraph $v'$.
+$$ c(G') = 0.26(|v|)^{2.6} $$
 
-Since the $\delta(e')$, RMSE of the torsion scans are expensive to calculate, we use a surrogate, $\gamma(e')$, which we
-define as the difference of the WBO on the central bond. We want to minimize @eq:graph subject to the constraint of minimizing
-$v'$.
+Which leads to minimizing
 
-`[Show that this is a very expensive problem so we use heuristics as described in the rest of the paper]`{.red}
+$$ \sum_{G'} |\gamma(e', G') - c(G')|$${#eq:graph}
+
+The search space of $G'$ is combinatorial and its upper bound is ${|V|\choose{4}} + {|V|\choose{5}} + ... {|V|\choose{|V|}}$
+since all subgraphs $G'$ need to be connected and rings are not fragmented. To reduce the search space, we also define a list
+of functional groups that should not be fragmetned in @tbl:fgroups.
+
+Given how large the search space can become, we use several heuristics as described in section 3.4.
+
 
 ### 2.2 Physical definitions
 
-The torsion energy of a bond is determined by a combination of effects from conjugation, hyperconjugation, sterics and electrostatics
-[@fpE0Y69s; @AWj8hnbG; @Vx7ALVw2; @1DVkKVgPL].
-While sterics and elecrostatics are usually local properties or can be controlled by using smaller fragments, conjugation and
+The torsion energy function (or profile) of a bond is determined by a combination of effects from conjugation,
+hyperconjugation, sterics and electrostatics
+[@fpE0Y69s; @AWj8hnbG; @Vx7ALVw2; @1DVkKVgPL]. Most of these effects
+are non-local. For this study we define local as atoms within two bonds of the central bond of a torsion and remote as any atom
+beyond those two bonds.
+
+Sterics and elecrostatics are in principle handled by non bonded terms in most force fields, so a torsion profile should
+represent conjugation or hyperconjugation, and only the 1-4 electrostatics. Using small fragments to generate QC torsion profiles
+reduces non-local electrostatics and steric interactions from convoluting the data. However, conjugation and
 hyperconjugation are non local properties and remote chemical changes can influence the extent of conjugation and / or hyperconjugation.
 In this study, we aim to mitigate the effects of remote chemical changes on conjugation and hyperconjugation by understanding how
-the extent of binding changes with remote chemical changes. Here we define conjugation and hyperconjugation and how we use these
+the strength of the central bond changes with remote chemical changes. Here we define conjugation and hyperconjugation and how we use these
 terms in this paper.
 
-Conjugation is defined as the overlap of p-orbital electrons across $\sigma$ bonds [@brHoyaiC; @10vgXCYFf] such as what occurs in
+Conjugation and hyperconjugation describes the sharing of electron density across several bonds.
+Conjugation is formally defined as the overlap of p-orbital electrons across $\sigma$ bonds [@brHoyaiC; @10vgXCYFf] such as what occurs in
 benzene or butadiene. Hyperconjugation is the interactions of electrons in a donating bonding orbital to an anti-bonding orbital [@l3TAWQJ6].
 There are several modes of hyperconjugation such as $\sigma \to \sigma^*$, $\sigma \to \pi^*$, and $\pi \to \sigma^*$. In this study, for simplicity,
 we use the term conjugation to refer to all modes of conjugation and hyperconjugation.
@@ -314,14 +333,14 @@ In this case, a small change three bonds away from the torsion central bond chan
 a rotatable bond to a non-rotatable conjugated bond. When fragmenting molecules, we need to avoid
 destroying a bond's chemical environment by naively removing an important remote substituent.
 
-![**Torsion profiles can be sensitive to remote chemical chnanges in a molecule**
+![**Torsion profiles can be sensitive to remote substituents changes in a molecule**
 **[A]** Biphenyl protonation states and tautomers with increasing Wiberg bond order for the central bond.
 **[B]** The resonance structure of the biphenyl zwitterion shows that the central bond is conjugated. The Wiberg bond order
 and torsion scan for this bond (see **A** and **C**) are reflective of a conjugated bond. **[C]** Relative QC energy as a function of
-torsion angle of the central bond. The colors of the QC scan corresponds to the highlighted bonds in **A**. **[D]** Relative MM
-energy as a function of torsion angle of the central bond. The colors in the MM scan correspond to the highlighted bonds in **A**.
+torsion angle of the central bond computed via QCArchive at B3LYP-D3(BJ) / DZVP level of theory. The colors of the QC scan corresponds to the highlighted bonds in **A**. **[D]** Same as
+**C** but using MM energy computed via the openff-1.0.0 force field.
 **[E]** Torsion barrier heights vs WBOs. The color of the data points correspond to the highlighted bonds in **A**.
-The QC torsion barrier height is linear WBO.](images/figure_3.svg){#fig:biphenyls}
+The QC torsion barrier height scales linearly with the WBO.](images/figure_3_2.svg){#fig:biphenyls}
 
 ### 3.2 The Wiberg Bond Order quantifies the electronic population overlap between two atoms and captures bond conjugation
 The Wiberg bond order (WBO) is a bond property that is calculated using orthonormalized atomic orbitals that are used
@@ -337,7 +356,7 @@ orthogonal but the WBO can be calculated via Löwdin normalization [@K8bdDsCu; @
 
 We calculated the WBO from AM1 calculations for the biphenyl series as shown in figure @fig:biphenyls A. The increase in the WBO corresponds
 to increasing conjugation and torsion energy barrier height of the bond. When the torsion energy barrier heights are plotted against
-the WBO (fig @fig:biphenyls E), the relationship is linear with an $R^2$ of 0.97.
+the WBO (fig @fig:biphenyls E), the relationship is linear with an $r^2$ of 0.97.
 
 ### 3.3 The WBO is an inexpensive surrogate for the chemical environment around a bond
 Since the WBO can be calculated from a cheap AM1 calculation, is indicative of a bond's conjugation, and is correlated with torsion energy

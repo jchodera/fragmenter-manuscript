@@ -1,5 +1,5 @@
 {
-  "date": "January 27, 2020",
+  "date": "January 29, 2020",
   "authors": [
     {
       "github": "ChayaSt",
@@ -97,15 +97,15 @@
       "github": "jchodera",
       "name": "John D Chodera",
       "initials": "JDC",
-      "orcid": "XXXX-XXXX-XXXX-XXXX",
-      "twitter": "johndoe",
-      "email": "john.doe@something.com",
+      "orcid": "0000-0003-0542-119X",
+      "twitter": "jchodera",
+      "email": "john.chodera@choderalab.org",
       "affiliations": [
-        "Department of Something, University of Whatever"
+        "Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA"
       ],
       "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
-        3
+        2
       ]
     }
   ],
@@ -127,7 +127,7 @@
     "repo_slug": "ChayaSt/fragmenter-manuscript",
     "repo_owner": "ChayaSt",
     "repo_name": "fragmenter-manuscript",
-    "commit": "8f5566b19a6bf841be958de336bcc3141cc7bf58"
+    "commit": "dec8cb4ba7a0d52071f01abe444be086953f688a"
   },
   "manuscript_stats": {
     "reference_counts": {
@@ -135,6 +135,6 @@
       "url": 8,
       "total": 86
     },
-    "word_count": 14493
+    "word_count": 14697
   }
 }
