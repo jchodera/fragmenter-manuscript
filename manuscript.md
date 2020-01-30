@@ -7,7 +7,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2020-01-29'
+date-meta: '2020-01-30'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/b95643d82b11e477b83dca2911c07bee692a96d7/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/211a8ec880c0511a70ac008e76b9973966bffb78/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@b95643d](https://github.com/ChayaSt/fragmenter-manuscript/tree/b95643d82b11e477b83dca2911c07bee692a96d7)
-on January 29, 2020.
+from [ChayaSt/fragmenter-manuscript@211a8ec](https://github.com/ChayaSt/fragmenter-manuscript/tree/211a8ec880c0511a70ac008e76b9973966bffb78)
+on January 30, 2020.
 </em></small>
 
 ## Authors
@@ -250,29 +250,30 @@ Section 4 provides a discussion of the implications of this study and section 5 
 
 A molecular structure can be modeled as a degree bounded graph $G = (V, E)$ where $V$ are the nodes and $E$ are the edges.
 In a molecular graph, the nodes correspond to the atoms and the bonds correspond to the edges.
-We define rotatable bonds as bonds that are not in rings and they are subset of edges, $e' \in E$ and $G'$ as a set
-of subgraphs, where each subgraph $G' = (v', e)$:
+We define rotatable bonds as a set bonds in the molecule that are not in rings, $mathcal{E} \subset E$, and $\mathcal{G}$ as a set
+of allowable subgraphs, where each subgraph $G'(V', E') \in \mathcal{G}$ is built around a central, rotatable bond, $e' \in \mathcal{E}$
+with the following conditions:
 
-* The number of atoms in the subgraph, $|v'|$  are $4 \leq |v'| \leq |V|$
-* $e'$ and all $e \in E$ such that $e, e'$ share a vertex
-* all $v$ adjacent to $e$
-* if $v \in v'$ is in a ring in $G$, the ring should be included in $G'$
+* The number of atoms in $G'$, $|V'|$, are $4 \leq |V'| \leq |V|$
+* The minimum edges in $G'$ are $e'$ and all $e \in E$ such that $e, e'$ share a vertex
+* All $v \in V$ adjacent to $e$
+* If $v \in V'$ is in a ring in $G$, the ring should be included in $G'$
 
-The weights on the edges are given by $\delta(e'; G')$ where $\delta$ is the RMSE of the torsion potential around the central, rotatable bond in
-the full graph vs. a subgraph. Since $\delta(e'; G')$ is computationally expensive, we use a surrogate $\gamma(e'; G')$ which we
-define as the difference of the WBO on the central bond $e'$ in $G'$ and in the full graph $G$.
+The weights on $e'$ are given by $\delta(e'; G')$ where $\delta$ is the RMSE of the torsion potential around the central, rotatable bond in
+the full graph vs. a subgraph. Since $\delta(e'; G')$ is computationally expensive, we use a surrogate, $\gamma(e'; G')$, which we
+define as the difference of the WBO on the central, rotatable bond $e'$ in $G'$ and in the full graph $G$.
 In order to calculate the WBO, we need to cap open valences. The rule we use are defined in section 3.4.
 
 We want to minimize $\gamma(e'; G')$, while also minimizing the cost of each subgraph. We define the cost as estimated in @fig:b3lyp_scaling
 
-$$ c(G') \propto (|v|)^{2.6} $$
+$$ c(G') \propto (|V'|)^{2.6} $$
 
 Which leads to minimizing
 
-$$ \sum_{G'} |\gamma(e', G') - c(G')|$${#eq:graph}
+$$ \sum_{e' \in \mathcal{E}} |\gamma(e';  G') - c(G'; e')|$$
 
-The search space of $G'$ is combinatorial and its upper bound is ${|V|\choose{4}} + {|V|\choose{5}} + ... {|V|\choose{|V|}}$
-since all subgraphs $G'$ need to be connected and rings are not fragmented. To reduce the search space, we also define a list
+The search space of $\mathcal G$ for each rotatable bond is combinatorial and its upper bound is ${|V|\choose{4}} + {|V|\choose{5}} + ... {|V|\choose{|V|}}$
+since all $G' \in \matchal G$ need to be connected and rings are not fragmented. To reduce the search space, we also define a list
 of functional groups that should not be fragmented in @tbl:fgroups.
 
 Given how large the search space can become, we use several heuristics as described in section 3.4.
