@@ -1,7 +1,7 @@
 # Output directory containing the formatted manuscript
 
 The [`gh-pages`](https://github.com/ChayaSt/fragmenter-manuscript/tree/gh-pages) branch hosts the contents of this directory at https://ChayaSt.github.io/fragmenter-manuscript/.
-The permalink for this webpage version is https://ChayaSt.github.io/fragmenter-manuscript/v/b95643d82b11e477b83dca2911c07bee692a96d7/.
+The permalink for this webpage version is https://ChayaSt.github.io/fragmenter-manuscript/v/211a8ec880c0511a70ac008e76b9973966bffb78/.
 To redirect to the permalink for the latest manuscript version at anytime, use the link https://ChayaSt.github.io/fragmenter-manuscript/v/freeze/.
 
 ## Files
@@ -36,4 +36,4 @@ Verifying timestamps with the `ots verify` command requires running a local bitc
 ## Source
 
 The manuscripts in this directory were built from
-[`b95643d82b11e477b83dca2911c07bee692a96d7`](https://github.com/ChayaSt/fragmenter-manuscript/commit/b95643d82b11e477b83dca2911c07bee692a96d7).
+[`211a8ec880c0511a70ac008e76b9973966bffb78`](https://github.com/ChayaSt/fragmenter-manuscript/commit/211a8ec880c0511a70ac008e76b9973966bffb78).
