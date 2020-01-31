@@ -7,7 +7,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2020-01-30'
+date-meta: '2020-01-31'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/211a8ec880c0511a70ac008e76b9973966bffb78/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/318038f4a85ee0cb31789bc912f560ed1c357f70/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@211a8ec](https://github.com/ChayaSt/fragmenter-manuscript/tree/211a8ec880c0511a70ac008e76b9973966bffb78)
-on January 30, 2020.
+from [ChayaSt/fragmenter-manuscript@318038f](https://github.com/ChayaSt/fragmenter-manuscript/tree/318038f4a85ee0cb31789bc912f560ed1c357f70)
+on January 31, 2020.
 </em></small>
 
 ## Authors
@@ -250,7 +250,7 @@ Section 4 provides a discussion of the implications of this study and section 5 
 
 A molecular structure can be modeled as a degree bounded graph $G = (V, E)$ where $V$ are the nodes and $E$ are the edges.
 In a molecular graph, the nodes correspond to the atoms and the bonds correspond to the edges.
-We define rotatable bonds as a set bonds in the molecule that are not in rings, $mathcal{E} \subset E$, and $\mathcal{G}$ as a set
+We define rotatable bonds as a set bonds in the molecule that are not in rings, $\mathcal{E} \subset E$, and $\mathcal{G}$ as a set
 of allowable subgraphs, where each subgraph $G'(V', E') \in \mathcal{G}$ is built around a central, rotatable bond, $e' \in \mathcal{E}$
 with the following conditions:
 
@@ -273,7 +273,7 @@ Which leads to minimizing
 $$ \sum_{e' \in \mathcal{E}} |\gamma(e';  G') - c(G'; e')|$$
 
 The search space of $\mathcal G$ for each rotatable bond is combinatorial and its upper bound is ${|V|\choose{4}} + {|V|\choose{5}} + ... {|V|\choose{|V|}}$
-since all $G' \in \matchal G$ need to be connected and rings are not fragmented. To reduce the search space, we also define a list
+since all $G' \in \mathcal G$ need to be connected and rings are not fragmented. To reduce the search space, we also define a list
 of functional groups that should not be fragmented in @tbl:fgroups.
 
 Given how large the search space can become, we use several heuristics as described in section 3.4.
@@ -380,7 +380,7 @@ purple (8, 9), orange (9, 10), grey (23, 19), and green(24, 24)).
 Bonds in conjugated systems have higher correlations between their WBOs (see the aromatic ring systems in the two lower right diagonal squares).
 Both bonds (23, 19) (grey) and (24, 23) (green) have WBOs that are correlated with their neighboring ring systems, but
 bond (23, 19) are more correlated with the ring systems than the green bond (24, 23).
-**[D]** Resonance structures of Gefitinib illustrates why the grey bond (23, 19) has higher variance than the green bond (24, 23) even if
+**[D]** Resonance structures of Gefitinib illustrate why the grey bond (23, 19) has higher variance than the green bond (24, 23) even if
 both bonds are conjugated. When the double bond is on bond (23, 19), the negative charge is on a nitrogen which is the more stable form, vs
 the resonance structure where the double bond is on (24, 23) with the negative charge on a carbon.
 **[E]** The conformations of the molecule for the highest WBO and lowest in the distribution. The mode with higher WBOs has bond
@@ -388,7 +388,7 @@ the resonance structure where the double bond is on (24, 23) with the negative c
 so there is less electron population overlap in out of plane conformation.](images/figure-4.svg){#fig:wbo_var_corr}
 
 To investigate how WBOs change with conformation, we used Omega [@1G1ccz54w] to generate
-conformers for a set of kinase inhibitors `[hold for SI]`{.red} and calculated the Lowdin-Wiberg bond order for each conformation from a
+conformers for a set of kinase inhibitors (SI Figure @fig:kinase_inhibitors) and calculated the WBO for each conformation from a
 B3LYP-D3(BJ) / DZVP [@17YEERBX3; @flKRoCNc; @YPDz9hB3; @CqesmIsy] geometry optimized calculation
 using Psi4 [@YC6qkEYS]. Omega is a knowledge-based
 conformer generator that uses a modified version of MMFF94s [@11e7CbOCj] to score conformations. It has been shown to accurately reproduce experimentally
@@ -404,14 +404,14 @@ with their neighboring ring systems, however, While the distribution of WBOs for
 with the resonance structures shown in figure @fig:wbo_var_corr. The resonance strictures that have the double bond on the bond closer to
 the quinazoline (bond 19-23) are more stable because the negative charge is on a nitrogen. When the double bond is on the neighboring
 23-24 bond, the negative charge is on an aromatic carbon which is less stable. The results are similar for other kinase inhibitors
-tested shown in `[hold for SI]`{.red}. In addition, when we inspected the conformations associated with the highest and lowest WBO in the grey distribution (fig @fig:wbo_var_corr, E)
+tested shown in SI Figure @fig:kinase_inhibitors. In addition, when we inspected the conformations associated with the highest and lowest WBO in the grey distribution (fig @fig:wbo_var_corr, E)
 we found that conformations with lowest WBO on bond 19-23 had that bond out of plane while the conformation with the highest WBO value
-had the bond in plane which allows conjugation. We found similar results from WBOs calculated form QC torsion scans. Fig @fig:sub_phenyl_qc_scan shows Lowdin-Wiberg
-bond order for each point in the QC corresponding torsion scans. The WBOs are anti-correlated with the torsion potential energy
+had the bond in plane which allows conjugation. We found similar results from WBOs calculated form QC torsion scans. Fig @fig:sub_phenyl_qc_scan shows the WBO
+for each point in the QC corresponding torsion scans. The WBOs are anti-correlated with the torsion potential energy
 which is in line with chemical intuition. Conjugation stabilizes conformations and leads to more electronic population overlap in bonds [@14qKIxxbD].
 At higher energy conformers, the aromatic rings are out of plan and cannot conjugate. Therefore the WBO is lower for those conformers. At lower energy
 conformations, the rings are in plane and can conjugate so the WBO is higher. We found that the trends discusses above are similar when using semi-empirical methods
-such as AM1 and HF3C `(hold for SI)`{.red}
+such as AM1 (SI Figure @fig:si_wbo_dist).
 
 #### 3.3.2 Bonds in conjugated systems have highly correlated conformation-dependent WBOs
 We found that certain bond orders are strongly correlated or anti-correlated with each other, indicating strong electronic coupling. As bonds in
@@ -427,13 +427,13 @@ The bond closer to the quinazoline (bond 23-19) has WBO distribution correlated 
 chloro fluoro phenyl (bond 23-24) is not as strongly coupled with the quinazoline. The trends are similar
 for other kinase inhibitors tested as shown in `(hold for SI)`{.red}.
 
-#### 3.3.3 ELF10 provides a useful way to capture informative conformation-independent WBOs
+#### 3.3.3 Electronically least-interacting functional group (ELF) method provides a useful way to capture informative conformation-independent WBOs
 
-![**Standard deviations of conformation dependent WBO distributions are smaller than standard deviations of WBO distribution of the same bond in different chemical environments**
+![**Standard deviations of conformation-dependent WBO distributions are smaller than standard deviations of WBO distribution of the same bond in different chemical environments**
 The distribution of standard deviations of WBO distributions over conformations is shown in blue. The distribution of standard deviations of ELF10 WBO distributions for the same
 bond in different chemical environments is shown in pink. The changes in WBO due to conformations are smaller than the changes in WBO due to chemical changes around the bond.
-The validation set (SI @fig:validation_set), was used to generate these distributions. The blue std distribution was calculated over 140602 WBO dependent distributions (this is the
-number of individual fragments in the dataset). The pink std distribution was calculated over 366 distributions of 366 bonds
+The validation set (SI @fig:validation_set), was used to generate these distributions. The blue sandard deviation distribution was calculated over 140602 WBO dependent distributions (this is the
+number of individual fragments in the dataset). The pink standard deviation distribution was calculated over 366 distributions of 366 bonds
 in different chemical environments (of the 140602 fragments)](images/standard_deviations.svg){#fig:standard_deviations}
 
 As we have shown, the WBO is conformation dependent and this dependency can also be highly informative of the electronic coupling
@@ -443,7 +443,14 @@ use WBOs as a surrogate to determine if our fragment is representative of the pa
 we need a way to capture informative conformation-independent WBOs. Electronically Least-interacting Functional groups (ELF) conformation selection implemented in quacpac
 [@16hZpgNca] resolves the issue of sensitivity of molecular mechanics electrostatic energies from QM derived charges.
 
-[Leave to Christopher Bayly to describe]{.banner .lightyellow}
+The ELF10 method begins with a large set of conformers for the molecule. MMFF94 charges are assigned to the molecule,
+set to their absolute value, and then single-point Coulomb electrostatic energies evaluated for each conformer. The
+lowest-energy 2% of conformers are selected, and if there are more than 10, from these the most diverse 10 are selected.
+For this final conformer set (up to 10 conformers), the AM1 WBOs and charges for each conformer are averaged
+(by bond and by atom, respectively) and the BCCs are applied to the charges [@LxrgIkt0]. This method yields a set of AM1-BCC
+atomic partial charges and WBOs for the molecule which are relatively insensitive to the initial choice of conformer set,
+and which mitigate two pathologies of AM1-BCC charges: peculiar charges resulting from strong intramolecular electrostatic
+interactions (e.g. from internal hydrogen bonds or formal charges) and simple conformational variance.
 
 ![**Distribution of WBO in drug-like molecules have peaks at expected values**
 **[A]** The distribution of all WBOs for all bonds in molecules in set. The peak at one, close to two and close to thres correspond to
@@ -455,7 +462,7 @@ either one or two nitrogen. Many of these bonds are conjugated as demonstrated b
 nitriles. The pink distribution include bonds that have oxygens. The peak at two corresponds to carbonyls.](images/figure-2_4.svg){#fig:wbo_dists}
 
 This method can also be applied to derive WBOs that are insensitive to conformers. To check how well ELF10 estimated $W_{AB}$ recapitulates the multiplicity of bonds,
-we calculated $W_{AB}$ from ELF10 AM1 calculations
+we calculated $W_{AB}$ from AM1 ELF10 calculations
 for all bonds in a set of molecules shown in SI Figure @fig:wbo_dist_mols. The distribution in figure @fig:wbo_dists corresponds
 closely with bond multiplicity. The density at ~ 0.7 correspond bonds involving sulfur and phosphorous since these are weaker and longer bonds. The peak at 1.0
 corresponds to C-H and C-C bonds, the peak close to 1.5 corresponds to bonds in aromatic rings, the peak close to 2.0 corresponds
@@ -467,7 +474,7 @@ and aromatic rings, respectively. Figure @fig:wbo_dists D shows distrbutions wit
 the expected values; 1, 1.5 and 3 for nitrogen which corresponds to single, conjugated and triple bonds and 1 and 2 for oxygens which correspond to
 single and carbonyl bonds. For the rest of this section we will be focusing on the robustness and generalizability of ELF10 WBOs.
 
-#### 3.3.4 WBOs are a robust signal to how remote substituent changes alter a bond's torsion barrier height
+#### 3.3.4 WBOs are a robust signal of how torsion barrier heights depend on remote chemical changes.
 To investigate how resonance and electronic effects from remote substituents change the torsion energy of a bond,
 we took inspiration from the Hammett equation [@3z27USyZ] of reactions involving benzoic acid derivatives.
 The Hammett equation relates meta and para benzoic acid substituents to the acid's ionization equilibrium constants
@@ -476,42 +483,42 @@ The Hammett equation relates meta and para benzoic acid substituents to the acid
 
 Where $\sigma$ is a substituent constant and $\rho$ is a reaction constant. It aims to isolate the resonance and inductive effects
 of substituents from the sterics effects of a reaction. Here, we generated a combinatorial set of meta and para subsituted phenyls
-and pyridine @fig:subsituted_phenyls A with 25 functional groups that cover a wide range of electron donating and withdrawing groups.
-We then calculated the ELF10 WBO for the bond attaching the functional
-group to the aromatic ring for all functional groups which resulted in 128 (25 * 5 + 3) data points for each functional group. This allowed us to isolate the effect on a bond's WBO from remote chemical environment changes,
+and pyridine @fig:subsituted_phenyls A with 26 functional groups that cover a wide range of electron donating and withdrawing groups.
+(details on generating and accessing this set is in section 5.3.2 in detailed methods)
+We then calculated the ELF10 WBO for the bond attaching the functional group to the aromatic ring (highlighted green in
+Figure @fig:subsituted_phenyls A) for all functional groups which resulted in 133 (26 * 5 + 3) data points for each functional group. This allowed us to isolate the effect on a bond's WBO from remote chemical environment changes,
 defined as a change more than two bonds away, from other effects such as sterics and conformations. The resulting distributions are in figure @fig:subsituted_phenyls, B.
 It is interesting to note that the trend of decreasing WBOs for more electron
-donating groups are anti correlates with increasing Hammett substituent constants. In {@fig:subsituted_phenyls} C and D, the AM1 ELF10 WBO of the bond
-between the functional group and benzoic acid is plotted against their Hammett para and meta substituent constants. Functional groups
+donating groups are anti correlates with increasing Hammett substituent constants. In SI Figure @fig:hammett, the AM1 ELF10 WBO of the bond
+between the functional group and benzoic acid is plotted against their Hammett meta and para substituent constants (values were taken from Hansch et al. [@1EJC88xIC]). Functional groups
 that are more electron donating will have more electron density on the bond attaching the functional group to the benzoic acid. The resonance and/or inductive effect
 destabilize the benzoate, increases its pKa, which corresponds to lower substituent constants.
 
-![**Change in AM1 ELF10 WBOs correlates with barrier heights in torsion profiles**
+![**AM1 ELF10 Wiberg bond orders correlate with torsion barrier heights in related molecules**
 **[A]** Systems and functional groups used in the subsituted phenyl set. The functional groups were chosen to span a large range
 of electron donating and withdrawing groups.
-**[B]** AM1 ELF10 WBO distributions for the bond between the phenyl ring and $X_1$ in different chemical environments  **[C]** Hammett sigma para
-parameters vs AM1 ELF10 WBOs of  $X_1$ para to carboxylic acid **[D]** Hammett sigma meta parameters vs AM1 ELF10 WBOs of $X_1$ meta to
-carboxyilic acid **[E]** Selected QC torsion scan barrier heights vs ELF10 AM1 WBOs](images/figure_6.svg){#fig:subsituted_phenyls}
+**[B]** AM1 ELF10 WBO distributions for the bond between the phenyl ring and X~1~ in different chemical environments
+**[E]** Selected QC torsion scan barrier heights vs AM1 ELF10 WBOs](images/substituted_phenyls.svg){#fig:subsituted_phenyls}
 
-|functional group | slope | $r^2$ | P value | standard error |
+|X~1~ | slope | slope standard error | $r^2$ and 95% CI |
 |---|---|---|---|---|
-| N(Me)~2~ | 116.916250 | 0.880571 | 0.000019 | 14.352479 |
-| NHMe | 134.517241 |  0.896103 |  0.000033 | 16.194060 |
-| NH~2~ |   64.266814 |  0.577819 |  0.017438 | 20.763035 |
-| NHEt |  119.513117 |  0.836392 |  0.000552 | 19.978559 |
-| NH(C~3~H~7~) |  163.763962 |  0.871119 |  0.000236 | 23.808080 |
-| OH |  154.824936 |  0.729133 |  0.003393 | 35.666975 |
-| OMe |  185.309951 |  0.800852 |  0.006494 | 41.326214 |
-| OEt |  119.662499 |  0.479470 |  0.038706 | 47.124984 |
-| NHCON(Me)~2~ |  159.312781 |  0.579507 |  0.010533 | 47.979491 |
-| NHCONHMe |  127.645256 |  0.434585 |  0.053430 | 55.030363 |
-| NHCONH~2~ |  238.119990 |  0.734429 |  0.003158 | 54.120536 |
-| NHCOEt |  205.802258 |  0.692740 |  0.005374 | 51.804680 |
-| NHCOMe |  144.320372 |  0.457787 |  0.065376 | 64.121783 |
-| OCONH~2~ |  172.716947 |  0.508785 |  0.111518 | 84.854215 |
-| COOH |  267.218639 |  0.739937 |  0.061417 | 91.463658 |
-| COOEt |  149.012778 |  0.581298 |  0.077956 | 63.233457 |
-| NO~2~ |  302.072242 |  0.909174 |  0.003192 | 47.737899 |
+| N(Me)~2~ | 116.92 | 14.35 | 0.88$_{0.73}^{0.98}$ |
+| NHMe | 134.52 |  16.19 | 0.90$_{0.83}^{0.98}$ |
+| NH~2~ |   64.27|  20.76 | 0.58$_{0.06}^{0.95}$ |
+| NHEt |  119.51 |  19.98 | 0.84$_{0.61}^{0.98}$ |
+| NH(C~3~H~7~) |  163.76 |  23.81 | 0.87$_{0.73}^{0.99}$ |
+| OH |  154.82 |  35.67 | 0.73$_{0.26}^{0.98}$ |
+| OMe |  185.31 | 41.33 | 0.80$_{0.46}^{0.99}$ |
+| OEt |  119.66 | 47.12 | 0.48$_{0.07}^{0.88}$ |
+| NHCON(Me)~2~ |  159.31 |  47.98 | 0.58$_{0.23}^{0.95}$ |
+| NHCONHMe |  127.65 |  55.03| 0.43$_{0.04}^{0.95}$ |
+| NHCONH~2~ |  238.12 |  54.12 | 0.73$_{0.41}^{0.98}$ |
+| NHCOEt |  205.80 |  51.80 | 0.69$_{0.31}^{0.99}$ |
+| NHCOMe |  144.32 |  64.12 | 0.46$_{0.02}^{0.99}$ |
+| OCONH~2~ |  172.72 |  84.85 | 0.51$_{0.03}^{0.98}$ |
+| COOH |  267.23 |  91.46 | 0.74$_{0.04}^{1.0}$ |
+| COOEt |  149.01 |  63.23 | 0.58$_{0.13}^{1.0}$ |
+| NO~2~ |  302.07 | 47.74 | 0.91$_{79}^{1.0}$|
 
 Table: slope and associated statistics for torsion barrier height vs WBO for selected functional groups {#tbl:stats}
 
@@ -528,10 +535,10 @@ shown in {@fig:biphenyls}D  generalizes to all functional groups tested in this 
 associated statistics for the fitted lines.
 
 ![**Löwdin-Wiberg bond orders are anti correlated with QC torsion scans**
-**[A]** QC torsions for methylamino in series of different chemical environment. Barrier heights increase with increasing ELF10 AM1 WBOs
+**[A]** QC torsions for methylamino in series of different chemical environment. Barrier heights increase with increasing AM1 ELF10 WBOs
 **[B]** Löwdin-Wiberg bond orders calculated at each point in the QC torsion scan using the same level of theory. The bond orders are
 anti correlated with QC torsion scans **[C]** QC scans for urea in a series of different chemical environment. Both profiles and
-energy barriers change with ELF10 AM1 WBOs **[D]** Löwdin-Wiberg bond orders are not perfectly anti correlated to QC scans](images/figure_7.svg){#fig:sub_phenyl_qc_scan}
+energy barriers change with AM1 ELF10 WBOs **[D]** Löwdin-Wiberg bond orders are not perfectly anti correlated to QC scans](images/figure_7.svg){#fig:sub_phenyl_qc_scan}
 
 For most functional groups, the change in WBOs correspond to changes in torsion barrier heights. `[hold for SI]`{.red}.
 However, for some functional groups, the change in WBO does not fully capture the differences in torsion scans because not only do the torsion energy
@@ -998,8 +1005,9 @@ with different chemical group at the X~2~ position (methyl).
 functional groups for X~1~ were allowed to be at X~2~, we did not include the negative oxygen at X~2~ because OpenFF have
 not yet benchmarked the level of theory to use for anions.
 3. After selection, we had 140 molecules that we submitted to QCArchive for both QC and MM torsion scan. The dataset is available on QCArchive as a `TorsionDriveDataset` named
-`OpenFF Subsituted Phenyl Set 1`. This dataset also includes the biphenyl torsion scans shown in Figure @fig:biphenyls
+`OpenFF Subsituted Phenyl Set 1`. This dataset also includes the biphenyl torsion scans shown in Figure @fig:biphenyls.
 
+Scripts used to generate and analyze this dataset can be found in [github.com/choderalab/fragmenter_data/phenyl_benchmark](https://github.com/choderalab/fragmenter_data/tree/master/phenyl_benchmark)
 
 There is another subsituted phenyl set on QCArchive whose results are not shown in this paper because it was run with a different level of theory as the default
 OpenFF level of theory, included anions which we did not yet decide how to handle and did not have good coverage of WBO ranges.
@@ -1132,8 +1140,21 @@ is also a slight dependency on molecular size as shown in this figure](images/gr
 ![**Distribution of optimizations per torsion drive**
 This figures shows the distributions of optimizations per torsion drive when using wavefront propagation](images/opts_per_td_4.svg){#fig:opts_per_td}
 
+![**Varinace and correlations of WBO distributions with respect to conformations for a set of kinase inhibitors**
+This figure shows WBO distributions and correlations for a set of kinase inhibitors calculated at B3LYP-D3(BJ) / DZVP.
+Optimized conformations and their WBOs are on QCArchive (`OptimizationDataset`, named `Kinase Inhibitors: WBO Distributions`)](images/SI-KI-all.svg){#fig:kinase_inhibitors}
+
+![**Variance and correlations of AM1 Wiberg bond order distributions with respect to conformations are higher for conjugated bonds**
+The trend seen in @fig:wbo_var_corr for higher level of QM theory (B3LYP-D3(BJ) / DZVP) is also observed at AM1.
+**[A]** Gifitnib with its rotatable bonds highlighted. **[B]** WBO distributions over 232 conformations of the highlighted bonds. The variance
+and their 95% CI is shown. **[C]** Pearson correlation coefficients for WBOs in every bond against all other bonds with respect to conformations.](images/SI-WBO-dist.svg){#fig:si_wbo_dist}
+
 ![**Druglike molecules used to calculate ELF10 AM1 WBOs**
 This set of molecules were selected to cover bonds of different types and multiplicities](images/druglike_mols_for_wbo_dist_4.svg){#fig:wbo_dist_mols}
+
+![**Hammett parameters are anti-correlated with ELF10 WBOs**
+**[A]** Hammett sigma meta parameters vs AM1 ELF10 WBOs of X~1~ meta to carboxylic acid.
+ **[B]** Same as **A** but for para substituents](images/SI-hammett.svg){#fig:hammett}
 
 ![**Validation set**
 All molecules used in the validation set of fragmentation schemes. The bonds are highlighted by how sensitive they are to
