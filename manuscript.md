@@ -24,9 +24,9 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/318038f4a85ee0cb31789bc912f560ed1c357f70/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/7e0e7084e3f0ceb3fc9eeadb47339d0a44fa6b45/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@318038f](https://github.com/ChayaSt/fragmenter-manuscript/tree/318038f4a85ee0cb31789bc912f560ed1c357f70)
+from [ChayaSt/fragmenter-manuscript@7e0e708](https://github.com/ChayaSt/fragmenter-manuscript/tree/7e0e7084e3f0ceb3fc9eeadb47339d0a44fa6b45)
 on January 31, 2020.
 </em></small>
 
@@ -425,14 +425,14 @@ in the methoxy groups (atoms 1-3 and 8-10) are correlated with each other and al
 And the bonds between the chloro fluoro phenyl and quinazoline follow the same trend as their WBO distribution and resonance structures.
 The bond closer to the quinazoline (bond 23-19) has WBO distribution correlated with the quinazoline while the bond closer to the
 chloro fluoro phenyl (bond 23-24) is not as strongly coupled with the quinazoline. The trends are similar
-for other kinase inhibitors tested as shown in `(hold for SI)`{.red}.
+for other kinase inhibitors tested as shown in SI Figure @fig:kinase_inhibitors.
 
 #### 3.3.3 Electronically least-interacting functional group (ELF) method provides a useful way to capture informative conformation-independent WBOs
 
 ![**Standard deviations of conformation-dependent WBO distributions are smaller than standard deviations of WBO distribution of the same bond in different chemical environments**
 The distribution of standard deviations of WBO distributions over conformations is shown in blue. The distribution of standard deviations of ELF10 WBO distributions for the same
 bond in different chemical environments is shown in pink. The changes in WBO due to conformations are smaller than the changes in WBO due to chemical changes around the bond.
-The validation set (SI @fig:validation_set), was used to generate these distributions. The blue sandard deviation distribution was calculated over 140602 WBO dependent distributions (this is the
+The validation set (SI @fig:full_validation_set), was used to generate these distributions. The blue sandard deviation distribution was calculated over 140602 WBO dependent distributions (this is the
 number of individual fragments in the dataset). The pink standard deviation distribution was calculated over 366 distributions of 366 bonds
 in different chemical environments (of the 140602 fragments)](images/standard_deviations.svg){#fig:standard_deviations}
 
@@ -498,11 +498,12 @@ destabilize the benzoate, increases its pKa, which corresponds to lower substitu
 **[A]** Systems and functional groups used in the subsituted phenyl set. The functional groups were chosen to span a large range
 of electron donating and withdrawing groups.
 **[B]** AM1 ELF10 WBO distributions for the bond between the phenyl ring and X~1~ in different chemical environments
-**[E]** Selected QC torsion scan barrier heights vs AM1 ELF10 WBOs](images/substituted_phenyls.svg){#fig:subsituted_phenyls}
+**[C]** Selected QC torsion scan barrier heights vs AM1 ELF10 WBOs. These lines all had $r^2$ greater than 0.7.
+**[D]** Same as **C** but these series did not fit the lines as well ($r^2$ less than 0.7). (images/substituted_phenyls.svg){#fig:subsituted_phenyls}
 
-|X~1~ | slope | slope standard error | $r^2$ and 95% CI |
-|---|---|---|---|---|
-| N(Me)~2~ | 116.92 | 14.35 | 0.88$_{0.73}^{0.98}$ |
+|X~1~ | slope | standard error | $r^2$ and 95% CI |
+|---|---|---|---|
+| N(Me)~2~ | 116.92 | 14.35 | 0.88~0.73~^0.98^ |
 | NHMe | 134.52 |  16.19 | 0.90$_{0.83}^{0.98}$ |
 | NH~2~ |   64.27|  20.76 | 0.58$_{0.06}^{0.95}$ |
 | NHEt |  119.51 |  19.98 | 0.84$_{0.61}^{0.98}$ |
@@ -523,27 +524,30 @@ of electron donating and withdrawing groups.
 Table: slope and associated statistics for torsion barrier height vs WBO for selected functional groups {#tbl:stats}
 
 To investigate how these long range effects observed in the WBOs capture changes in the bonds' torsion potential energy, we ran representative QC torsion
-scans for 17 of the functional groups `(hold for SI)`{.red}. We did not run QC torsion scans for functional groups that either did not have a torsion such
+scans for 17 of the functional groups (SI Figures @fig:phenyl_td_1 - @fig:phenyl_td_5). We did not run QC torsion scans for functional groups that either did not have a torsion such
 as halogens, were congested such as trimethyl amonium and functional groups where the WBOs did not change by more than 0.01 for different functional
 groups at the meta or para position such as methyl. We chose the representative molecules for the 17 functional groups by sorting them
-by their WBO and selecting molecules with minimum WBO difference of 0.02. All of the resulting QC torsion scans are shown in `[hold for SI]`{.red}.
+by their WBO and selecting molecules with minimum WBO difference of 0.02. All of the resulting QC torsion scans are shown in SI Figures @fig:phenyl_td_1 - @fig:phenyl_td_5.
 We show a representative series of torsion scan for the nitro functional group in figure {@fig:sub_phenyl_qc_scan}A. The torsion energy barrier height
 increase with increasing ELF10 WBO of the bond. In addition, {@fig:sub_phenyl_qc_scan}B  shows that the Wiberg-Lowdin bond orders are anti-correlated with
 the QC torsion scan which is the same result we saw for the initial bipheynl set discussed in the previous section. We also found that the linear
-relationshipt between WBOs and torsion energy barrier height
-shown in {@fig:biphenyls}D  generalizes to all functional groups tested in this set {@fig:subsituted_phenyls}E. Table @tbl:stats lists the slopes and
+relationship between WBOs and torsion energy barrier height
+shown in Figures @fig:biphenyls, E  generalizes to the functional groups tested in this set (Figure {@fig:subsituted_phenyls} C and D). However, some
+X~1~ we tested do not fully follow the trend so we separated the lines into Figure @fig:subsituted_phenyls C for X~1~ that have lines with $r^2$ > 0.7 and
+Figure @fig:subsituted_phenyls D for X~1~ that have lines with $r^2$ < 0.7.  Table @tbl:stats lists the slopes and
 associated statistics for the fitted lines.
 
-![**Löwdin-Wiberg bond orders are anti correlated with QC torsion scans**
+![**Wiberg bond orders are anti correlated with QC torsion scans**
 **[A]** QC torsions for methylamino in series of different chemical environment. Barrier heights increase with increasing AM1 ELF10 WBOs
-**[B]** Löwdin-Wiberg bond orders calculated at each point in the QC torsion scan using the same level of theory. The bond orders are
+**[B]** Wiberg bond orders calculated at each point in the QC torsion scan using the same level of theory. The bond orders are
 anti correlated with QC torsion scans **[C]** QC scans for urea in a series of different chemical environment. Both profiles and
-energy barriers change with AM1 ELF10 WBOs **[D]** Löwdin-Wiberg bond orders are not perfectly anti correlated to QC scans](images/figure_7.svg){#fig:sub_phenyl_qc_scan}
+energy barriers change with AM1 ELF10 WBOs **[D]** Wiberg bond orders are not perfectly anti correlated to QC scans](images/figure_7.svg){#fig:sub_phenyl_qc_scan}
 
-For most functional groups, the change in WBOs correspond to changes in torsion barrier heights. `[hold for SI]`{.red}.
+For most functional groups, the change in WBOs correspond to changes in torsion barrier heights (SI Figures @fig:phenyl_td_1 - @fig:phenyl_td_5).
 However, for some functional groups, the change in WBO does not fully capture the differences in torsion scans because not only do the torsion energy
-barrier heights increase, but the profile changes considerably as shown in {@fig:sub_phenyl_qc_scan}C for urea. Interestingly, the Löwdin-Wiberg
-bond order scans do have the same profiles {@fig:sub_phenyl_qc_scan} D.
+barrier heights increase, but the profile changes considerably. as shown in {@fig:sub_phenyl_qc_scan}C for urea. Interestingly, the Wiberg
+bond order scans do have the same profiles {@fig:sub_phenyl_qc_scan} D. These phenomena and the discrepancies observed in Figure @fig:subsituted_phenyls D,
+are discussed in more detail in section 4.3 in the discussion.
 
 When we compare the standard deviations of WBO distributions with respect to conformation versus with respect to changes in chemical space (figure @fig:standard_deviations, pink distribution),
 we find that the changes in ELF10 WBO for remote chemical environment changes are usually bigger than the changes in WBO that arise from change in conformation.
@@ -1140,7 +1144,7 @@ is also a slight dependency on molecular size as shown in this figure](images/gr
 ![**Distribution of optimizations per torsion drive**
 This figures shows the distributions of optimizations per torsion drive when using wavefront propagation](images/opts_per_td_4.svg){#fig:opts_per_td}
 
-![**Varinace and correlations of WBO distributions with respect to conformations for a set of kinase inhibitors**
+![**Variance and correlations of WBO distributions with respect to conformations for a set of kinase inhibitors**
 This figure shows WBO distributions and correlations for a set of kinase inhibitors calculated at B3LYP-D3(BJ) / DZVP.
 Optimized conformations and their WBOs are on QCArchive (`OptimizationDataset`, named `Kinase Inhibitors: WBO Distributions`)](images/SI-KI-all.svg){#fig:kinase_inhibitors}
 
@@ -1155,6 +1159,21 @@ This set of molecules were selected to cover bonds of different types and multip
 ![**Hammett parameters are anti-correlated with ELF10 WBOs**
 **[A]** Hammett sigma meta parameters vs AM1 ELF10 WBOs of X~1~ meta to carboxylic acid.
  **[B]** Same as **A** but for para substituents](images/SI-hammett.svg){#fig:hammett}
+
+![**QC torsion scans and corresponding WBOs for substituted phenyl set**
+QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set](images/SI_substituted_phenyl_td_1.svg){#fig:phenyl_td_1}
+
+![**QC torsion scans and corresponding WBOs for substituted phenyl set**
+QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set](images/SI_substituted_phenyl_td_2.svg){#fig:phenyl_td_2}
+
+![**QC torsion scans and corresponding WBOs for substituted phenyl set**
+QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set](images/SI_substituted_phenyl_td_3.svg){#fig:phenyl_td_3}
+
+![**QC torsion scans and corresponding WBOs for substituted phenyl set**
+QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set](images/SI_substituted_phenyl_td_4.svg){#fig:phenyl_td_4}
+
+![**QC torsion scans and corresponding WBOs for substituted phenyl set**
+QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set](images/SI_substituted_phenyl_td_5.svg){#fig:phenyl_td_5}
 
 ![**Validation set**
 All molecules used in the validation set of fragmentation schemes. The bonds are highlighted by how sensitive they are to
