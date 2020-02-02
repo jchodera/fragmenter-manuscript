@@ -31,11 +31,11 @@ author_info:
     github: dgasmith
     name: Daniel G A Smith
     initials: DGAS
-    orcid: XXXX-XXXX-XXXX-XXXX
-    twitter: johndoe
-    email: john.doe@something.com
+    orcid: 0000-0001-8626-0900
+    twitter: dga_smith
+    email: dgasmith@icloud.com
     affiliations:
-      - Department of Something, University of Whatever
+      - The Molecular Sciences Software Institute, Blacksburg, Virginia 24060 USA
     funders: Grant XXXXXXXX
 
   -
