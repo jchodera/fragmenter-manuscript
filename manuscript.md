@@ -7,7 +7,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2020-01-31'
+date-meta: '2020-02-03'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/7e0e7084e3f0ceb3fc9eeadb47339d0a44fa6b45/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/e22fc9705abb2cdd00c7df763691e08c41841386/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@7e0e708](https://github.com/ChayaSt/fragmenter-manuscript/tree/7e0e7084e3f0ceb3fc9eeadb47339d0a44fa6b45)
-on January 31, 2020.
+from [ChayaSt/fragmenter-manuscript@e22fc97](https://github.com/ChayaSt/fragmenter-manuscript/tree/e22fc9705abb2cdd00c7df763691e08c41841386)
+on February 3, 2020.
 </em></small>
 
 ## Authors
@@ -60,13 +60,13 @@ on January 31, 2020.
 
 + **Daniel G A Smith**<br>
     ![ORCID icon](images/orcid.svg){.inline_icon}
-    [XXXX-XXXX-XXXX-XXXX](https://orcid.org/XXXX-XXXX-XXXX-XXXX)
+    [0000-0001-8626-0900](https://orcid.org/0000-0001-8626-0900)
     · ![GitHub icon](images/github.svg){.inline_icon}
     [dgasmith](https://github.com/dgasmith)
     · ![Twitter icon](images/twitter.svg){.inline_icon}
-    [johndoe](https://twitter.com/johndoe)<br>
+    [dga_smith](https://twitter.com/dga_smith)<br>
   <small>
-     Department of Something, University of Whatever
+     The Molecular Sciences Software Institute, Blacksburg, Virginia 24060 USA
      · Funded by Grant XXXXXXXX
   </small>
 
@@ -190,7 +190,7 @@ Generating one dimensional QC torsion profiles are computationally expensive and
 for larger molecules and/or higher dimensional QC torsion profiles. QC calculations scale poorly with the number
 of basis sets $N$, like $O(N^M)$ where formally, $M\leq 4$ for hybrid DFT. With modern implementations, hybrid DFT scales
 asymptotically as $~N^{2.2-2.3}$ [@I9yhXyTJ]. Using QCArchive data [@gioUiKT3], we found that
-practically, hybrid DFT grows like $~N^{2.6}$ as shown for gradient evaluations in Figure @fig:b3lyp_scaling, A. To achieve good sampling to adequately fit the torsions,
+practically, hybrid DFT grows like $~N^{2.6}$ for the DZVP basis as shown for gradient evaluations in Figure @fig:b3lyp_scaling, A. To achieve good sampling to adequately fit the torsions,
 constrained geometry optimizations need to be calculated at $\leq 15^0$ intervals for a minimum of 24 constrained 
 geometry optimizations. To avoid hysteresis in the energy profile due to orthogonal degrees of freedom [@1E3wArY0j],
 methods like wavefront propagation `[hold for CITE torsiondrive paper]`{.red} are used. This adds a factor of 2D, where D is the dimension of the QC scan,
@@ -343,16 +343,15 @@ torsion angle of the central bond computed via QCArchive at B3LYP-D3(BJ) / DZVP 
 The QC torsion barrier height scales linearly with the WBO.](images/figure_3_2.svg){#fig:biphenyls}
 
 ### 3.2 The Wiberg Bond Order quantifies the electronic population overlap between two atoms and captures bond conjugation
-The Wiberg bond order (WBO) is a bond property that is calculated using orthonormalized atomic orbitals that are used
-as basis sets in semi-empirical QC methods[@QlopodHU]. Wiberg originally formulated it for the CNDO basis set [@BES2Ksiq] but it can be
-easily extended to other semi-empirical QC methods such as AM1 [@tnSqySMX] and PM3 [@dgUvu4tX]. The WBO is a measure
-of electron density between two atoms in a bond and is given by the quadratic sum of the density matrix elements over 
+The Wiberg bond order (WBO) is a bond property that is calculated using atomic orbitals (AOs) that are used
+as basis sets in quantum and semi-empirical methods[@QlopodHU]. WBOs originally started with the CNDO formalism [@BES2Ksiq], but has been extended to other semi-empirical methods such as AM1 [@tnSqySMX] and PM3 [@dgUvu4tX]. The WBO is a measure
+of electron density between two atoms in a bond and is given by the quadratic sum of the density matrix elements over
 occupied atomic orbitals on atoms A and B
 
 \begin{equation} W_{AB} = \sum_{\mu\in A}\sum_{\nu\in B} P^2_{\mu\nu} \end{equation}
 
-The Wiberg bond order assumes atomic orbitals (AOs) are orthogonal. In ab initio calculations, however, AOs are not
-orthogonal but the WBO can be calculated via Löwdin normalization [@K8bdDsCu; @1BEyXJiMo] which is how it is calculated in Psi4 [@YC6qkEYS].
+For quantum chemistry, AOs are often non-orthogonal and require normalization for the WBO to be valid. In the case of WBOs in Psi4 [@YC6qkEYS] the Löwdin normalization [@K8bdDsCu; @1BEyXJiMo] scheme is used.
+For the practical purposes of this paper, the Wiberg and Wiberg-Löwdin schemes are identical and will be described as "WBO"s for both semi-empirical and quantum chemistry methods.
 
 We calculated the WBO from AM1 calculations for the biphenyl series as shown in figure @fig:biphenyls A. The increase in the WBO corresponds
 to increasing conjugation and torsion energy barrier height of the bond. When the torsion energy barrier heights are plotted against
@@ -957,31 +956,46 @@ needed to determine how many torsion SMIRKS types are needed for maximum transfe
 
 ## 5. Detailed method
 
-### 5.1 QCArchive automates QC data generation and archives the resulting data
-#### 5.1.1 Submitting computations to QCArchive ensures reproducibility
+### 5.1 QCArchive data generation and archiving
 `[Hold for Daniel to write up. Please describe how QCArchive runs torsion scans and how to submit and retrieve data]`{.red}
+The MolSSI [@QS8UBx4] QCArchive project is a platform for computing, organizing, and sharing quantum chemistry data.
+Computations with this platform automatically record all input and output quantities ensuring the reproducibility of all computations envolved.
+In the case of computing with the MolSSI QCArchive instances, all data is automatically hosted and can be queried using the platform.
+
+#### 5.1.1 Submitting computations to QCArchive
+
+`Add scripts here?`{.red}
 
 #### 5.1.2 Details on QC and MM torsion scans.
-All QC calculations were computed at B3LYP-D3(BJ) / DZVP. This level of theory was chosen based on benchmark conducted by the
-Open Force Field consortium for fitting Parsley [@4WznyYFi]
 
-Molecular mechanics torsion scans were run on QCArchive using OpenMM [@sJWPs71N] for the energy and gradient evaluations.
-The molecules were parameterized with the OpenFF parsley Force Field (v1.0.0) [@j7nbtcyi]
+All torsion scans were computed with the TorsionDrive [@PBjQ2b0k] project, which makes choices of new constrained optimizations to evaluate.
+The required constrained optimizations were then computed with the geomeTRIC [@zyjNwQ0g] standalone geometry optimizer interfaced to the QCEngine [url:https://github.com/molssi/qcengine] project.
+
+To ensure a fair comparison between the QC and MM torsion scans, the only change in the torsion scan procedure was to switch out the program, which evaluated the gradient at each step in the geomeTRIC optimization.
+For QC, gradients were computed at B3LYP-D3(BJ) / DZVP with the Psi4 [@YC6qkEYS] program. This level of theory was chosen based on benchmark conducted by the
+Open Force Field consortium for fitting Parsley [@4WznyYFi]
+For molecular mechanics, gradients were run using OpenMM [@sJWPs71N] with the OpenFF parsley Force Field (v1.0.0) [@j7nbtcyi].
 
 ### 5.2 Calculating Bond orders
+
 
 #### 5.2.1 AM1 WBO and AM1 ELF10 WBO
 To calculate AM1 ELF10 WBO, we used OpenEye's QUACPAC toolkit [@OlXUfAPe] (OpenEye version 2019.Apr.2). The
 ELF10 WBO comes along free after an AM1-BCC charge fitting procedure. For ELF10 WBOs generated in this paper, we used the `get_charges` function
 in the `chemi.py` module in `fragmenter` versions v0.0.3 and v0.0.4. To calculate AM1 WBO for individual conformers, we used the `OEAssignPartialCharges`
-with the `OECharges_AM1BCCSym` option from the QUACPAC toolkit for each conformer generated with Omega [@9rOEoE68] (OpenEye versio 2019.Apr.2)
+with the `OECharges_AM1BCCSym` option from the QUACPAC toolkit for each conformer generated with Omega [@9rOEoE68] (OpenEye version 2019.Apr.2)
 which is called for the `get_charges` function.
 For AM1 WBOs calculated to verify the results from the validation set, we generated conformers using the `generate_grid_conformer` function in the `chemi.py` module in `fragmenter`
 version v0.0.4.+25.gbb12030
 
-#### 5.2.2 Wiberg Bond Orders calculated with larger basis sets
+#### 5.2.2 Wiberg Bond Orders in Psi4
+
+Wiberg-Löwdin bond orders are calculated in Psi4 with the keyword `scf_properties: wiberg_lowdin_indices` using Psi4 version 1.3. All bond orders were computed during the torsion scan computations.
+
 `[Leave to Daniel to describe how Wiberg bond orders are calculated in QCArchive (it only
 calculates Wiberg-Löwdin so provide that formula and why the Löwdin normalization is needed)]`{.red}
+
+`[DGAS: I don't understand what else is needed here, you discuss this in section 4 already.]`{.red}
 
 ### 5.3 Datasets
 

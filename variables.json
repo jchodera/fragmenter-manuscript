@@ -1,5 +1,5 @@
 {
-  "date": "January 31, 2020",
+  "date": "February 3, 2020",
   "authors": [
     {
       "github": "ChayaSt",
@@ -37,15 +37,15 @@
       "github": "dgasmith",
       "name": "Daniel G A Smith",
       "initials": "DGAS",
-      "orcid": "XXXX-XXXX-XXXX-XXXX",
-      "twitter": "johndoe",
-      "email": "john.doe@something.com",
+      "orcid": "0000-0001-8626-0900",
+      "twitter": "dga_smith",
+      "email": "dgasmith@icloud.com",
       "affiliations": [
-        "Department of Something, University of Whatever"
+        "The Molecular Sciences Software Institute, Blacksburg, Virginia 24060 USA"
       ],
       "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
-        3
+        4
       ]
     },
     {
@@ -121,20 +121,24 @@
     {
       "affiliation": "Department of Something, University of Whatever",
       "affiliation_number": 3
+    },
+    {
+      "affiliation": "The Molecular Sciences Software Institute, Blacksburg, Virginia 24060 USA",
+      "affiliation_number": 4
     }
   ],
   "ci_source": {
     "repo_slug": "ChayaSt/fragmenter-manuscript",
     "repo_owner": "ChayaSt",
     "repo_name": "fragmenter-manuscript",
-    "commit": "7e0e7084e3f0ceb3fc9eeadb47339d0a44fa6b45"
+    "commit": "e22fc9705abb2cdd00c7df763691e08c41841386"
   },
   "manuscript_stats": {
     "reference_counts": {
-      "doi": 79,
-      "url": 8,
-      "total": 87
+      "doi": 80,
+      "url": 10,
+      "total": 90
     },
-    "word_count": 15239
+    "word_count": 15419
   }
 }
