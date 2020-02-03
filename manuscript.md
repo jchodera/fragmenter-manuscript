@@ -24,9 +24,9 @@ title: Capturing non-local effects when fragmenting molecules for quantum chemic
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/e22fc9705abb2cdd00c7df763691e08c41841386/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/f16a1d6dfc596db26a95dd62da9fbe07e9fe63c9/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@e22fc97](https://github.com/ChayaSt/fragmenter-manuscript/tree/e22fc9705abb2cdd00c7df763691e08c41841386)
+from [ChayaSt/fragmenter-manuscript@f16a1d6](https://github.com/ChayaSt/fragmenter-manuscript/tree/f16a1d6dfc596db26a95dd62da9fbe07e9fe63c9)
 on February 3, 2020.
 </em></small>
 
@@ -435,7 +435,7 @@ The validation set (SI @fig:full_validation_set), was used to generate these dis
 number of individual fragments in the dataset). The pink standard deviation distribution was calculated over 366 distributions of 366 bonds
 in different chemical environments (of the 140602 fragments)](images/standard_deviations.svg){#fig:standard_deviations}
 
-As we have shown, the WBO is conformation dependent and this dependency can also be highly informative of the electronic coupling
+As we have shown, the WBO is conformation-dependent and this dependency can also be highly informative of the electronic coupling
 in a system. Figure @fig:standard_deviations shows the distribution of standard deviations of WBO distributions with respect to conformation in blue.
 Most of the standard deviations fall below 0.03, which is encouragingly small. However, it can become computationally expensive to calculate the WBO for all conformations. If we want to
 use WBOs as a surrogate to determine if our fragment is representative of the parent molecule in a reproducible way,
@@ -451,26 +451,26 @@ atomic partial charges and WBOs for the molecule which are relatively insensitiv
 and which mitigate two pathologies of AM1-BCC charges: peculiar charges resulting from strong intramolecular electrostatic
 interactions (e.g. from internal hydrogen bonds or formal charges) and simple conformational variance.
 
-![**Distribution of WBO in drug-like molecules have peaks at expected values**
-**[A]** The distribution of all WBOs for all bonds in molecules in set. The peak at one, close to two and close to thres correspond to
-single, double and triple bonds. the density between one and two correspond to aromatic and conjugated bonds. The peak at ~0.7 correspond
+![**Distribution of WBO in drug-like molecules is concentrated near chemical sensible values**
+**[A]** The distribution of all WBOs for all bonds in molecules in set. The mode at one, close to two and close to three correspond to
+single, double and triple bonds. the density between one and two correspond to aromatic and conjugated bonds. The mode at ~0.7 correspond
 to bonds that include sulfur and phosphorous which are longer, weaker bonds. **[B]** The blue distribution includes carbon - carbon bonds that
-are not in rings. The peaks at one, two and three correspond to single, double and triple bonds. The pink distribution include bonds that are in rings.
-The peak at one corresponds to single bonds and the density between one and 1.5 are aromatics. **[C]** The blue distribution includes bonds that have
+are not in rings. The modes at one, two and three correspond to single, double and triple bonds. The pink distribution include bonds that are in rings.
+The mode at one corresponds to single bonds and the density between one and 1.5 are aromatics. **[C]** The blue distribution includes bonds that have
 either one or two nitrogen. Many of these bonds are conjugated as demonstrated by the density around 1.5. The density at three corresponds to
-nitriles. The pink distribution include bonds that have oxygens. The peak at two corresponds to carbonyls.](images/figure-2_4.svg){#fig:wbo_dists}
+nitriles. The pink distribution include bonds that have oxygens. The mode at two corresponds to carbonyls.](images/figure-2_4.svg){#fig:wbo_dists}
 
 This method can also be applied to derive WBOs that are insensitive to conformers. To check how well ELF10 estimated $W_{AB}$ recapitulates the multiplicity of bonds,
 we calculated $W_{AB}$ from AM1 ELF10 calculations
 for all bonds in a set of molecules shown in SI Figure @fig:wbo_dist_mols. The distribution in figure @fig:wbo_dists corresponds
-closely with bond multiplicity. The density at ~ 0.7 correspond bonds involving sulfur and phosphorous since these are weaker and longer bonds. The peak at 1.0
-corresponds to C-H and C-C bonds, the peak close to 1.5 corresponds to bonds in aromatic rings, the peak close to 2.0 corresponds
-to double bonds, and finally the triple bonds form the last peak. Figures @fig:wbo_dists B and D seperate out different kinds of bonds
+closely with bond multiplicity. The density at ~ 0.7 correspond bonds involving sulfur and phosphorous since these are weaker and longer bonds. The mode at ~1.0
+corresponds to C-H and C-C bonds, the mode close to 1.5 corresponds to bonds in aromatic rings, the mode close to 2.0 corresponds
+to double bonds, and finally the triple bonds form the last peak. Figures @fig:wbo_dists B and D separate out different kinds of bonds
 to more clearly illustrate what the WBO captures. Figure @fig:wbo_dists B shows carbon - carbon bonds not in rings (blue) and bonds in rings (pink).
-The carbon - carbon distribution has distinct peaks at one, two and three corresponding to single, double and triple bonds. There is also a smaller
-peak at 1.5 that corresponds to conjugated bonds. The pink distribution includes bonds in rings and has a peak at one and 1.5 which corresponds to aliphatic
-and aromatic rings, respectively. Figure @fig:wbo_dists D shows distrbutions with bonds that have nitrogens (blue) and oxygens (pink). The peaks occur at
-the expected values; 1, 1.5 and 3 for nitrogen which corresponds to single, conjugated and triple bonds and 1 and 2 for oxygens which correspond to
+The carbon - carbon distribution has distinct modes at one, two and three corresponding to single, double and triple bonds. There is also a smaller
+mode at 1.5 that corresponds to conjugated bonds. The pink distribution includes bonds in rings and has modes at one and 1.5 which corresponds to aliphatic
+and aromatic rings, respectively. Figure @fig:wbo_dists D shows distributions with bonds that have nitrogens (blue) and oxygens (pink). The peaks occur at
+chemically sensible vlaues; 1, 1.5 and 3 for nitrogen which corresponds to single, conjugated and triple bonds and 1 and 2 for oxygens which correspond to
 single and carbonyl bonds. For the rest of this section we will be focusing on the robustness and generalizability of ELF10 WBOs.
 
 #### 3.3.4 WBOs are a robust signal of how torsion barrier heights depend on remote chemical changes.
@@ -481,12 +481,12 @@ The Hammett equation relates meta and para benzoic acid substituents to the acid
 \begin{equation} log \frac{K}{K_0} = \sigma\rho \end{equation}
 
 Where $\sigma$ is a substituent constant and $\rho$ is a reaction constant. It aims to isolate the resonance and inductive effects
-of substituents from the sterics effects of a reaction. Here, we generated a combinatorial set of meta and para subsituted phenyls
-and pyridine @fig:subsituted_phenyls A with 26 functional groups that cover a wide range of electron donating and withdrawing groups.
+of substituents from the sterics effects of a reaction. Here, we generated a combinatorial set of meta and para substituted phenyls
+and pyridine @fig:substituted_phenyls A with 26 functional groups that cover a wide range of electron donating and withdrawing groups.
 (details on generating and accessing this set is in section 5.3.2 in detailed methods)
 We then calculated the ELF10 WBO for the bond attaching the functional group to the aromatic ring (highlighted green in
-Figure @fig:subsituted_phenyls A) for all functional groups which resulted in 133 (26 * 5 + 3) data points for each functional group. This allowed us to isolate the effect on a bond's WBO from remote chemical environment changes,
-defined as a change more than two bonds away, from other effects such as sterics and conformations. The resulting distributions are in figure @fig:subsituted_phenyls, B.
+Figure @fig:substituted_phenyls A) for all functional groups which resulted in 133 (26 * 5 + 3) data points for each functional group. This allowed us to isolate the effect on a bond's WBO from remote chemical environment changes,
+defined as a change more than two bonds away, from other effects such as sterics and conformations. The resulting distributions are in figure @fig:substituted_phenyls, B.
 It is interesting to note that the trend of decreasing WBOs for more electron
 donating groups are anti correlates with increasing Hammett substituent constants. In SI Figure @fig:hammett, the AM1 ELF10 WBO of the bond
 between the functional group and benzoic acid is plotted against their Hammett meta and para substituent constants (values were taken from Hansch et al. [@1EJC88xIC]). Functional groups
@@ -494,11 +494,11 @@ that are more electron donating will have more electron density on the bond atta
 destabilize the benzoate, increases its pKa, which corresponds to lower substituent constants.
 
 ![**AM1 ELF10 Wiberg bond orders correlate with torsion barrier heights in related molecules**
-**[A]** Systems and functional groups used in the subsituted phenyl set. The functional groups were chosen to span a large range
+**[A]** Systems and functional groups used in the substituted phenyl set. The functional groups were chosen to span a large range
 of electron donating and withdrawing groups.
 **[B]** AM1 ELF10 WBO distributions for the bond between the phenyl ring and X~1~ in different chemical environments
 **[C]** Selected QC torsion scan barrier heights vs AM1 ELF10 WBOs. These lines all had $r^2$ greater than 0.7.
-**[D]** Same as **C** but these series did not fit the lines as well ($r^2$ less than 0.7). (images/substituted_phenyls.svg){#fig:subsituted_phenyls}
+**[D]** Same as **C** but these series did not fit the lines as well ($r^2$ less than 0.7).](images/substituted_phenyls.svg){#fig:substituted_phenyls}
 
 |X~1~ | slope | standard error | $r^2$ and 95% CI |
 |---|---|---|---|
@@ -523,29 +523,35 @@ of electron donating and withdrawing groups.
 Table: slope and associated statistics for torsion barrier height vs WBO for selected functional groups {#tbl:stats}
 
 To investigate how these long range effects observed in the WBOs capture changes in the bonds' torsion potential energy, we ran representative QC torsion
-scans for 17 of the functional groups (SI Figures @fig:phenyl_td_1 - @fig:phenyl_td_5). We did not run QC torsion scans for functional groups that either did not have a torsion such
+scans for 17 of the functional groups (SI Figures @fig:phenyl_td_1, @fig:phenyl_td_2, @fig:phenyl_td_3, @fig:phenyl_td_4  @fig:phenyl_td_5). We did not run QC torsion scans for functional groups that either did not have a torsion such
 as halogens, were congested such as trimethyl amonium and functional groups where the WBOs did not change by more than 0.01 for different functional
 groups at the meta or para position such as methyl. We chose the representative molecules for the 17 functional groups by sorting them
-by their WBO and selecting molecules with minimum WBO difference of 0.02. All of the resulting QC torsion scans are shown in SI Figures @fig:phenyl_td_1 - @fig:phenyl_td_5.
+by their WBO and selecting molecules with minimum WBO difference of 0.02. All of the resulting QC torsion scans are shown in SI Figures @fig:phenyl_td_1, @fig:phenyl_td_2, @fig:phenyl_td_3, @fig:phenyl_td_4, @fig:phenyl_td_5.
 We show a representative series of torsion scan for the nitro functional group in figure {@fig:sub_phenyl_qc_scan}A. The torsion energy barrier height
 increase with increasing ELF10 WBO of the bond. In addition, {@fig:sub_phenyl_qc_scan}B  shows that the Wiberg-Lowdin bond orders are anti-correlated with
 the QC torsion scan which is the same result we saw for the initial bipheynl set discussed in the previous section. We also found that the linear
 relationship between WBOs and torsion energy barrier height
-shown in Figures @fig:biphenyls, E  generalizes to the functional groups tested in this set (Figure {@fig:subsituted_phenyls} C and D). However, some
-X~1~ we tested do not fully follow the trend so we separated the lines into Figure @fig:subsituted_phenyls C for X~1~ that have lines with $r^2$ > 0.7 and
-Figure @fig:subsituted_phenyls D for X~1~ that have lines with $r^2$ < 0.7.  Table @tbl:stats lists the slopes and
+shown in Figures @fig:biphenyls, E  generalizes to the functional groups tested in this set (Figure {@fig:substituted_phenyls} C and D). However, some
+X~1~ we tested do not fully follow the trend so we separated the lines into Figure @fig:substituted_phenyls C for X~1~ that have lines with $r^2$ > 0.7 and
+Figure @fig:substituted_phenyls D for X~1~ that have lines with $r^2$ < 0.7.  Table @tbl:stats lists the slopes and
 associated statistics for the fitted lines.
 
-![**Wiberg bond orders are anti correlated with QC torsion scans**
-**[A]** QC torsions for methylamino in series of different chemical environment. Barrier heights increase with increasing AM1 ELF10 WBOs
-**[B]** Wiberg bond orders calculated at each point in the QC torsion scan using the same level of theory. The bond orders are
-anti correlated with QC torsion scans **[C]** QC scans for urea in a series of different chemical environment. Both profiles and
-energy barriers change with AM1 ELF10 WBOs **[D]** Wiberg bond orders are not perfectly anti correlated to QC scans](images/figure_7.svg){#fig:sub_phenyl_qc_scan}
+![**Wiberg bond orders are anti correlated with QC torsion scans.**
+**[A]** Selected series of molecules with central torsion bonds connecting the nitro group to the pheynyl ring highlighted and labeled with AM1 ELF10 WBOs.
+**[B]** QC torsion scans for nitro series in different chemical environments shown in **A**. The color of the scans correpsond to the colors
+of the highlighted bonds in **A**. Torsion energy barriers increase with increasing AM1 ELF10 WBOs. **[C]** Wiberg bond orders calculated
+at each point in the QC torsion scan using the same level of theory. **[D]** Conformer energy of torsion scan plotted against it WBO. All molecules in
+this series have WBO that are anti-correlated with their QC torsion scan. Pearson correlation coefficients are shown in the upper right legend.
+**[E]** Same as **A** but with urea at the X~1~ position.  **[F]** Same as **B** but for urea in a series of different chemical environment. Both profiles and
+energy barriers change with AM1 ELF10 WBOs. In addition, the grey scan has higher energy barriers than the olive scan but its ELF10 WBO is lower.
+**[G]** Same as **[C]** but for urea. Here, the WBO scans all have the same profiles while the QC torsion scan does not.
+**[H]** Same as **D** but here the WBO scans are not always anti-correlated or not as strongly anti-correlated. The WBO does not change because
+the changes in the QC torsion scan captures spacial effects while the WBO scans capture conjugation.] (images/example_scans.svg){#fig:sub_phenyl_qc_scan}
 
 For most functional groups, the change in WBOs correspond to changes in torsion barrier heights (SI Figures @fig:phenyl_td_1 - @fig:phenyl_td_5).
 However, for some functional groups, the change in WBO does not fully capture the differences in torsion scans because not only do the torsion energy
 barrier heights increase, but the profile changes considerably. as shown in {@fig:sub_phenyl_qc_scan}C for urea. Interestingly, the Wiberg
-bond order scans do have the same profiles {@fig:sub_phenyl_qc_scan} D. These phenomena and the discrepancies observed in Figure @fig:subsituted_phenyls D,
+bond order scans do have the same profiles {@fig:sub_phenyl_qc_scan} D. These phenomena and the discrepancies observed in Figure @fig:substituted_phenyls D,
 are discussed in more detail in section 4.3 in the discussion.
 
 When we compare the standard deviations of WBO distributions with respect to conformation versus with respect to changes in chemical space (figure @fig:standard_deviations, pink distribution),
@@ -850,7 +856,7 @@ shifts in the distributions observed in figure @fig:dabrafenib_wbo_dists are als
 `should I add more figures on the kind of things I saw? SI?`{.orange}
 
 This kind of data can potentially be used to complement knowledge based molecular similarity applications which are usually
-defined locally and might not detect long range effects. In addition, since WBO is anti-correlated with Hammett resonance parameters (fig @fig:subsituted_phenyls C and D),
+defined locally and might not detect long range effects. In addition, since WBO is anti-correlated with Hammett resonance parameters (fig @fig:substituted_phenyls C and D),
 and shifts in distributions also seem to detect pKa shifts, WBOs may be useful in improving pKa predictions.
 
 We are sharing the dataset as a benchmark set for future fragmentation schemes. It is also straight forward to generate such data for molecules
@@ -869,10 +875,10 @@ attempt to provide a link between the physical understanding of molecules, a sys
 that chemists employ when thinking about molecules. Given that these quantities try to make that connection, it is not surprising that fractional bond orders
 captures important, chemical properties that can be useful in many applications, specifically force field parameterization. Indeed, In the MMP2 [@mgZozbxT],
 MM3 [@F7LEPYAx] and MM4 [@1F0ePTGWd] force fields, a Variable Electronegativity SCF derived bond order for pi-systems was used to fit bond length, bond force constants and twofold torsional
-force constants. Given the relationship we find in figure @fig:subsituted_phenyls, E, we should be able to extrapolate or interpolate torsion force constants by calculating
+force constants. Given the relationship we find in figure @fig:substituted_phenyls, E, we should be able to extrapolate or interpolate torsion force constants by calculating
 the WBO, thus avoiding running expensive QC torsion scans. The WBO comes free with an AM1-BCC [@LxrgIkt0] charging calculation at no extra cost, and is also now possible to calculate
 EHT electronic populations with the OFF toolkit [@ggfhCq68].
-The SMIRNOFF format provides a convenient way to add appropriate torsion terms given the data we have. For example, In figure @fig:subsituted_phenyls, E, the lines
+The SMIRNOFF format provides a convenient way to add appropriate torsion terms given the data we have. For example, In figure @fig:substituted_phenyls, E, the lines
 seem to cluster into three clusters, so we can us ChemPer [@14f8CUfzQ] to generate SMIRKS patterns to capture the chemistries in
 these clusters and interpolate the torsion force constants for the different chemical environments of those patterns. This has the potential to avoid
 many expensive QC torsion scans, specifically for bespoke parameter fitting for new chemical entities, and improve torsion parameters by including long range effects.
@@ -883,7 +889,7 @@ This can allow us to avoid running expensive, hard to converge, QC torsion scans
 ### 4.3 Relative changes in WBO is not enough to capture all characteristics of QM torsion scans
 
 The WBO is a measure of electron population overlap between atoms in a bond, so its relative changes is a good indication of
-conjugation and therefor a surrogate for torsion barrier heights (fig @fig:subsituted_phenyls, E). However, as we have shown in
+conjugation and therefor a surrogate for torsion barrier heights (fig @fig:substituted_phenyls, E). However, as we have shown in
 figure @fig:sub_phenyl_qc_scan and [Hold for SI], relative changes in WBO for the same torsion type in different chemical
 environments only capture change of scale in torsion scans, not changes in the profile (relative amplitutes,  periodicities and location of minima and maxima).
 There are several ways a torsion scan of the same torsion type in different chemical environments can change besides scale.
@@ -1175,19 +1181,24 @@ This set of molecules were selected to cover bonds of different types and multip
  **[B]** Same as **A** but for para substituents](images/SI-hammett.svg){#fig:hammett}
 
 ![**QC torsion scans and corresponding WBOs for substituted phenyl set**
-QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set](images/SI_substituted_phenyl_td_1.svg){#fig:phenyl_td_1}
+QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set. QC scan colors correspond to highlighted central
+bonds shown on the right. The molecules are labeled with their ELF10 WBOs.](images/SI_substituted_phenyl_td_1.svg){#fig:phenyl_td_1}
 
 ![**QC torsion scans and corresponding WBOs for substituted phenyl set**
-QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set](images/SI_substituted_phenyl_td_2.svg){#fig:phenyl_td_2}
+QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set. QC scan colors correspond to highlighted central
+bonds shown on the right. The molecules are labeled with their ELF10 WBOs.](images/SI_substituted_phenyl_td_2.svg){#fig:phenyl_td_2}
 
 ![**QC torsion scans and corresponding WBOs for substituted phenyl set**
-QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set](images/SI_substituted_phenyl_td_3.svg){#fig:phenyl_td_3}
+QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set. QC scan colors correspond to highlighted central
+bonds shown on the right. The molecules are labeled with their ELF10 WBOs.](images/SI_substituted_phenyl_td_3.svg){#fig:phenyl_td_3}
 
 ![**QC torsion scans and corresponding WBOs for substituted phenyl set**
-QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set](images/SI_substituted_phenyl_td_4.svg){#fig:phenyl_td_4}
+QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set. QC scan colors correspond to highlighted central
+bonds shown on the right. The molecules are labeled with their ELF10 WBOs.](images/SI_substituted_phenyl_td_4.svg){#fig:phenyl_td_4}
 
 ![**QC torsion scans and corresponding WBOs for substituted phenyl set**
-QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set](images/SI_substituted_phenyl_td_5.svg){#fig:phenyl_td_5}
+QC torsion scans, WBOs corresponding to scan and torsion barrier heights vs ELF10 WBOs for phenyl set. QC scan colors correspond to highlighted central
+bonds shown on the right. The molecules are labeled with their ELF10 WBOs.](images/SI_substituted_phenyl_td_5.svg){#fig:phenyl_td_5}
 
 ![**Validation set**
 All molecules used in the validation set of fragmentation schemes. The bonds are highlighted by how sensitive they are to
