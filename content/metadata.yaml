@@ -1,5 +1,5 @@
 ---
-title: "Capturing non-local effects when fragmenting molecules for quantum chemical torsion scans"
+title: "Capturing non-local through-bond effects when fragmenting molecules for quantum chemical torsion scans"
 keywords:
   - forcefield
   - force-field
@@ -18,14 +18,14 @@ author_info:
       - Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA
     funders: Grant XXXXXXXX
   -
-    github: johndoe
+    github: cbayly13
     name: Christopher I Bayly
     initials: CIB
-    orcid: XXXX-XXXX-XXXX-XXXX
+    orcid: 0000-0001-9145-6457
     twitter: johndoe
-    email: john.doe@something.com
+    email: bayly@eyesopen.com
     affiliations:
-      - Department of Something, University of Whatever
+      - OpenEye Scientific Software
     funders: Grant XXXXXXXX
   -
     github: dgasmith
