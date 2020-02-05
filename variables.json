@@ -23,12 +23,10 @@
       "name": "Christopher I Bayly",
       "initials": "CIB",
       "orcid": "0000-0001-9145-6457",
-      "twitter": "johndoe",
       "email": "bayly@eyesopen.com",
       "affiliations": [
         "OpenEye Scientific Software"
       ],
-      "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
         3
       ]
@@ -43,7 +41,6 @@
       "affiliations": [
         "The Molecular Sciences Software Institute, Blacksburg, Virginia 24060 USA"
       ],
-      "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
         4
       ]
@@ -82,13 +79,12 @@
       "github": "davidlmobley",
       "name": "David L Mobley",
       "initials": "DLM",
-      "orcid": "XXXX-XXXX-XXXX-XXXX",
-      "twitter": "johndoe",
+      "orcid": "0000-0002-1083-5533",
+      "twitter": "davidmobley",
       "email": "john.doe@something.com",
       "affiliations": [
         "Department of Something, University of Whatever"
       ],
-      "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
         5
       ]
@@ -103,7 +99,6 @@
       "affiliations": [
         "Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA"
       ],
-      "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
         2
       ]
@@ -135,7 +130,7 @@
     "repo_slug": "ChayaSt/fragmenter-manuscript",
     "repo_owner": "ChayaSt",
     "repo_name": "fragmenter-manuscript",
-    "commit": "7ff068a4deea5ee48bd5881e1ccb850fa4c0a082"
+    "commit": "7c0846321676496e49fafa8b960d7b72ccde9dd8"
   },
   "manuscript_stats": {
     "reference_counts": {
@@ -143,6 +138,6 @@
       "url": 11,
       "total": 91
     },
-    "word_count": 15918
+    "word_count": 15917
   }
 }

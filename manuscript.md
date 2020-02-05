@@ -24,9 +24,9 @@ title: Capturing non-local through-bond effects when fragmenting molecules for q
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/7ff068a4deea5ee48bd5881e1ccb850fa4c0a082/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/7c0846321676496e49fafa8b960d7b72ccde9dd8/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@7ff068a](https://github.com/ChayaSt/fragmenter-manuscript/tree/7ff068a4deea5ee48bd5881e1ccb850fa4c0a082)
+from [ChayaSt/fragmenter-manuscript@7c08463](https://github.com/ChayaSt/fragmenter-manuscript/tree/7c0846321676496e49fafa8b960d7b72ccde9dd8)
 on February 5, 2020.
 </em></small>
 
@@ -50,12 +50,9 @@ on February 5, 2020.
     ![ORCID icon](images/orcid.svg){.inline_icon}
     [0000-0001-9145-6457](https://orcid.org/0000-0001-9145-6457)
     · ![GitHub icon](images/github.svg){.inline_icon}
-    [cbayly13](https://github.com/cbayly13)
-    · ![Twitter icon](images/twitter.svg){.inline_icon}
-    [johndoe](https://twitter.com/johndoe)<br>
+    [cbayly13](https://github.com/cbayly13)<br>
   <small>
      OpenEye Scientific Software
-     · Funded by Grant XXXXXXXX
   </small>
 
 + **Daniel G A Smith**<br>
@@ -67,7 +64,6 @@ on February 5, 2020.
     [dga_smith](https://twitter.com/dga_smith)<br>
   <small>
      The Molecular Sciences Software Institute, Blacksburg, Virginia 24060 USA
-     · Funded by Grant XXXXXXXX
   </small>
 
 + **Josh Fass**<br>
@@ -96,14 +92,13 @@ on February 5, 2020.
 
 + **David L Mobley**<br>
     ![ORCID icon](images/orcid.svg){.inline_icon}
-    [XXXX-XXXX-XXXX-XXXX](https://orcid.org/XXXX-XXXX-XXXX-XXXX)
+    [0000-0002-1083-5533](https://orcid.org/0000-0002-1083-5533)
     · ![GitHub icon](images/github.svg){.inline_icon}
     [davidlmobley](https://github.com/davidlmobley)
     · ![Twitter icon](images/twitter.svg){.inline_icon}
-    [johndoe](https://twitter.com/johndoe)<br>
+    [davidmobley](https://twitter.com/davidmobley)<br>
   <small>
      Department of Something, University of Whatever
-     · Funded by Grant XXXXXXXX
   </small>
 
 + **John D Chodera**<br>
@@ -115,7 +110,6 @@ on February 5, 2020.
     [jchodera](https://twitter.com/jchodera)<br>
   <small>
      Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA
-     · Funded by Grant XXXXXXXX
   </small>
 
 
@@ -134,7 +128,7 @@ molecules are generally fragmented into smaller entities to carry out QC torsion
 Poor fragmentation schemes, however, have the potential to significantly disrupt
 electronic properties of the region around the torsion, leading to poor representation of the parent molecule's chemical environment and the resulting torsion energy profile.
 Here, we show that a rapidly computable quantity, the fractional Wiberg bond order (WBO), is sensitive to the chemical
-environment of bonds, and can be used as a useful surrogate to assess the robustness of fragmentation schemes and identify 
+environment of bonds, and can be used as a surrogate to assess the robustness of fragmentation schemes and identify
 conjugated bond sets. 
 We use this concept to construct a validation set consisting of exhaustive fragmentations of
 druglike organic molecules (and their corresponding WBO distributions derived from accessible conformations) that can be used to evaluate fragmentation schemes.
@@ -146,7 +140,7 @@ to maximize the chemical equivalency of the fragment and the substructure in the
 
 ## 1. Introduction
 
-Molecular mechanics (MM) small molecule force fields are essential to the molecular design for chemical
+Molecular mechanics (MM) small molecule force fields are essential to molecular design for chemical
 biology and drug discovery, as well as the use of molecular simulation to understand the
 behavior of biomolecular systems. However, small molecule force fields have lagged behind
 protein force fields given the larger chemical space these force fields must cover to provide good
@@ -155,7 +149,7 @@ Torsion potentials for general force fields {may need definition of general vers
 are particularly problematic because historical approaches to their determination tend to produce
 parameters that generalize poorly [@13fQUQyf9]. 
 In particular, torsional potentials where the central bond is part of a conjugated system of bonds can be
-strongly influenced by distal substituents, an effect very difficult to represent in a general force field
+strongly influenced by distal substituents, an effect very difficult to represent in a force field
 using only local chemistry to define the parameters.
 This lack of generalizability has let many practitioners to aim to improve the force field accuracy by refitting torsion
 parameters for individual molecules in a semi automated bespoke fashion [@Io39j4ig; @5cjbQnbG;
@@ -179,10 +173,6 @@ Neighboring torsions can have correlated conformational preferences the low-orde
 way to model non-local correlations by fitting residuals between the 2D QC torsion energy profile and the 2D
 MM torsion energy profile. 
 
-In order to produce a quantum chemical energy profile representing the chemical environment to which the torsion of interest is to be fit, the
-quantum chemical torsion profile is generally computed on smaller fragments generated by a fragmentation-and-capping process
-for two main reasons.
-
 ![**Fragmenting molecules is necessary to avoid high computational cost of generating QC data.**
 **[A]** CPU time (wall time * nthreads) of one QC gradient evaluation at B3LYP-D3(BJ)/DZVP level of theory [@YPDz9hB3; @17YEERBX3] vs number
 of heavy atoms in molecules. All computations shown here were run on an Intel(R) Xeon(R) CPU E5-2697 v4 @ 2.30GHz.
@@ -190,6 +180,9 @@ Empirically, gradient evaluations grow as $O(N^{2.6})$ where $N$ is the number o
 on other processors shown in SI Figures @fig:intel_scaling & @fig:amd_scaling. The black curves shows a power law fit to the data,
 and the grey is the 95% CI of the curve estimate.
 **[B]** Smoothed histogram of heavy atoms in small molecules from DrugBank. The average druglike molecules has 25 heavy atoms.](images/B3LYP_scaling_1.svg){#fig:b3lyp_scaling}
+
+In order to produce a quantum chemical energy profile representing the chemical environment to which the torsion of interest is to be fit,
+molecules are generally fragmented to smaller, model fragments for two main reasons described below.
 
 1. **Computational efforts scale poorly with molecule size**.
 Generating one dimensional QC torsion profiles are computationally expensive and become increasingly inefficient
@@ -199,10 +192,10 @@ asymptotically as $~N^{2.2-2.3}$ [@I9yhXyTJ]. Using QCArchive data [@gioUiKT3], 
 practically, hybrid DFT grows like $~N^{2.6}$ for the DZVP basis as shown for gradient evaluations in Figure @fig:b3lyp_scaling, A. To achieve good sampling to adequately fit the torsions,
 constrained geometry optimizations need to be calculated at $\leq 15^0$ intervals for a minimum of 24 constrained 
 geometry optimizations. To avoid hysteresis in the energy profile due to orthogonal degrees of freedom [@1E3wArY0j],
-methods like wavefront propagation `[hold for CITE torsiondrive paper]`{.red} are used. This adds a factor of 2D, where D is the dimension of the QC scan,
+methods like wavefront propagation `[hold for CITE torsiondrive paper]`{.red} are used. This adds a factor of 2 * D, where D is the dimension of the QC scan,
 to the computational cost. We found (SI Figure @fig:opts_per_td) that on average ~60 optimizations are needed for a 1D wavefront propagated torsion
-drive to converge. We also found that roughly 20 gradient evaluations are needed for an optimization to to converge for the
-molecules we optimized (SI Figure @fig:grads_per_opt). Figure @fig:b3lyp_scaling, B shows a smoothed histogram of the distribution of
+drive to converge. We also found that roughly 20 gradient evaluations are needed for an optimization to to converge (SI Figure @fig:grads_per_opt).
+Figure @fig:b3lyp_scaling, B shows a smoothed histogram of the distribution of
 the number of heavy atoms in FDA approved small molecules taken from DrugBank [@1FI8iuYiQ]. For an average
 druglike molecule of 25 heavy atoms, we can estimate the cost of a 1D torsion scan to be $60 * 20 * 0.26 * 25^{2.6} \approx 1,000,000$ CPU seconds.
 Reducing the size of the molecule to 15 heavy atoms will reduce the cost the torsion scan by an order of magnitude ($60 * 20 * 0.26 * 15^{2.6} \approx 300,000$ CPU seconds)
@@ -214,11 +207,11 @@ this problem is reduced when a minimal model molecule is used, albeit not comple
 
 While a number of algorithms for fragmenting large molecules into smaller molecular fragments have been previously proposed,
 few are appropriate for the purpose of generating high-quality torsion scans. Many of these algorithms fall into two
-categories: 1. fragmentation for synthetic accessibility [@xbUA1nkO;
+categories: 1. fragmenting molecules for synthetic accessibility [@xbUA1nkO;
 @15j2SwU5A; @1BZlse7qR] and 2. fragmenting molecules to achieve linear scaling for QC calculations
 [@vm6HUPt4; @ll3I4A87; @nRywz8At; @EOlFsQFX]. 
 Fragmentation schemes for synthetic accessibility find building blocks for combinatorial and fragment based drug design. 
-Cleavage happens at points where it makes sense for chemical reactions and do not consider how those cuts affect the 
+Cleavage happens at points where it makes sense for chemical reactions and does not consider how those cuts affect the
 electronic properties of the fragments. For retrosynthetic applications, many cleavage points are at functional groups because 
 those are the reactive sites of molecules. However, for our application, we especially do not want to fragment at these
 reactive points given their likelihood of having
@@ -227,7 +220,7 @@ targeted for parameterization.
 Fragmentation algorithms for linear scaling such as Divide-and-Conquer methods [@F0de6fPE], effective fragment potential method
 [@EnOwBZmA] and systematic molecular fragmentation methods [@EOlFsQFX] require the users to manually 
 specify where the cuts should be or which bonds not to fragment. Furthermore, besides the scheme suggested by Rai et. al. [@XP23v9gZ], none of these methods address the needs specific
-to fragmenting molecules for QC torsion scans. Fragments need to include all atoms involved in 1-4 interactions, since they 
+to fragmenting molecules for QC torsion scans for the purpose of fitting MM force field parameters. Fragments need to include all atoms involved in 1-4 interactions, since they
 are incorporated in the fitting procedure. We also need a systematic way to determine if remote substituents change
 the barrier to rotation significantly for the central bond of interest.
 
@@ -235,11 +228,13 @@ In this work, we use the Wiberg Bond Order (WBO) [@BES2Ksiq], which is both simp
 from semi-empirical QC methods and is sensitive to the chemical environment around a bond. WBOs quantify electron population
 overlap between bonds, or the degree of binding between atoms. Bond orders are correlated with bond
 vibrational frequencies [@hHhjgmIm; @14qKIxxbD] and WBOs are used to predict trigger bonds in high energy-density material
-because it is correlated with the strength of the bond [@cAeBUxqm]
+because they are correlated with the strength of bonds [@cAeBUxqm],
 a property which also directly affects the torsional potential. 
 Wei, et. al. [@fpE0Y69s] have shown
 that simple rules for electron richness of aromatic systems in biaryls are good indication of torsion force constants (specifically for V~2~), however, this
 measure was only developed for biaryls and it does not take into account substituents beyond the aromatic ring directly adjacent to the bond.
+
+
 Here, we develop an approach that uses the WBO to validate whether a fragmentation scheme
 significantly changes the local chemical environment of interest,
 with a particular focus on fragmentation schemes suitable for QC torsion drives. Our approach uses simple 
@@ -275,13 +270,13 @@ the full graph vs. a subgraph. Since $\delta(e'; G')$ is computationally expensi
 define as the difference of the WBO on the central, rotatable bond $e'$ in $G'$ and in the full graph $G$.
 In order to calculate the WBO, we need to cap open valences. The rule we use are defined in section 3.4.
 
-We want to minimize $\gamma(e'; G')$, while also minimizing the cost of each subgraph. We define the cost as estimated in @fig:b3lyp_scaling
+We want to minimize $\gamma(e'; G')$, while also minimizing the cost of each subgraph. We define the cost as estimated in Figure @fig:b3lyp_scaling
 
 $$ c(G') \propto (|V'|)^{2.6} $$
 
 Which leads to minimizing
 
-$$ \sum_{e' \in \mathcal{E}} |\gamma(e';  G') - c(G'; e')|$$
+$$ \sum_{e' \in \mathcal{E}} |\gamma(e';  G') + c(G'; e')|$$
 
 The search space of $\mathcal G$ for each rotatable bond is combinatorial and its upper bound is ${|V|\choose{4}} + {|V|\choose{5}} + ... {|V|\choose{|V|}}$
 since all $G' \in \mathcal G$ need to be connected and rings are not fragmented. To reduce the search space, we also define a list
@@ -291,13 +286,14 @@ Given how large the search space can become, we use several heuristics as descri
 
 ### 2.2 Physical definitions
 
-The torsion energy function (or profile) of a bond is determined by a combination of effects from conjugation,
+In most MM force fields, torsions are defined by the four atoms involved in a torsion. However,
+the torsion energy function (or profile) of a bond is determined by a combination of local and non-local effects from conjugation,
 hyperconjugation, sterics and electrostatics
-[@fpE0Y69s; @AWj8hnbG; @Vx7ALVw2; @1DVkKVgPL]. Most of these effects
-are non-local. For this study we define local as atoms within two bonds of the central bond of a torsion and remote as any atom
+[@fpE0Y69s; @AWj8hnbG; @Vx7ALVw2; @1DVkKVgPL]. For this study
+we define local as atoms within two bonds of the central bond of a torsion and remote as any atom
 beyond those two bonds.
 
-Sterics and elecrostatics are in principle handled by non bonded terms in most force fields, so a torsion profile should
+Sterics and elecrostatics are in principle handled by non bonded terms in most force fields, so a torsion profile would ideally
 represent conjugation or hyperconjugation, and only the 1-4 electrostatics. Using small fragments to generate QC torsion profiles
 reduces non-local electrostatics and steric interactions from convoluting the data. However, conjugation and
 hyperconjugation are non local properties and remote chemical changes can influence the extent of conjugation and / or hyperconjugation.
@@ -315,39 +311,38 @@ we use the term conjugation to refer to all modes of conjugation and hyperconjug
 
 ## 3. Results
 
-### 3.1 Torsion energy barriers are sensitive to the chemical environment, which can be influenced by remote substituents
-In most forcefields, torsions are defined by the quartet of atom types involved in the dihedral [@waPeRcgV; @1GDaakPWY;
-@11Z8pXbEW; @Mi3Ujd07].
+### 3.1 Torsion energy barriers are sensitive to the chemical environment which can be influenced by remote substituents.
+In most forcefields, torsions are defined by the quartet of atoms types involved in the dihedral [@waPeRcgV; @1GDaakPWY;
+@11Z8pXbEW; @Mi3Ujd07]. Atom types encode chemical environments of atoms that usually only incorporate the local environment.
 However, the quartet of atom types do not always capture the relevant chemistry, especially when the effects
 are non local i.e., atoms contributing to hyperconjugation, delocalization or other non classical effects,
 are not part of the quartet involved in the torsion [@13fQUQyf9].
 In particular, with conjugated systems, distal electron-donating or -withdrawing substituents can exert a strong effect
 on a torsional barrier height.
-Figure {@fig:biphenyls}, A illustrates
-such a case with a series of biphenyls in different protonation states. While the MM torsion profiles
-are all the same (Figure @fig:biphenyls D), the QC torsion profiles are different for each protonation state (Figure @fig:biphenyls E).
+Simple examples can help illustrate this, like the biphenyl example in different protonation statesshown in  {@fig:biphenyls}, A.
+While the MM torsion profiles are all the same (Figure @fig:biphenyls D), the QC torsion profiles are different for each
+protonation state (Figure @fig:biphenyls E).
 The torsion energy barrier increases relative to the neutral state for the cation, anion and zwitterion, in that order.
 The profile changes qualitatively as well. For the neutral molecule, the lowest energy conformer
 is slightly out of plane, at $150^{\circ}$ and $120^{\circ}$.  For the others, the lowest energy 
 conformer is at $180^{\circ}$. In the neutral molecule, the slightly out-of-plane conformer is preferred to accommodate
 the proximal hydrogens. In the other cases, the increasing double-bond character of the conjugated central bond (shown for the zwitterion in Figure @fig:biphenyls B) makes the planar conformer preferred.
-{Note the use of hyphens when "out-of-plane" is used as an adjective: "This bond is out of plane" versus "This is an out-of-plane bond".}
 
 This trend poses several problems to
-automatic forcefield parametrization. Most general forcefields consider the central bond
-in the zwitterion equally rotatable which is reflected in the same torsion parameters for all four molecules (Figure @fig:biphenyls, D)
-while the QC scan clearly shows that it is not. This illustrates one
+automatic forcefield parametrization. Most general forcefields consider the central bond in all tautomers
+equally rotatable so their MM torsion profiles are all the same (Figure @fig:biphenyls, D)
+while the QC scan clearly shows that they are not. This illustrates one
 of the fundamental limits of atom types in classical forcefields. At what point in this series should
 a new atom type be introduced? The Open Force Field Initiative's effort on automating data driven direct
 chemical perception [@1HYTTY1PU ;@mbmV3Fg8; @14f8CUfzQ]
 addresses this problem by using SMIRKS patterns to assign parameters, and providing a framework to sample over 
 SMIRKS space in a data driven way. In addition, this example illustrates why fragmenting molecules
 appropriately for QC torsion scans requires human expertise and is difficult to automate. 
-In this case, a small changes three bonds away from the torsion central bond gradually changed the conjugated bond from 
+In this case, remote changes three bonds away from the torsion central bond gradually changed the conjugated bond from
 being highly rotatable to non-rotatable as the conjugation increased. When fragmenting molecules, we need to avoid
 destroying a bond's chemical environment by naively removing an important remote substituent.
 
-![**Torsion profiles can be sensitive to remote substituents changes in a molecule**
+![**Torsion profiles can be sensitive to remote substituents changes in a molecule.**
 **[A]** Biphenyl protonation states and tautomers with increasing Wiberg bond order for the central bond.
 **[B]** The resonance structure of the biphenyl zwitterion shows how the central bond is highly conjugated. The Wiberg bond order
 and torsion scan for this bond (see **A** and **C**) are reflective of a conjugated bond. **[C]** Relative QC energy as a function of
@@ -379,7 +374,7 @@ will be a robust descriptor. In addition, we also investigated the generality of
 In this section we will first discuss our findings and solution to the conformational dependency and then discuss how general the linear relationship is.
 
 #### 3.3.1 Conformation dependent variance of WBOs are higher for conjugated bonds
-WBOs are conformationally dependent since they are a function of the electronic density. However, not all bonds' WBOs
+WBOs are conformational-dependent since they are a function of the electronic density. However, not all bonds' WBOs
 change the same way with conformation. We found that WBOs for conjugated bonds have higher variance with respect to conformation and that bonds
 involved in conjugated systems have WBOs that are correlated with each other.
 
@@ -412,7 +407,7 @@ formed by atoms numbered 10 - 13 are freely rotating. This is reflected by the t
 The bonds involving the ether oxygens and aromatic rings (formed by atoms numbered 1-3, 8-10, 19, 23-24) exhibit higher variance. It is interesting to note the
 difference in the WBOs for the conjugated bonds formed by the nitrogen between
 the quinazoline and chloro fluoro phenyl (bonds formed by atoms numbered 19, 23 and 23, 24). Both of these bonds are conjugated
-with their neighboring ring systems, however, While the distribution of WBOs for bond 23-19
+with their neighboring ring systems. However, while the distribution of WBOs for bond 23-19
 (the grey distribution) has two modes clear modes of almost equal weights, the WBO distribution for bond 24-23 has lower variance. This is in agreement
 with the resonance structures shown in Figure @fig:wbo_var_corr. The resonance structures that have the double bond on the bond closer to
 the quinazoline (bond 19-23) are more stable because the negative charge is on a nitrogen. When the double bond is on the neighboring
@@ -620,6 +615,7 @@ fragment's WBO is within the threshold of the parent WBO.
 | carboxylic acid | `[CX3](=O)[OX1H0-,OX2H1]` |
 | nitro | `([NX3+](=O)[O-])`, `([NX3](=O)=O)` |
 | ester | `[CX3](=O)[OX2H0]` |
+| tri-halides | `[#6]((([F,Cl,I,Br])[F,Cl,I,Br])[F,Cl,I,Br])`
 
 Table: **Functional groups that are not fragmented**. This list is not comprehensive as it only includes functional groups that were
 present in the validation set. Users can add their own functional groups they
@@ -874,7 +870,7 @@ shifts in the distributions observed in figure @fig:dabrafenib_wbo_dists are als
 `should I add more figures on the kind of things I saw? SI?`{.orange}
 
 This kind of data can potentially be used to complement knowledge based molecular similarity applications which are usually
-defined locally and might not detect long range effects. In addition, since WBO is anti-correlated with Hammett resonance parameters (fig @fig:substituted_phenyls C and D),
+defined locally and might not detect long range effects. In addition, since WBO is anti-correlated with Hammett resonance parameters (Figure @fig:hammett),
 and shifts in distributions also seem to detect pKa shifts, WBOs may be useful in improving pKa predictions.
 
 We are sharing the dataset as a benchmark set for future fragmentation schemes. It is also straight forward to generate such data for molecules
@@ -970,7 +966,7 @@ and use those values instead of WBOs to determine the disruption of electron pop
 
 However, both of the above solutions, while reducing the cost of extent of conjugation detection, will still rely on needing
 to find the optimal path to grow our the fragment. A data-driven approach, which can find the optimal fragment is the ideal solution.
-The OFF QC datasets on QCArchive [@gioUiKT3] all include Wiberg Löwdin bond orders for all conformations. Given the
+The OFF QC datasets on QCArchive [@gioUiKT3] all include Wiberg bond orders for all conformations. Given the
 sheer number of data available on QCArchive, and the long range information WBOs captures, it will be possible to train an
 ML moldel to find which parts of a molecule are electronically couped and need to be conserved when fragmenting to reproduce
 the parent molecule chemical environment. This data-driven approach will reduce the cost of fragmeting and also potentially
