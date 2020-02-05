@@ -22,11 +22,9 @@ author_info:
     name: Christopher I Bayly
     initials: CIB
     orcid: 0000-0001-9145-6457
-    twitter: johndoe
     email: bayly@eyesopen.com
     affiliations:
       - OpenEye Scientific Software
-    funders: Grant XXXXXXXX
   -
     github: dgasmith
     name: Daniel G A Smith
@@ -36,8 +34,6 @@ author_info:
     email: dgasmith@icloud.com
     affiliations:
       - The Molecular Sciences Software Institute, Blacksburg, Virginia 24060 USA
-    funders: Grant XXXXXXXX
-
   -
     github: maxentile
     name: Josh Fass
@@ -62,12 +58,11 @@ author_info:
     github: davidlmobley
     name: David L Mobley
     initials: DLM
-    orcid: XXXX-XXXX-XXXX-XXXX
-    twitter: johndoe
+    orcid: 0000-0002-1083-5533
+    twitter: davidmobley
     email: john.doe@something.com
     affiliations:
       - Department of Something, University of Whatever
-    funders: Grant XXXXXXXX
   -
     github: jchodera
     name: John D Chodera
@@ -77,4 +72,3 @@ author_info:
     email: john.chodera@choderalab.org
     affiliations:
       - Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA
-    funders: Grant XXXXXXXX
