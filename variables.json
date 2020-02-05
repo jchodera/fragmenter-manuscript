@@ -1,5 +1,5 @@
 {
-  "date": "February 3, 2020",
+  "date": "February 5, 2020",
   "authors": [
     {
       "github": "ChayaSt",
@@ -19,14 +19,14 @@
       ]
     },
     {
-      "github": "johndoe",
+      "github": "cbayly13",
       "name": "Christopher I Bayly",
       "initials": "CIB",
-      "orcid": "XXXX-XXXX-XXXX-XXXX",
+      "orcid": "0000-0001-9145-6457",
       "twitter": "johndoe",
-      "email": "john.doe@something.com",
+      "email": "bayly@eyesopen.com",
       "affiliations": [
-        "Department of Something, University of Whatever"
+        "OpenEye Scientific Software"
       ],
       "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
@@ -60,7 +60,7 @@
       ],
       "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
-        3
+        5
       ]
     },
     {
@@ -75,7 +75,7 @@
       ],
       "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
-        3
+        5
       ]
     },
     {
@@ -90,7 +90,7 @@
       ],
       "funders": "Grant XXXXXXXX",
       "affiliation_numbers": [
-        3
+        5
       ]
     },
     {
@@ -119,19 +119,23 @@
       "affiliation_number": 2
     },
     {
-      "affiliation": "Department of Something, University of Whatever",
+      "affiliation": "OpenEye Scientific Software",
       "affiliation_number": 3
     },
     {
       "affiliation": "The Molecular Sciences Software Institute, Blacksburg, Virginia 24060 USA",
       "affiliation_number": 4
+    },
+    {
+      "affiliation": "Department of Something, University of Whatever",
+      "affiliation_number": 5
     }
   ],
   "ci_source": {
     "repo_slug": "ChayaSt/fragmenter-manuscript",
     "repo_owner": "ChayaSt",
     "repo_name": "fragmenter-manuscript",
-    "commit": "554788e4bc951e3a52bf30c04f97179d7455f233"
+    "commit": "7ff068a4deea5ee48bd5881e1ccb850fa4c0a082"
   },
   "manuscript_stats": {
     "reference_counts": {
@@ -139,6 +143,6 @@
       "url": 11,
       "total": 91
     },
-    "word_count": 15742
+    "word_count": 15918
   }
 }
