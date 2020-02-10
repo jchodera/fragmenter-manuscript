@@ -7,7 +7,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2020-02-06'
+date-meta: '2020-02-10'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Capturing non-local through-bond effects when fragmenting molecules for q
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/7a41db5ddf7c863c6fe87ae6d018385937b989d9/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/fa292ad05d4345994e56860f2f5bdd6bbf9daa67/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@7a41db5](https://github.com/ChayaSt/fragmenter-manuscript/tree/7a41db5ddf7c863c6fe87ae6d018385937b989d9)
-on February 6, 2020.
+from [ChayaSt/fragmenter-manuscript@fa292ad](https://github.com/ChayaSt/fragmenter-manuscript/tree/fa292ad05d4345994e56860f2f5bdd6bbf9daa67)
+on February 10, 2020.
 </em></small>
 
 ## Authors
@@ -590,8 +590,7 @@ in Figure @fig:frag_scheme is as follows:
 2. Keep the four atoms in the torsion quartet and all atoms bonded to those atoms (this ensures that all 1-5 atoms are included in the minimal fragment).
 3. If any of the atoms are part of a ring or functional group shown in table @tbl:fgroups, include ring and functional groups atoms to avoid ring breaking and fragmenting functional groups that contain
 more than one heteroatom.
-4. Keep ortho substitutents to the rotatable bond and the bonds directly bonded to the rotatable bond it is involved in the sterics of the torsion. This rule is slightly different than
-described in [@XP23v9gZ] and this decision is explained below.
+4. Keep all ortho substitutents.
 5. N, O and S are capped with methyl. All other open valence atoms are capped with hydrogen.
 6. Calculate WBO for fragment.
 5. If the fragment's WBO differs by more than a user defined threshold, continue grow out one bond at a time until the
@@ -620,8 +619,6 @@ fragment's WBO is within the threshold of the parent WBO.
 Table: **Functional groups that are not fragmented**. This list is not comprehensive as it only includes functional groups that were
 present in the validation set. Users can add their own functional groups they
 do not want to fragment {#tbl:fgroups}
-
-[*(Add discussion on the changes I made to the Pfizer scheme for our minimal fragment before we start building out and why. Add SI figure justifying it)*]{.banner .lightyellow}
 
 ### 3.5 Fragmentation schemes can be assessed by their ability to preserve the chemical environment while minimizing fragment size
 This fragmentation scheme improves upon [@XP23v9gZ], however, it leaves some parameters up to the user. In order to asses various
@@ -752,7 +749,7 @@ negatively charged oxygen indicated by two circles around the oxygen.
 ![**Different WBO disruption thresholds result in different accuracy vs cost trade-offs.**
 Computational cost vs distance score of the fragments for the bonds in the benchmark set shown in Figure {@fig:full_validation_set}.
 Computational cost is the cubed of heavy atoms in the fragment. The threshold is the maximum amount of change allowed
-in the ELF10 WBO relative to the parent's ELF10 WBO during fragmentation.](images/figure-11-fixed.svg){#fig:joint_plots}
+in the ELF10 WBO relative to the parent's ELF10 WBO during fragmentation.](images/cost-vs-accuracy.svg){#fig:joint_plots}
 
 We want to find the parameters for our fragmentation scheme that maximizes the number of fragments that end up in that lower left corner (illustrated in Figure {@fig:dabrafenib_wbo_dists}, B).
 To do that, we generated fragments for the red bonds in the 100 molecules shown in Figure {@fig:full_validation_set} set using different disruption thresholds. For every fragment, we found the distance
@@ -768,14 +765,14 @@ scheme Pfizer used in [@XP23v9gZ](Figure {@fig:joint_plots}, lower right and tab
 
 |WBO disruption threshold | Number of fragments in optimal fragment quadrant |
 |---|---|
-| 0.001 | 153 |
-| 0.005 | 197 |
-| 0.01 | 229 |
-| 0.03 | 259 |
-| 0.05 | 231 |
-| 0.07 | 214 |
-| 0.1 | 200 |
-| scheme from @XP23v9gZ | 189 |
+| 0.001 | 184 |
+| 0.005 | 229 |
+| 0.01 | 264 |
+| 0.03 | 281 |
+| 0.05 | 241 |
+| 0.07 | 225 |
+| 0.1 | 209 |
+| scheme from @XP23v9gZ | 197 |
 
 Table: Number of fragments in the lower left quadrant in Figure {@fig:joint_plots} defined as a distance score less than
 0.1 and computational cost less than 10000. {#tbl:benchmark}
@@ -786,7 +783,7 @@ Table: Number of fragments in the lower left quadrant in Figure {@fig:joint_plot
 Distribution of differences in distance scores for fragments in the validation set (SI Figure @fig:full_validation_set) generated using
 Pfizer's rules and our scheme using 0.03 as the disruption threshold. For many bonds, both approaches yield equally performing fragments (shown in green). In some cases,
 Prizer's rules performs better than our scheme (shown in red), however, the differences are usually very small. In most cases, using the WBO as an indicator improves
-the distance score (shown in blue)](images/combined_score_differences.svg){#fig:difference_hist}
+the distance score (shown in blue)](images/combined-score-differences-fixed.svg){#fig:difference_hist}
 
 In the benchmark experiment (Figure @fig:joint_plots), the distance scores measured the distance between WBO distributions generated from Omega generated conformers of the parents and fragments.
 Omega aims to generate low energy conformers [@1G1ccz54w] and in some cases, fragments only have one or two low energy conformers so it is not clear
@@ -803,12 +800,14 @@ the same fragments generated with our scheme shown in green in Figure {@fig:diff
 using the WBO as an indicator (Figure {@fig:difference_hist}, red). However, in many cases, especially if certain chemical groups are involved, using
 the WBO as an indicator significantly improves the electron population overlap about the bonds and brings them closer to their parent's chemical environment (Figure @fig:difference_hist, blue).
 It is important to note that when the fragment generated from both scheme are the same (green in Figure @fig:difference_hist), they are not necessarily the
-optimal fragment and both schemes can perform equally poorly (see SI).
+optimal fragment and both schemes can perform equally poorly (SI Figure @fig:equal-fragments, A, B, and C). However, in
+most cases both fragments do perform well (SI Figure @fig:equal-fragments, D, E, and F)
 
 ![**Some chemical groups induce non local effects that are captured in fragments when using the WBO as an indicator of chemical environments.**
 Wiberg bond order distributions for parent molecules (shown in blue) and fragments generated with Pfizer rules (shown in orange) and our
 scheme (shown in green). This figure shows eight chemical groups where the WBO distributions of the highlighted bonds change
-when those groups are removed. The ELF10 WBO is shown in the boxes next to the highlighted bonds. Changes are consistent across the validation set.
+when those groups are removed. The ELF10 WBO is shown in the boxes next to the highlighted bonds and the chemical groups are circled in the parent
+and our fragment. Changes are consistent across the validation set.
 ](images/figure_12.svg){#fig:chemical_groups}
 
 Upon closer inspection of the validation set, we found eight chemical groups that induce long range effects to sensitive bonds shown in
@@ -816,13 +815,13 @@ Figure @fig:chemical_groups. These chemical groups with representative examples 
 groups are ordered by how strongly they induce long range effect, in decreasing order. The most dramatic change happens when a phosphate
 group is removed (Figure @fig:chemical_groups, A). The variance of the WBO distribution increases which conveys an increase in
 relative energies of conformers in the QC torsion scans. In other molecules where phosphates are removed, the variance can
-decrease even if the phosphate group is ten bonds away (Figure @fig:failure_modes, F and SI). In Figure @fig:chemical_groups, B, removing
+decrease even if the phosphate group is ten bonds away (Figure @fig:failure_modes, F and SI Figure @fig:si-phosphate). In Figure @fig:chemical_groups, B, removing
 a protonated nitrogen that is double bonded causes the WBO distribution to shift and the variance to increase. Long range effects are seen in
-other molecules with similar chemical patterns up to eight bonds away (SI). Removing a nitrile group (Figure @fig:chemical_groups, C) and sulfonamide group (Figure @fig:chemical_groups, D)
-have similar effects on the WBO distributions which is also consistent with other molecules that contain these groups up to three bonds away (SI).
-A protonated nitrogen and deprotonated oxygen (Figure @fig:chemical_groups E and F) can effects bonds between 3-6 bonds away (SI). While the changes in distributions
+other molecules with similar chemical patterns up to eight bonds away (SI Figure @fig:si-nitrogen). Removing a nitrile group (Figure @fig:chemical_groups, C) and sulfonamide group (Figure @fig:chemical_groups, D)
+have similar effects on the WBO distributions which is also consistent with other molecules that contain these groups up to three bonds away `[hold for SI]`.{red}.
+A protonated nitrogen and deprotonated oxygen (Figure @fig:chemical_groups E and F) can effects bonds between 3-6 bonds away `[hold for SI]`{red}. While the changes in distributions
 for removing a nitro group and sulfur (Figure @fig:chemical_groups, G and H) are not as big as other chemical groups, they are mostly consistent across other molecules in the
-validation set (SI).
+validation set `[Hold for SI]`.{red}.
 
 ![**Using the WBO as an indicator when fragmenting can still fail to find the optimal fragment.**
 Our scheme can fail in several ways. **[A]** A smaller fragment (shown in orange) is just as good as a larger fragment (shown in green) even if the ELF10 WBO estimate
@@ -845,7 +844,7 @@ using Pfizer's scheme (0.017 vs 0.212), but it is not the smallest fragment. Acc
 required to achieve good overlap of the WBO distributions (0.051)
 2. We find a fragment that is bigger than Pfizer's scheme fragment and the remote substituents do not improve the WBO distribution overlap (MMD 0.079 vs 0.071) (Figure @fig:failure_modes C).
 The better fragment is shown in purple. It is both smaller and has better overlap (MMD 0.027) than the orange and green fragment.
-3. We find a fragment that is both larger and has worse overlap (0.054 vs 0.024) than what the Pfizer's scheme generates (Figure @fig:failure_modes)
+3. We find a fragment that is both larger and has worse overlap (Figure @fig:failure_modes, D; 0.054 vs 0.024) than what the Pfizer's scheme generates.
 
 While it is usually possible to find a fragment that is significantly smaller than the parent and retains remote substituent effects, the effects
 are sometimes more than 3-6 bonds away and a large fragment is needed to accurately represent the chemical environment of the parent molecule. Two such
@@ -1220,3 +1219,17 @@ bonds shown on the right. The molecules are labeled with their ELF10 WBOs.](imag
 All molecules used in the validation set of fragmentation schemes. The bonds are highlighted by how sensitive they are to
 remote fragmentation. The redder bonds are more sensitive while the WBO distributions around the blue bonds do not change
 much with remote fragmentation.](images/figure-10-SI.svg){#fig:full_validation_set}
+
+![**WBO fragmentation generates minimal fragment**
+This figure illustrates some cases where the Pfizer scheme and WBO scheme generate the same minimal fragment. While in most cases these fragments
+have WBO distributions that are close to the parent WBO distributions of the highlighted bond, sometimes both minimal fragments are equally poor.
+**[A]**, **[B]**, and **[C]** show fragments of both schemes where important remote, chemical groups are not in the fragment so their overlapping distributions (orange and green)
+are far from the parent WBO distributions (blue distributions). **[D]**, **[E]**, and **[F]** are the same as **A**, **B** and **C**, but the fragments do have the
+important chemical substituents so both perform equally well.](images/SI-pfizer-wbo-equal.svg){#fig:equal-fragments}
+
+![**When Phosphate is removed, WBO distribution shifts even when the phosphate is six bonds away**
+Examples from benchmark set where remote phophsate groups induce long range effects of **[A]** six bonds away and **[B]** four bonds away.](images/SI-phophsate.svg){#fig:si-phosphate}
+
+![**When a protonated nitrogen is removed, WBO distribution shifts even when the nitrogen is up to eight bonds away**
+Selected examples from the benchmark set were remote nitrogen groups induce long range effects. The distance of the remote nitrogen
+ranges from three bonds away up to eight bonds away.](images/SI-nitrogen.svg){#fig:si-nitrogen}
