@@ -7,7 +7,7 @@ author-meta:
 - Lee-Ping Wang
 - David L Mobley
 - John D Chodera
-date-meta: '2020-02-13'
+date-meta: '2020-02-14'
 keywords:
 - forcefield
 - force-field
@@ -24,10 +24,10 @@ title: Capturing non-local through-bond effects when fragmenting molecules for q
 
 <small><em>
 This manuscript
-([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/7e2ff320ae2cd95b5a201ff810b7bf73047a5c91/))
+([permalink](https://ChayaSt.github.io/fragmenter-manuscript/v/67bbc9938f4f7dbc483d1ae7546bf83856e5b720/))
 was automatically generated
-from [ChayaSt/fragmenter-manuscript@7e2ff32](https://github.com/ChayaSt/fragmenter-manuscript/tree/7e2ff320ae2cd95b5a201ff810b7bf73047a5c91)
-on February 13, 2020.
+from [ChayaSt/fragmenter-manuscript@67bbc99](https://github.com/ChayaSt/fragmenter-manuscript/tree/67bbc9938f4f7dbc483d1ae7546bf83856e5b720)
+on February 14, 2020.
 </em></small>
 
 ## Authors
@@ -815,14 +815,14 @@ Figure @fig:chemical_groups. These chemical groups with representative examples 
 groups are ordered by how strongly they induce long range effect, in decreasing order. The most dramatic change happens when a phosphate
 group is removed (Figure @fig:chemical_groups, A). The variance of the WBO distribution increases which conveys an increase in
 relative energies of conformers in the QC torsion scans. In other molecules where phosphates are removed, the variance can
-decrease even if the phosphate group is ten bonds away (Figure @fig:failure_modes, F and SI Figure @fig:si-phosphat
+decrease even if the phosphate group is ten bonds away (Figure @fig:failure_modes, F and SI Figure @fig:si-phosphate
 e). In Figure @fig:chemical_groups, B, removing
 a protonated nitrogen that is double bonded causes the WBO distribution to shift and the variance to increase. Long range effects are seen in
-other molecules with similar chemical patterns up to eight bonds away (SI Figure @fig:si-nitrogen). Removing a nitrile group (Figure @fig:chemical_groups, C) and sulfonamide group (Figure @fig:chemical_groups, D)
+other molecules with similar chemical patterns up to eight bonds away (SI Figure @fig:si-nitrogen, E). Removing a nitrile group (Figure @fig:chemical_groups, C) and sulfonamide group (Figure @fig:chemical_groups, D)
 have similar effects on the WBO distributions which is also consistent with other molecules that contain these groups up to three bonds away (SI Figures @fig:si-nitrile and @fig:si-sulfonamide).
-A protonated nitrogen and deprotonated oxygen (Figure @fig:chemical_groups E and F) can effects bonds between 3-6 bonds away `[hold for SI]`{.red}. While the changes in distributions
+A protonated nitrogen and deprotonated oxygen (Figure @fig:chemical_groups E and F) can effects bonds between 3-6 bonds away (SI Figures @fig:si-nitrogen and @fig:si-oxygen). While the changes in distributions
 for removing a nitro group and sulfur (Figure @fig:chemical_groups, G and H) are not as big as other chemical groups, they are mostly consistent across other molecules in the
-validation set `[Hold for SI]`{.red}.
+validation set (SI Figures @fig:si-nitro and @fig:si-sulfur).
 
 ![**Using the WBO as an indicator when fragmenting can still fail to find the optimal fragment.**
 Our scheme can fail in several ways. **[A]** A smaller fragment (shown in orange) is just as good as a larger fragment (shown in green) even if the ELF10 WBO estimate
@@ -1240,3 +1240,15 @@ Examples from the benchmark set. Removing remote nitrile groups shift the WBO di
 
 ![**Removing a sulfonamide group shifts WBO distribution.**
 Removing the sulfonamide (orange) that is four bonds away moves the fragment's WBO distribution further away from parent WBO distribution (blue).](images/SI-sulfonamide.svg){#fig:si-sulfonamide}
+
+![**Removing a deprotonated oxygen shifts the WBO distribution.**
+Removing a negatively charged nitrogen can effect bonds up to six to eight bonds away.](images/SI-oxygen.svg){#fig:si-oxygen}
+
+![**Removing a ntiro group shifts the WBO distribution.**
+Removing a ntiro group effects bonds up to five bonds away.](images/SI-nitro.svg){#fig:si-nitro}
+
+![**Removing sulfur shifts the WBO distribution.**
+Removing sulfur shifts the WBO, but the shift is smaller than for other functional groups and this is not always captured by the WBO scheme.
+The figure on the right shows the fragment that the WBO scheme generates (green), however, it also includes the ring. The smaller fragment that
+has the sulfur (red) has an ELF10 WBO that is ~0.1 lower than in the parent, but the WBO distribution (shown in red) is closer to the parent WBO distribution (blue, distance score 0.08)
+than the fragment without sulfur (orange, 0.133)](images/SI-sulfur.svg){#fig:si-sulfur}
