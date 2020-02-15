@@ -16,7 +16,9 @@ author_info:
     affiliations:
       - Tri-Insitutional PhD Program in Chemical Biology, Memorial Sloan Kettering Cancer Center, New York, New York 10065, USA
       - Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA
-    funders: Grant XXXXXXXX
+    funders:
+      - NSF GRFP
+      - NSF CHE-1738979 # Bayesian force field grant
   -
     github: cbayly13
     name: Christopher I Bayly
@@ -34,26 +36,31 @@ author_info:
     email: dgasmith@icloud.com
     affiliations:
       - The Molecular Sciences Software Institute, Blacksburg, Virginia 24060 USA
+    funders:
+      - NSF OAC-1547580 # MolSSI
+      - Open Force Field Consortium
   -
     github: maxentile
     name: Josh Fass
     initials: JF
-    orcid: XXXX-XXXX-XXXX-XXXX
-    twitter: johndoe
-    email: john.doe@something.com
+    orcid: 0000-0003-3719-266X
+    twitter: maxentile
+    email: josh.fass@choderalab.org
     affiliations:
-      - Department of Something, University of Whatever
-    funders: Grant XXXXXXXX
+      - Tri-Insitutional PhD Program in Chemical Biology, Memorial Sloan Kettering Cancer Center, New York, New York 10065, USA
+      - Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA
+    funders:
+      - NSF CHE-1738979
   -
     github: leeping
     name: Lee-Ping Wang
     initials: LPW
-    orcid: XXXX-XXXX-XXXX-XXXX
-    twitter: johndoe
-    email: john.doe@something.com
+    orcid: 0000-0003-3072-9946
+    twitter: null
+    email: leeping@ucdavis.edu
     affiliations:
-      - Department of Something, University of Whatever
-    funders: Grant XXXXXXXX
+      - Department of Chemistry, University of California, Davis, Califnornia 95616 USA
+    funders: null
   -
     github: davidlmobley
     name: David L Mobley
@@ -62,7 +69,9 @@ author_info:
     twitter: davidmobley
     email: john.doe@something.com
     affiliations:
-      - Department of Something, University of Whatever
+      - Departments of Pharmaceutical Sciences and Chemistry, University of California, Irvine, California 92697
+    funders:
+      - NIH R01GM132386 # Open Force Field Initiative
   -
     github: jchodera
     name: John D Chodera
@@ -72,3 +81,9 @@ author_info:
     email: john.chodera@choderalab.org
     affiliations:
       - Computational and Systems Biology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065 USA
+      - BIH Einstein Visiting Professor, Charité Universitätsmedizin, Berlin
+    funders:
+      - NSF CHE-1738979 # NSF Bayesian inference
+      - NIH R01GM132386 # Open Force Field Initiative
+      - NIH P30CA008748 # MSKCC cancer center grant
+      - Sloan Kettering Institute
